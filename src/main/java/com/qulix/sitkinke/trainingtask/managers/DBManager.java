@@ -26,7 +26,12 @@ public class DBManager {
     }
 
     public Connection getConnection() throws SQLException {
-       return DriverManager.getConnection(
+        try {
+            Class.forName("org.hsqldb.jdbcDriver");
+        } catch (ClassNotFoundException e) {
+            System.out.println("jdbcDriver not found!");
+        }
+        return DriverManager.getConnection(
                "jdbc:hsqldb:file:D:\\hsqldb-2.4.0\\/db", "ke", "qwe123");
     }
 
