@@ -20,8 +20,8 @@
     <input type="text" name="patronymic" value="" placeholder="patronymic"/>
     <input type="text" name="position" value="" placeholder="position"/>
     <input type="hidden" name="command" value="addemployee"/>
-    <input type="submit" value="Add"/>
+    <input type="submit" value="Save"/>
 </form>
-<a href="controller?command=showemployees">Back to list</a>
+<a href="controller?command=showemployees">Cancel</a>
 </body>
 </html>

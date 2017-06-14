@@ -1,7 +1,9 @@
 package com.qulix.sitkinke.trainingtask.command;
 
 import com.qulix.sitkinke.trainingtask.dao.EmployeeDAO;
+import com.qulix.sitkinke.trainingtask.dao.TaskDAO;
 import com.qulix.sitkinke.trainingtask.entities.Employee;
+import com.qulix.sitkinke.trainingtask.entities.Task;
 import com.qulix.sitkinke.trainingtask.resource.ConfigurationManager;
 
 import javax.servlet.http.HttpServletRequest;

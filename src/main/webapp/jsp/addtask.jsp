@@ -1,10 +1,4 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: upsit
-  Date: 14.06.2017
-  Time: 14:52
-  To change this template use File | Settings | File Templates.
---%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -24,9 +18,17 @@
         <option>COMPLETED</option>
         <option>POSTPONED</option>
     </select>
+
+    <select name="select2" multiple="multiple" tabindex="1" title="title">
+        <jsp:useBean id="employees" scope="request" type="java.util.List"/>
+        <c:forEach var="employee" items="${employees}">
+            <option>${employee.name}</option>
+        </c:forEach>
+    </select>
+
     <input type="hidden" name="command" value="addtask" />
-    <input type="submit" value="Add"/>
+    <input type="submit" value="Save"/>
 </form>
-<a href="controller?command=showtasks">Back to list</a>
+<a href="controller?command=showtasks">Cancel</a>
 </body>
 </html>
