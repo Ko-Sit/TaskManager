@@ -2,6 +2,7 @@ package com.qulix.sitkinke.trainingtask.entities;
 
 import com.qulix.sitkinke.trainingtask.enums.State;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -28,6 +29,7 @@ public class Task {
         this.startDate = startDate;
         this.endDate = endDate;
         this.state = state;
+        this.employeeList = new ArrayList<>();
     }
 
     public int getId() {

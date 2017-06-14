@@ -1,5 +1,6 @@
 package com.qulix.sitkinke.trainingtask.entities;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -24,6 +25,7 @@ public class Employee {
         this.name = name;
         this.patronymic = patronymic;
         this.position = position;
+        this.taskList = new ArrayList<>();
     }
 
     public int getId() {

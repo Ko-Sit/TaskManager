@@ -13,12 +13,13 @@
 </head>
 <body>
 <form name="loginForm" method="POST" action="controller">
-    <input type="hidden" name="command" value="addemployee" />
+
     <input type="number" name="id" value="" placeholder="id"/>
     <input type="text" name="surname" value="" placeholder="surname"/>
     <input type="text" name="name" value="" placeholder="name"/>
     <input type="text" name="patronymic" value="" placeholder="patronymic"/>
     <input type="text" name="position" value="" placeholder="position"/>
+    <input type="hidden" name="command" value="addemployee"/>
     <input type="submit" value="Add"/>
 </form>
 <a href="controller?command=showemployees">Back to list</a>

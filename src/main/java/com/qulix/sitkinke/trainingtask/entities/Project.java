@@ -1,5 +1,6 @@
 package com.qulix.sitkinke.trainingtask.entities;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -22,6 +23,7 @@ public class Project {
         this.name = name;
         this.abbreviation = abbreviation;
         this.description = description;
+        this.taskList = new ArrayList<>();
     }
 
     public int getId() {

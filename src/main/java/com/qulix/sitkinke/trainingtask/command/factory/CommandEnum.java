@@ -1,9 +1,6 @@
 package com.qulix.sitkinke.trainingtask.command.factory;
 
-import com.qulix.sitkinke.trainingtask.command.ActionCommand;
-import com.qulix.sitkinke.trainingtask.command.AddEmployeeCommand;
-import com.qulix.sitkinke.trainingtask.command.GoToAddEmployeesCommand;
-import com.qulix.sitkinke.trainingtask.command.ShowEmployeesCommand;
+import com.qulix.sitkinke.trainingtask.command.*;
 
 /**
  *
@@ -23,6 +20,21 @@ public enum CommandEnum {
     GOTOADDEMPLOYEE {
         {
             this.command = new GoToAddEmployeesCommand();
+        }
+    },
+    GOTOADDTASK {
+        {
+            this.command = new GoToAddTasksCommand();
+        }
+    },
+    SHOWTASKS {
+        {
+            this.command = new ShowTasksCommand();
+        }
+    },
+    ADDTASK {
+        {
+            this.command = new AddTaskCommand();
         }
     };
 

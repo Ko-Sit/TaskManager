@@ -12,7 +12,7 @@
 
 <table>
     <tr>
-        <th>Name</th>
+        <th>ID</th>
         <th>Name</th>
         <th>Surname</th>
         <th>Patronymic</th>
