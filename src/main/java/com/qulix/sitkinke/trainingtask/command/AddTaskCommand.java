@@ -1,15 +1,16 @@
 package com.qulix.sitkinke.trainingtask.command;
 
 import com.qulix.sitkinke.trainingtask.dao.TaskDAO;
+import com.qulix.sitkinke.trainingtask.entities.Employee;
 import com.qulix.sitkinke.trainingtask.entities.Task;
 import com.qulix.sitkinke.trainingtask.enums.State;
+import com.qulix.sitkinke.trainingtask.managers.ParseManager;
 import com.qulix.sitkinke.trainingtask.managers.SQLDateConverter;
 import com.qulix.sitkinke.trainingtask.resource.ConfigurationManager;
 
 import javax.servlet.http.HttpServletRequest;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 /**
  *
@@ -26,12 +27,19 @@ public class AddTaskCommand implements ActionCommand{
         Date startDate = SQLDateConverter.getDate(request.getParameter("startdate"));
         Date endDate = SQLDateConverter.getDate(request.getParameter("enddate"));
         State state = State.valueOf(request.getParameter("state"));
+        List<Employee> employees = ParseManager.getEmployeeList(request.getParameterValues("select2"));
 
         Task task = new Task(id, name, duration, startDate, endDate, state);
+        task.setEmployeeList(employees);
         TaskDAO taskDAO = new TaskDAO();
         taskDAO.addTask(task);
 
-        page = ConfigurationManager.getProperty("path.page.addtask");
+        // page addtask requires attribute employees
+        List<Task> tasks;
+        tasks = taskDAO.getAll();
+        request.setAttribute("tasks", tasks);
+
+        page = ConfigurationManager.getProperty("path.page.showtasks");
         return page;
     }
 }

@@ -36,6 +36,11 @@ public enum CommandEnum {
         {
             this.command = new AddTaskCommand();
         }
+    },
+    DELETEEMPLOYEE{
+        {
+        this.command = new DeleteEmployeeCommand();
+        }
     };
 
     ActionCommand command;

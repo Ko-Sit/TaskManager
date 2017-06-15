@@ -17,6 +17,8 @@
         <th>Surname</th>
         <th>Patronymic</th>
         <th>Position</th>
+        <th>Delete</th>
+        <th>Modify</th>
     </tr>
 
     <jsp:useBean id="employees" scope="request" type="java.util.List"/>
@@ -27,6 +29,8 @@
             <td>${employee.surname}</td>
             <td>${employee.patronymic}</td>
             <td>${employee.position}</td>
+            <td><a href="controller?command=deleteemployee&id=${employee.id}">Delete</a></td>
+            <td><a href="controller?command=modifyemployee&id=${employee.id}">Modify</a></td>
         </tr>
     </c:forEach>
 </table>

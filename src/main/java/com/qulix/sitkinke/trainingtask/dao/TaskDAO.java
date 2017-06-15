@@ -102,7 +102,6 @@ public class TaskDAO  {
             System.out.println("SQL exception occurred during delete task executors");
             e.printStackTrace();
         }
-
     }
 
     public Task getById(int id){

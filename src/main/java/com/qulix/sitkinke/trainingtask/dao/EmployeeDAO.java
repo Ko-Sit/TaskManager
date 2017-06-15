@@ -18,6 +18,7 @@ public class EmployeeDAO{
     public static final String SQL_QUERY_DELETE_EMPLOYEE = "DELETE FROM EMPLOYEES WHERE ID = ?";
     public static final String SQL_QUERY_GET_ALL_EMPLOYEES = "SELECT * FROM EMPLOYEES";
     public static final String SQL_QUERY_GET_BY_ID = "SELECT * FROM EMPLOYEES WHERE ID = ?";
+    public static final String SQL_QUERY_DELETE_EMPLOYEE_TASKS = "DELETE FROM REFLIST_EMPL WHERE ID_EMPLOYEE = ?";
 
     public void addEmployee(Employee employee) {
         try(Connection connection = DBManager.getInstance().getConnection();
@@ -50,12 +51,24 @@ public class EmployeeDAO{
     }
 
     public void deleteEmployee(int id) {
+        deleteEmployeeTasks(id);
         try(Connection connection = DBManager.getInstance().getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement(SQL_QUERY_DELETE_EMPLOYEE)){
             preparedStatement.setInt(1, id);
             preparedStatement.executeUpdate();
         }  catch (SQLException e) {
             System.out.println("SQL exception occurred during delete employee");
+            e.printStackTrace();
+        }
+    }
+
+    private void deleteEmployeeTasks(int id_employee){
+        try(Connection connection = DBManager.getInstance().getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement(SQL_QUERY_DELETE_EMPLOYEE_TASKS)){
+            preparedStatement.setInt(1, id_employee);
+            preparedStatement.executeUpdate();
+        }  catch (SQLException e) {
+            System.out.println("SQL exception occurred during delete employee tasks");
             e.printStackTrace();
         }
     }
