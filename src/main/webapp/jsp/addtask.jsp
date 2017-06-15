@@ -8,7 +8,8 @@
 </head>
 <body>
 <form name="loginForm" method="POST" action="controller">
-    <input type="number" name="id" value="" placeholder="id"/>
+    <jsp:useBean id="idgenerated" scope="request" type="java.lang.Integer"/>
+    <input type="number" name="id" value="${idgenerated}" placeholder="id" readonly/>
     <input type="text" name="name" value="" placeholder="name"/>
     <input type="number" name="duration" value="" placeholder="duration"/>
     <input type="date" name="startdate" value="" placeholder="startdate"/>

@@ -22,8 +22,7 @@ public class Task {
     public Task() {
     }
 
-    public Task(int id, String name, int duration, Date startDate, Date endDate, State state) {
-        this.id = id;
+    public Task(String name, int duration, Date startDate, Date endDate, State state) {
         this.name = name;
         this.duration = duration;
         this.startDate = startDate;

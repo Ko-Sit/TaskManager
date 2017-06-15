@@ -119,7 +119,7 @@ public class EmployeeDAO{
             if (resultSet.next())
                 id = resultSet.getInt(1);
             else
-                return -1;
+                return 0;
 
         }  catch (SQLException e) {
             System.out.println("SQL exception occurred during get next id employees");

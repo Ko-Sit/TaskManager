@@ -18,24 +18,24 @@ import java.util.List;
  * Created by upsit on 12.06.2017.
  */
 public class TaskDAO  {
-    public static final String SQL_QUERY_ADD_TASK = "INSERT INTO TASKS (ID, NAME, DURATION, STARTDATE, ENDDATE, STATE) VALUES (?, ?, ?, ?, ?, ?)";
+    public static final String SQL_QUERY_ADD_TASK = "INSERT INTO TASKS (NAME, DURATION, STARTDATE, ENDDATE, STATE) VALUES (?, ?, ?, ?, ?)";
     public static final String SQL_QUERY_MODIFY_TASK = "UPDATE TASKS SET NAME = ?, DURATION = ?, STARTDATE = ?, ENDDATE = ?, STATE = ? WHERE ID = ?";
     public static final String SQL_QUERY_DELETE_TASK = "DELETE FROM TASKS WHERE ID = ?";
     public static final String SQL_QUERY_GET_ALL_TASKS = "SELECT * FROM TASKS";
     public static final String SQL_QUERY_GET_BY_ID = "SELECT * FROM TASKS WHERE ID = ?";
     public static final String SQL_QUERY_ADD_TASK_EXECUTORS = "INSERT INTO REFLIST_EMPL (ID_EMPLOYEE, ID_TASK) VALUES (?, ?)";
     public static final String SQL_QUERY_DELETE_TASK_EXECUTORS = "DELETE FROM REFLIST_EMPL WHERE ID_TASK = ?";
+    public static final String SQL_QUERY_GET_NEXT_ID = "SELECT ID FROM TASKS ORDER BY ID DESC LIMIT 1";
 
     public void addTask(Task task){
         addTaskExecutors(task.getId(), task.getEmployeeList());
         try(Connection connection = DBManager.getInstance().getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement(SQL_QUERY_ADD_TASK)){
-            preparedStatement.setInt(1, task.getId());
-            preparedStatement.setString(2, task.getName());
-            preparedStatement.setInt(3, task.getDuration());
-            preparedStatement.setDate(4, new java.sql.Date(task.getStartDate().getDate()));
-            preparedStatement.setDate(5, new java.sql.Date(task.getEndDate().getDate()));
-            preparedStatement.setString(6, task.getState().toString().toUpperCase());
+            preparedStatement.setString(1, task.getName());
+            preparedStatement.setInt(2, task.getDuration());
+            preparedStatement.setDate(3, new java.sql.Date(task.getStartDate().getDate()));
+            preparedStatement.setDate(4, new java.sql.Date(task.getEndDate().getDate()));
+            preparedStatement.setString(5, task.getState().toString().toUpperCase());
             preparedStatement.executeUpdate();
         }  catch (SQLException e) {
             System.out.println("SQL exception occurred during add task");
@@ -141,6 +141,26 @@ public class TaskDAO  {
         return taskList;
     }
 
+    public int getNextId(){
+        int id;
+        int id_next;
+        try(Connection connection = DBManager.getInstance().getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement(SQL_QUERY_GET_NEXT_ID);
+            ResultSet resultSet = preparedStatement.executeQuery()){
+            if (resultSet.next())
+                id = resultSet.getInt(1);
+            else
+                return 0;
+
+        }  catch (SQLException e) {
+            System.out.println("SQL exception occurred during get next id tasks");
+            e.printStackTrace();
+            return -1;
+        }
+        id_next = id + 1;
+        return id_next;
+    }
+
     private Task buildTask(ResultSet resultSet) throws SQLException {
         int id = resultSet.getInt(1);
         String name = resultSet.getString(2);
@@ -149,6 +169,8 @@ public class TaskDAO  {
         Date endDate = resultSet.getDate(5);
         State state = State.valueOf(resultSet.getString(6).toUpperCase());
 
-        return new Task(id, name, duration, startDate, endDate, state);
+        Task task = new Task(name, duration, startDate, endDate, state);
+        task.setId(id);
+        return task;
     }
 }

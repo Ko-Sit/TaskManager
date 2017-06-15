@@ -29,7 +29,8 @@ public class AddTaskCommand implements ActionCommand{
         State state = State.valueOf(request.getParameter("state"));
         List<Employee> employees = ParseManager.getEmployeeList(request.getParameterValues("select2"));
 
-        Task task = new Task(id, name, duration, startDate, endDate, state);
+        Task task = new Task(name, duration, startDate, endDate, state);
+        task.setId(id);
         task.setEmployeeList(employees);
         TaskDAO taskDAO = new TaskDAO();
         taskDAO.addTask(task);
