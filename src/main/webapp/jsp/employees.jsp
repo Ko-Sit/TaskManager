@@ -30,7 +30,7 @@
             <td>${employee.patronymic}</td>
             <td>${employee.position}</td>
             <td><a href="controller?command=deleteemployee&id=${employee.id}">Delete</a></td>
-            <td><a href="controller?command=modifyemployee&id=${employee.id}">Modify</a></td>
+            <td><a href="controller?command=gotomodifyemployee&id=${employee.id}">Modify</a></td>
         </tr>
     </c:forEach>
 </table>
