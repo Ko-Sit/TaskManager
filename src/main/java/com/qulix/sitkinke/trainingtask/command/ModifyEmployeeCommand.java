@@ -15,13 +15,12 @@ public class ModifyEmployeeCommand implements ActionCommand {
     @Override
     public String execute(HttpServletRequest request) {
         String page = null;
-        int id = Integer.valueOf(request.getParameter("id"));
         String surname = request.getParameter("surname");
         String name = request.getParameter("name");
         String patronymic = request.getParameter("patronymic");
         String position = request.getParameter("position");
 
-        Employee employee = new Employee(id, surname, name, patronymic, position);
+        Employee employee = new Employee(surname, name, patronymic, position);
         EmployeeDAO employeeDAO = new EmployeeDAO();
         employeeDAO.modifyEmployee(employee);
 

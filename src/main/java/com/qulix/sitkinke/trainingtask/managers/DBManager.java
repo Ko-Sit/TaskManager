@@ -32,7 +32,7 @@ public class DBManager {
             System.out.println("jdbcDriver not found!");
         }
         return DriverManager.getConnection(
-               "jdbc:hsqldb:file:D:\\hsqldb-2.4.0\\/db", "ke", "qwe123");
+               "jdbc:hsqldb:file:D:\\IdeaProjects\\maanager\\db/db", "ke", "qwe123");
     }
 
 }

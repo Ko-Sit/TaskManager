@@ -19,6 +19,7 @@ public class EmployeeDAO{
     public static final String SQL_QUERY_GET_ALL_EMPLOYEES = "SELECT * FROM EMPLOYEES";
     public static final String SQL_QUERY_GET_BY_ID = "SELECT * FROM EMPLOYEES WHERE ID = ?";
     public static final String SQL_QUERY_DELETE_EMPLOYEE_TASKS = "DELETE FROM REFLIST_EMPL WHERE ID_EMPLOYEE = ?";
+    public static final String SQL_QUERY_GET_NEXT_ID = "SELECT MAX(ID) FROM EMPLOYEES";
 
     public void addEmployee(Employee employee) {
         try(Connection connection = DBManager.getInstance().getConnection();
@@ -110,6 +111,26 @@ public class EmployeeDAO{
         return employeeList;
     }
 
+    public int getNextId(){
+        int id;
+        int id_next;
+        try(Connection connection = DBManager.getInstance().getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement(SQL_QUERY_GET_NEXT_ID);
+            ResultSet resultSet = preparedStatement.executeQuery()){
+            if (resultSet.next())
+                id = resultSet.getInt(1);
+            else
+                return -1;
+
+        }  catch (SQLException e) {
+            System.out.println("SQL exception occurred during get next id employees");
+            e.printStackTrace();
+            return -1;
+        }
+        id_next = id + 1;
+        return id_next;
+    }
+
     private Employee buildEmployee(ResultSet resultSet) throws SQLException {
         int id = resultSet.getInt(1);
         String name = resultSet.getString(2);
@@ -117,7 +138,7 @@ public class EmployeeDAO{
         String patronymic = resultSet.getString(4);
         String position = resultSet.getString(5);
 
-        return new Employee(id, name, surname, patronymic, position);
+        return new Employee(name, surname, patronymic, position);
     }
 
 }
