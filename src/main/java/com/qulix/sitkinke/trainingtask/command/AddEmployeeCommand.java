@@ -5,6 +5,7 @@ import com.qulix.sitkinke.trainingtask.entities.Employee;
 import com.qulix.sitkinke.trainingtask.resource.ConfigurationManager;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 /**
  *
@@ -24,7 +25,11 @@ public class AddEmployeeCommand implements ActionCommand{
         EmployeeDAO employeeDAO = new EmployeeDAO();
         employeeDAO.addEmployee(employee);
 
-        page = ConfigurationManager.getProperty("path.page.addemployee");
+        List<Employee> employees;
+        employees = employeeDAO.getAll();
+        request.setAttribute("employees", employees);
+
+        page = ConfigurationManager.getProperty("path.page.showemployees");
         return page;
     }
 }

@@ -1,11 +1,6 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: upsit
-  Date: 14.06.2017
-  Time: 12:17
-  To change this template use File | Settings | File Templates.
---%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<!DOCTYPE HTML>
 <html>
 <head>
     <link rel="stylesheet" href="../css/style.css">
@@ -13,8 +8,8 @@
 </head>
 <body>
 <form name="loginForm" method="POST" action="controller">
-
-    <input type="number" name="id" value="" placeholder="id"/>
+    <jsp:useBean id="idgenerated" scope="request" type="java.lang.Integer"/>
+    <input type="number" name="id" value="${idgenerated}" placeholder="id" disabled/>
     <input type="text" name="surname" value="" placeholder="surname"/>
     <input type="text" name="name" value="" placeholder="name"/>
     <input type="text" name="patronymic" value="" placeholder="patronymic"/>

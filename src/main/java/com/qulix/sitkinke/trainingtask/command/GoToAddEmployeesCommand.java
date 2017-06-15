@@ -1,5 +1,6 @@
 package com.qulix.sitkinke.trainingtask.command;
 
+import com.qulix.sitkinke.trainingtask.dao.EmployeeDAO;
 import com.qulix.sitkinke.trainingtask.resource.ConfigurationManager;
 
 import javax.servlet.http.HttpServletRequest;
@@ -13,6 +14,10 @@ public class GoToAddEmployeesCommand implements ActionCommand{
     @Override
     public String execute(HttpServletRequest request) {
         String page = null;
+
+        EmployeeDAO employeeDAO = new EmployeeDAO();
+        int id = employeeDAO.getNextId();
+        request.setAttribute("idgenerated", id);
 
         page = ConfigurationManager.getProperty("path.page.addemployee");
         return page;

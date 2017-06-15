@@ -13,22 +13,21 @@ import java.util.List;
  */
 public class EmployeeDAO{
 
-    public static final String SQL_QUERY_ADD_EMPLOYEE = "INSERT INTO EMPLOYEES (ID, NAME, SURNAME, PATRONYMIC, POSITION) VALUES (?, ?, ?, ?, ?)";
+    public static final String SQL_QUERY_ADD_EMPLOYEE = "INSERT INTO EMPLOYEES (NAME, SURNAME, PATRONYMIC, POSITION) VALUES (?, ?, ?, ?)";
     public static final String SQL_QUERY_MODIFY_EMPLOYEE = "UPDATE EMPLOYEES SET NAME = ?, SURNAME = ?, PATRONYMIC = ?, POSITION = ? WHERE ID = ?";
     public static final String SQL_QUERY_DELETE_EMPLOYEE = "DELETE FROM EMPLOYEES WHERE ID = ?";
     public static final String SQL_QUERY_GET_ALL_EMPLOYEES = "SELECT * FROM EMPLOYEES";
     public static final String SQL_QUERY_GET_BY_ID = "SELECT * FROM EMPLOYEES WHERE ID = ?";
     public static final String SQL_QUERY_DELETE_EMPLOYEE_TASKS = "DELETE FROM REFLIST_EMPL WHERE ID_EMPLOYEE = ?";
-    public static final String SQL_QUERY_GET_NEXT_ID = "SELECT MAX(ID) FROM EMPLOYEES";
+    public static final String SQL_QUERY_GET_NEXT_ID = "SELECT ID FROM EMPLOYEES ORDER BY ID DESC LIMIT 1";
 
     public void addEmployee(Employee employee) {
         try(Connection connection = DBManager.getInstance().getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement(SQL_QUERY_ADD_EMPLOYEE)){
-            preparedStatement.setInt(1, employee.getId());
-            preparedStatement.setString(2, employee.getName());
-            preparedStatement.setString(3, employee.getSurname());
-            preparedStatement.setString(4, employee.getPatronymic());
-            preparedStatement.setString(5, employee.getPosition());
+            preparedStatement.setString(1, employee.getName());
+            preparedStatement.setString(2, employee.getSurname());
+            preparedStatement.setString(3, employee.getPatronymic());
+            preparedStatement.setString(4, employee.getPosition());
             preparedStatement.executeUpdate();
         }  catch (SQLException e) {
             System.out.println("SQL exception occurred during add employee");
@@ -138,7 +137,9 @@ public class EmployeeDAO{
         String patronymic = resultSet.getString(4);
         String position = resultSet.getString(5);
 
-        return new Employee(name, surname, patronymic, position);
+        Employee employee = new Employee(name, surname, patronymic, position);
+        employee.setId(id);
+        return employee;
     }
 
 }

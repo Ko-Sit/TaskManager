@@ -9,7 +9,7 @@
 <body>
 <form name="loginForm" method="POST" action="controller">
     <jsp:useBean id="selectedemployee" scope="request" type="com.qulix.sitkinke.trainingtask.entities.Employee"/>
-    <input type="number" value="${selectedemployee.id}" name="id" placeholder="id"/>
+    <input type="number" value="${selectedemployee.id}" name="id" placeholder="id" readonly/>
     <input type="text" value="${selectedemployee.surname}" name="surname" placeholder="surname"/>
     <input type="text" value="${selectedemployee.name}" name="name" placeholder="name"/>
     <input type="text" value="${selectedemployee.patronymic}" name="patronymic" placeholder="patronymic"/>
