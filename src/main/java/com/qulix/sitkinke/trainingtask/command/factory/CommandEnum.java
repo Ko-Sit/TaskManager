@@ -1,7 +1,6 @@
 package com.qulix.sitkinke.trainingtask.command.factory;
 
 import com.qulix.sitkinke.trainingtask.command.*;
-import com.qulix.sitkinke.trainingtask.entities.Task;
 
 /**
  *
@@ -51,6 +50,21 @@ public enum CommandEnum {
     MODIFYEMPLOYEE{
         {
             this.command = new ModifyEmployeeCommand();
+        }
+    },
+    DELETETASK{
+        {
+            this.command = new DeleteTaskCommand();
+        }
+    },
+    GOTOMODIFYTASK{
+        {
+            this.command = new GoToModifyTaskCommand();
+        }
+    },
+    MODIFYTASK{
+        {
+            this.command = new ModifyTaskCommand();
         }
     };
 

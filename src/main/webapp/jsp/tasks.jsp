@@ -18,6 +18,8 @@
         <th>StartDate</th>
         <th>EndDate</th>
         <th>State</th>
+        <th>Delete</th>
+        <th>Modify</th>
     </tr>
 
     <jsp:useBean id="tasks" scope="request" type="java.util.List"/>
@@ -29,6 +31,8 @@
             <td>${task.startDate}</td>
             <td>${task.endDate}</td>
             <td>${task.state}</td>
+            <td><a href="controller?command=deletetask&id=${task.id}">Delete</a></td>
+            <td><a href="controller?command=gotomodifytask&id=${task.id}">Modify</a></td>
         </tr>
     </c:forEach>
 </table>

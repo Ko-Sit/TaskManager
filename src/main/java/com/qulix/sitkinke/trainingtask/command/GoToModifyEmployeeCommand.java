@@ -1,4 +1,4 @@
-package com.qulix.sitkinke.trainingtask.command.factory;
+package com.qulix.sitkinke.trainingtask.command;
 
 import com.qulix.sitkinke.trainingtask.command.ActionCommand;
 import com.qulix.sitkinke.trainingtask.dao.EmployeeDAO;
