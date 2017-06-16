@@ -28,17 +28,17 @@ public class ParseManager {
         for(Integer id: employees_id) {
             employees.add(employeeDAO.getById(id));
         }
-        System.out.println(employees);
+
         return employees;
     }
 
-    public static String getProjectName(String string){
+    public static Project getTaskProject(String string){
         String[] parts = string.split("\\.");
         string = parts[0];
 
         ProjectDAO projectDAO = new ProjectDAO();
         Project project = projectDAO.getById(Integer.valueOf(string));
 
-        return project.getName();
+        return project;
     }
 }

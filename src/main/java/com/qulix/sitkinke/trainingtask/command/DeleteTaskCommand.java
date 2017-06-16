@@ -1,5 +1,6 @@
 package com.qulix.sitkinke.trainingtask.command;
 
+import com.qulix.sitkinke.trainingtask.dao.ProjectDAO;
 import com.qulix.sitkinke.trainingtask.dao.TaskDAO;
 import com.qulix.sitkinke.trainingtask.entities.Task;
 import com.qulix.sitkinke.trainingtask.resource.ConfigurationManager;
@@ -23,6 +24,9 @@ public class DeleteTaskCommand implements ActionCommand {
 
         tasks = taskDAO.getAll();
         request.setAttribute("tasks", tasks);
+
+        ProjectDAO projectDAO = new ProjectDAO();
+        projectDAO.deleteProjectTask(id_task);
 
         page = ConfigurationManager.getProperty("path.page.showtasks");
         return page;

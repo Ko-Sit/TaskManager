@@ -1,7 +1,9 @@
 package com.qulix.sitkinke.trainingtask.command;
 
+import com.qulix.sitkinke.trainingtask.dao.ProjectDAO;
 import com.qulix.sitkinke.trainingtask.dao.TaskDAO;
 import com.qulix.sitkinke.trainingtask.entities.Employee;
+import com.qulix.sitkinke.trainingtask.entities.Project;
 import com.qulix.sitkinke.trainingtask.entities.Task;
 import com.qulix.sitkinke.trainingtask.enums.State;
 import com.qulix.sitkinke.trainingtask.managers.ParseManager;
@@ -21,20 +23,25 @@ public class ModifyTaskCommand implements ActionCommand {
     public String execute(HttpServletRequest request) {
         String page = null;
 
-        int id = Integer.valueOf(request.getParameter("id"));
+        int id_task = Integer.valueOf(request.getParameter("id"));
         String name = request.getParameter("name");
         int duration = Integer.valueOf(request.getParameter("duration"));
         Date startDate = SQLDateConverter.getDate(request.getParameter("startdate"));
         Date endDate = SQLDateConverter.getDate(request.getParameter("enddate"));
         State state = State.valueOf(request.getParameter("state"));
-        String projectName = ParseManager.getProjectName(request.getParameter("projectname"));
+        Project project = ParseManager.getTaskProject(request.getParameter("projectname"));
+        int id_project = project.getId();
+        String projectName = project.getName();
         List<Employee> employees = ParseManager.getEmployeeList(request.getParameterValues("select2"));
 
         Task task = new Task(name, duration, startDate, endDate, state, projectName);
-        task.setId(id);
+        task.setId(id_task);
         task.setEmployeeList(employees);
         TaskDAO taskDAO = new TaskDAO();
         taskDAO.modifyTask(task);
+
+        ProjectDAO projectDAO = new ProjectDAO();
+        projectDAO.modifyProjectTask(id_project, id_task);
 
         List<Task> tasks;
         tasks = taskDAO.getAll();

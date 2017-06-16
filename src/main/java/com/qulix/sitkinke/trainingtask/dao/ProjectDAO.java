@@ -20,7 +20,8 @@ public class ProjectDAO {
     public static final String SQL_QUERY_GET_ALL_PROJECTS = "SELECT * FROM PROJECTS";
     public static final String SQL_QUERY_GET_BY_ID = "SELECT * FROM PROJECTS WHERE ID = ?";
     public static final String SQL_QUERY_ADD_PROJECT_TASKS = "INSERT INTO REFLIST_PROJ (ID_PROJECT, ID_TASK) VALUES (?, ?)";
-    public static final String SQL_QUERY_DELETE_PROJECT_TASKS = "DELETE FROM REFLIST_PROJ WHERE ID_PROJECT = ?";
+    public static final String SQL_QUERY_DELETE_PROJECT_TASKS_BY_ID_PROJECT_ = "DELETE FROM REFLIST_PROJ WHERE ID_PROJECT = ?";
+    public static final String SQL_QUERY_DELETE_PROJECT_TASK_BY_ID_TASK = "DELETE FROM REFLIST_PROJ WHERE ID_TASK = ?";
     public static final String SQL_QUERY_GET_NEXT_ID = "SELECT ID FROM PROJECTS ORDER BY ID DESC LIMIT 1";
 
     public void addProject(Project project) {
@@ -53,6 +54,18 @@ public class ProjectDAO {
         }
     }
 
+    public void addProjectTask(int id_project, int id_task) {
+        try(Connection connection = DBManager.getInstance().getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement(SQL_QUERY_ADD_PROJECT_TASKS)){
+            preparedStatement.setInt(1, id_project);
+            preparedStatement.setInt(2, id_task);
+            preparedStatement.executeUpdate();
+        }  catch (SQLException e) {
+            System.out.println("SQL exception occurred during add project task");
+            e.printStackTrace();
+        }
+    }
+
     public void modifyProject(Project project) {
         modifyProjectTasks(project.getId(), project.getTaskList());
         try(Connection connection = DBManager.getInstance().getConnection();
@@ -73,6 +86,11 @@ public class ProjectDAO {
         addProjectTasks(id_project, taskList);
     }
 
+    public void modifyProjectTask(int id_project, int id_task) {
+        deleteProjectTask(id_task);
+        addProjectTask(id_project, id_task);
+    }
+
     public void deleteProject(int id) {
         deleteProjectTasks(id);
         try(Connection connection = DBManager.getInstance().getConnection();
@@ -87,8 +105,19 @@ public class ProjectDAO {
 
     private void deleteProjectTasks(int id_project) {
         try(Connection connection = DBManager.getInstance().getConnection();
-            PreparedStatement preparedStatement = connection.prepareStatement(SQL_QUERY_DELETE_PROJECT_TASKS)){
+            PreparedStatement preparedStatement = connection.prepareStatement(SQL_QUERY_DELETE_PROJECT_TASKS_BY_ID_PROJECT_)){
             preparedStatement.setInt(1, id_project);
+            preparedStatement.executeUpdate();
+        }  catch (SQLException e) {
+            System.out.println("SQL exception occurred during delete task executors");
+            e.printStackTrace();
+        }
+    }
+
+    public void deleteProjectTask(int id_task) {
+        try(Connection connection = DBManager.getInstance().getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement(SQL_QUERY_DELETE_PROJECT_TASK_BY_ID_TASK)){
+            preparedStatement.setInt(1, id_task);
             preparedStatement.executeUpdate();
         }  catch (SQLException e) {
             System.out.println("SQL exception occurred during delete task executors");

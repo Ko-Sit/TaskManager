@@ -162,8 +162,6 @@ public class TaskDAO  {
             return null;
         }
         return employeeList;
-
-
     }
 
     public int getNextId(){
