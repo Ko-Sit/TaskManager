@@ -1,8 +1,10 @@
 package com.qulix.sitkinke.trainingtask.command;
 
 import com.qulix.sitkinke.trainingtask.dao.EmployeeDAO;
+import com.qulix.sitkinke.trainingtask.dao.ProjectDAO;
 import com.qulix.sitkinke.trainingtask.dao.TaskDAO;
 import com.qulix.sitkinke.trainingtask.entities.Employee;
+import com.qulix.sitkinke.trainingtask.entities.Project;
 import com.qulix.sitkinke.trainingtask.entities.Task;
 import com.qulix.sitkinke.trainingtask.resource.ConfigurationManager;
 
@@ -28,6 +30,11 @@ public class GoToModifyTaskCommand implements ActionCommand {
         EmployeeDAO employeeDAO = new EmployeeDAO();
         employees = employeeDAO.getAll();
         request.setAttribute("employees", employees);
+
+        List<Project> projects;
+        ProjectDAO projectDAO = new ProjectDAO();
+        projects = projectDAO.getAll();
+        request.setAttribute("projects", projects);
 
         page = ConfigurationManager.getProperty("path.page.modifytask");
         return page;
