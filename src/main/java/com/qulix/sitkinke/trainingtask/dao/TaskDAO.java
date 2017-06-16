@@ -4,6 +4,7 @@ import com.qulix.sitkinke.trainingtask.entities.Employee;
 import com.qulix.sitkinke.trainingtask.entities.Task;
 import com.qulix.sitkinke.trainingtask.enums.State;
 import com.qulix.sitkinke.trainingtask.managers.DBManager;
+import com.qulix.sitkinke.trainingtask.managers.DBUtility;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -27,6 +28,7 @@ public class TaskDAO  {
     public static final String SQL_QUERY_DELETE_TASK_EXECUTORS = "DELETE FROM REFLIST_EMPL WHERE ID_TASK = ?";
     public static final String SQL_QUERY_GET_NEXT_ID = "SELECT ID FROM TASKS ORDER BY ID DESC LIMIT 1";
     public static final String SQL_QUERY_GET_TASK_EXECUTORS = "SELECT ID_EMPLOYEE FROM REFLIST_EMPL WHERE ID_TASK = ?";
+    public static final String SQL_QUERY_RESET_AUTO_INCREMENT = "ALTER TABLE TASKS ALTER COLUMN ID RESTART WITH ";
 
     public void addTask(Task task){
         addTaskExecutors(task.getId(), task.getEmployeeList());
@@ -94,6 +96,7 @@ public class TaskDAO  {
             System.out.println("SQL exception occurred during delete task");
             e.printStackTrace();
         }
+        DBUtility.resetAutoIncrement(SQL_QUERY_RESET_AUTO_INCREMENT + getNextId());
     }
 
     private void deleteTaskExecutors(int id_task) {
@@ -172,8 +175,11 @@ public class TaskDAO  {
             ResultSet resultSet = preparedStatement.executeQuery()){
             if (resultSet.next())
                 id = resultSet.getInt(1);
-            else
-                return 0;
+            else {
+                DBUtility.resetAutoIncrement(SQL_QUERY_RESET_AUTO_INCREMENT + 1);
+                System.out.println("resetting");
+                return 1;
+            }
 
         }  catch (SQLException e) {
             System.out.println("SQL exception occurred during get next id tasks");
@@ -181,7 +187,20 @@ public class TaskDAO  {
             return -1;
         }
         id_next = id + 1;
+        System.out.println(id_next);
         return id_next;
+    }
+
+    public  void resetAutoIncrement() {
+        try(Connection connection = DBManager.getInstance().getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement(SQL_QUERY_RESET_AUTO_INCREMENT + getNextId())){
+            //preparedStatement.setString(1, tableName);
+            //preparedStatement.setInt(1, getNextId());
+            preparedStatement.executeUpdate();
+        }  catch (SQLException e) {
+            System.out.println("SQL exception occurred during reset autoincrement");
+            e.printStackTrace();
+        }
     }
 
     private Task buildTask(ResultSet resultSet) throws SQLException {

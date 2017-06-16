@@ -3,6 +3,7 @@ package com.qulix.sitkinke.trainingtask.dao;
 import com.qulix.sitkinke.trainingtask.entities.Project;
 import com.qulix.sitkinke.trainingtask.entities.Task;
 import com.qulix.sitkinke.trainingtask.managers.DBManager;
+import com.qulix.sitkinke.trainingtask.managers.DBUtility;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -23,6 +24,7 @@ public class ProjectDAO {
     public static final String SQL_QUERY_DELETE_PROJECT_TASKS_BY_ID_PROJECT_ = "DELETE FROM REFLIST_PROJ WHERE ID_PROJECT = ?";
     public static final String SQL_QUERY_DELETE_PROJECT_TASK_BY_ID_TASK = "DELETE FROM REFLIST_PROJ WHERE ID_TASK = ?";
     public static final String SQL_QUERY_GET_NEXT_ID = "SELECT ID FROM PROJECTS ORDER BY ID DESC LIMIT 1";
+    public static final String SQL_QUERY_RESET_AUTO_INCREMENT = "ALTER TABLE PROJECTS ALTER COLUMN ID RESTART WITH ";
 
     public void addProject(Project project) {
         addProjectTasks(project.getId(), project.getTaskList());
@@ -101,6 +103,7 @@ public class ProjectDAO {
             System.out.println("SQL exception occurred during delete project");
             e.printStackTrace();
         }
+        DBUtility.resetAutoIncrement(SQL_QUERY_RESET_AUTO_INCREMENT + getNextId());
     }
 
     private void deleteProjectTasks(int id_project) {
@@ -170,8 +173,10 @@ public class ProjectDAO {
             ResultSet resultSet = preparedStatement.executeQuery()){
             if (resultSet.next())
                 id = resultSet.getInt(1);
-            else
-                return 0;
+            else {
+                DBUtility.resetAutoIncrement(SQL_QUERY_RESET_AUTO_INCREMENT + 1);
+                return 1;
+            }
 
         }  catch (SQLException e) {
             System.out.println("SQL exception occurred during get next id project");

@@ -2,6 +2,7 @@ package com.qulix.sitkinke.trainingtask.dao;
 
 import com.qulix.sitkinke.trainingtask.entities.Employee;
 import com.qulix.sitkinke.trainingtask.managers.DBManager;
+import com.qulix.sitkinke.trainingtask.managers.DBUtility;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -20,7 +21,7 @@ public class EmployeeDAO{
     public static final String SQL_QUERY_GET_BY_ID = "SELECT * FROM EMPLOYEES WHERE ID = ?";
     public static final String SQL_QUERY_DELETE_EMPLOYEE_TASKS = "DELETE FROM REFLIST_EMPL WHERE ID_EMPLOYEE = ?";
     public static final String SQL_QUERY_GET_NEXT_ID = "SELECT ID FROM EMPLOYEES ORDER BY ID DESC LIMIT 1";
-    public static final String SQL_QUERY_RESET_AUTO_INCREMENT = "ALTER TABLE EMPLOYEES ALTER COLUMN ID RESTART WITH ?";
+    public static final String SQL_QUERY_RESET_AUTO_INCREMENT = "ALTER TABLE EMPLOYEES ALTER COLUMN ID RESTART WITH ";
 
     public void addEmployee(Employee employee) {
         try(Connection connection = DBManager.getInstance().getConnection();
@@ -57,22 +58,11 @@ public class EmployeeDAO{
             PreparedStatement preparedStatement = connection.prepareStatement(SQL_QUERY_DELETE_EMPLOYEE)){
             preparedStatement.setInt(1, id);
             preparedStatement.executeUpdate();
-            updateAutoIncrementValue();
         }  catch (SQLException e) {
             System.out.println("SQL exception occurred during delete employee");
             e.printStackTrace();
         }
-    }
-
-    private void updateAutoIncrementValue() {
-        try(Connection connection = DBManager.getInstance().getConnection();
-            PreparedStatement preparedStatement = connection.prepareStatement(SQL_QUERY_RESET_AUTO_INCREMENT)){
-            preparedStatement.setInt(1, getNextId());
-            preparedStatement.executeUpdate();
-        }  catch (SQLException e) {
-            System.out.println("SQL exception occurred during reset autoincrement employee");
-            e.printStackTrace();
-        }
+        DBUtility.resetAutoIncrement(SQL_QUERY_RESET_AUTO_INCREMENT + getNextId());
     }
 
     private void deleteEmployeeTasks(int id_employee){
@@ -131,8 +121,10 @@ public class EmployeeDAO{
             ResultSet resultSet = preparedStatement.executeQuery()){
             if (resultSet.next())
                 id = resultSet.getInt(1);
-            else
-                return 0;
+            else {
+                DBUtility.resetAutoIncrement(SQL_QUERY_RESET_AUTO_INCREMENT + 1);
+                return 1;
+            }
 
         }  catch (SQLException e) {
             System.out.println("SQL exception occurred during get next id employees");
@@ -140,6 +132,7 @@ public class EmployeeDAO{
             return -1;
         }
         id_next = id + 1;
+        System.out.println(id_next);
         return id_next;
     }
 
