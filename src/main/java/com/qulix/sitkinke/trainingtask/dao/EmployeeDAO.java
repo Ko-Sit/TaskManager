@@ -20,6 +20,7 @@ public class EmployeeDAO{
     public static final String SQL_QUERY_GET_BY_ID = "SELECT * FROM EMPLOYEES WHERE ID = ?";
     public static final String SQL_QUERY_DELETE_EMPLOYEE_TASKS = "DELETE FROM REFLIST_EMPL WHERE ID_EMPLOYEE = ?";
     public static final String SQL_QUERY_GET_NEXT_ID = "SELECT ID FROM EMPLOYEES ORDER BY ID DESC LIMIT 1";
+    public static final String SQL_QUERY_RESET_AUTO_INCREMENT = "ALTER TABLE EMPLOYEES ALTER COLUMN ID RESTART WITH ?";
 
     public void addEmployee(Employee employee) {
         try(Connection connection = DBManager.getInstance().getConnection();
@@ -56,8 +57,20 @@ public class EmployeeDAO{
             PreparedStatement preparedStatement = connection.prepareStatement(SQL_QUERY_DELETE_EMPLOYEE)){
             preparedStatement.setInt(1, id);
             preparedStatement.executeUpdate();
+            updateAutoIncrementValue();
         }  catch (SQLException e) {
             System.out.println("SQL exception occurred during delete employee");
+            e.printStackTrace();
+        }
+    }
+
+    private void updateAutoIncrementValue() {
+        try(Connection connection = DBManager.getInstance().getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement(SQL_QUERY_RESET_AUTO_INCREMENT)){
+            preparedStatement.setInt(1, getNextId());
+            preparedStatement.executeUpdate();
+        }  catch (SQLException e) {
+            System.out.println("SQL exception occurred during reset autoincrement employee");
             e.printStackTrace();
         }
     }
