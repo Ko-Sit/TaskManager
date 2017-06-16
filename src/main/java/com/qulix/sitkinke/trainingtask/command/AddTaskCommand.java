@@ -27,9 +27,10 @@ public class AddTaskCommand implements ActionCommand{
         Date startDate = SQLDateConverter.getDate(request.getParameter("startdate"));
         Date endDate = SQLDateConverter.getDate(request.getParameter("enddate"));
         State state = State.valueOf(request.getParameter("state"));
+        String projectName = ParseManager.getProjectName(request.getParameter("projectname"));
         List<Employee> employees = ParseManager.getEmployeeList(request.getParameterValues("select2"));
 
-        Task task = new Task(name, duration, startDate, endDate, state);
+        Task task = new Task(name, duration, startDate, endDate, state, projectName);
         task.setId(id);
         task.setEmployeeList(employees);
         TaskDAO taskDAO = new TaskDAO();

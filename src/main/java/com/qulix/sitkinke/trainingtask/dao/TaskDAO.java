@@ -18,8 +18,8 @@ import java.util.List;
  * Created by upsit on 12.06.2017.
  */
 public class TaskDAO  {
-    public static final String SQL_QUERY_ADD_TASK = "INSERT INTO TASKS (NAME, DURATION, STARTDATE, ENDDATE, STATE) VALUES (?, ?, ?, ?, ?)";
-    public static final String SQL_QUERY_MODIFY_TASK = "UPDATE TASKS SET NAME = ?, DURATION = ?, STARTDATE = ?, ENDDATE = ?, STATE = ? WHERE ID = ?";
+    public static final String SQL_QUERY_ADD_TASK = "INSERT INTO TASKS (NAME, DURATION, STARTDATE, ENDDATE, STATE, PROJECTNAME) VALUES (?, ?, ?, ?, ?, ?)";
+    public static final String SQL_QUERY_MODIFY_TASK = "UPDATE TASKS SET NAME = ?, DURATION = ?, STARTDATE = ?, ENDDATE = ?, STATE = ?, PROJECTNAME = ? WHERE ID = ?";
     public static final String SQL_QUERY_DELETE_TASK = "DELETE FROM TASKS WHERE ID = ?";
     public static final String SQL_QUERY_GET_ALL_TASKS = "SELECT * FROM TASKS";
     public static final String SQL_QUERY_GET_BY_ID = "SELECT * FROM TASKS WHERE ID = ?";
@@ -36,6 +36,7 @@ public class TaskDAO  {
             preparedStatement.setDate(3, new java.sql.Date(task.getStartDate().getDate()));
             preparedStatement.setDate(4, new java.sql.Date(task.getEndDate().getDate()));
             preparedStatement.setString(5, task.getState().toString().toUpperCase());
+            preparedStatement.setString(6, task.getProjectName());
             preparedStatement.executeUpdate();
         }  catch (SQLException e) {
             System.out.println("SQL exception occurred during add task");
@@ -67,7 +68,8 @@ public class TaskDAO  {
             preparedStatement.setDate(3, new java.sql.Date(task.getStartDate().getDate()));
             preparedStatement.setDate(4, new java.sql.Date(task.getEndDate().getDate()));
             preparedStatement.setString(5, task.getState().toString());
-            preparedStatement.setInt(6, task.getId());
+            preparedStatement.setString(6, task.getProjectName());
+            preparedStatement.setInt(7, task.getId());
             preparedStatement.executeUpdate();
         }  catch (SQLException e) {
             System.out.println("SQL exception occurred during modify task");
@@ -168,8 +170,9 @@ public class TaskDAO  {
         Date startDate = resultSet.getDate(4);
         Date endDate = resultSet.getDate(5);
         State state = State.valueOf(resultSet.getString(6).toUpperCase());
+        String projectName = resultSet.getString(7);
 
-        Task task = new Task(name, duration, startDate, endDate, state);
+        Task task = new Task(name, duration, startDate, endDate, state, projectName);
         task.setId(id);
         return task;
     }

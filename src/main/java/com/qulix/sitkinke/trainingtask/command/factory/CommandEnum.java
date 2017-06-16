@@ -66,6 +66,11 @@ public enum CommandEnum {
         {
             this.command = new ModifyTaskCommand();
         }
+    },
+    SHOWPROJECTS{
+        {
+            this.command = new ShowProjectsCommand();
+        }
     };
 
     ActionCommand command;

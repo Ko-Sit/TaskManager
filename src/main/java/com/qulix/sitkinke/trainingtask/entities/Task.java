@@ -17,17 +17,19 @@ public class Task {
     private Date startDate;
     private Date endDate;
     private State state;
+    private String projectName;
     private List<Employee> employeeList;
 
     public Task() {
     }
 
-    public Task(String name, int duration, Date startDate, Date endDate, State state) {
+    public Task(String name, int duration, Date startDate, Date endDate, State state, String projectName) {
         this.name = name;
         this.duration = duration;
         this.startDate = startDate;
         this.endDate = endDate;
         this.state = state;
+        this.projectName = projectName;
         this.employeeList = new ArrayList<>();
     }
 
@@ -77,6 +79,14 @@ public class Task {
 
     public void setState(State state) {
         this.state = state;
+    }
+
+    public String getProjectName() {
+        return projectName;
+    }
+
+    public void setProjectName(String projectName) {
+        this.projectName = projectName;
     }
 
     public List<Employee> getEmployeeList() {

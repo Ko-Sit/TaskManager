@@ -21,6 +21,13 @@
         <option>POSTPONED</option>
     </select>
 
+    <select name="projectname" tabindex="1" title="title">
+        <jsp:useBean id="projects" scope="request" type="java.util.List"/>
+        <c:forEach var="project" items="${projects}">
+            <option>${project.id}. ${project.abbreviation} ${project.name}</option>
+        </c:forEach>
+    </select>
+
     <select name="select2" multiple="multiple" tabindex="1" title="title">
         <jsp:useBean id="employees" scope="request" type="java.util.List"/>
         <c:forEach var="employee" items="${employees}">
