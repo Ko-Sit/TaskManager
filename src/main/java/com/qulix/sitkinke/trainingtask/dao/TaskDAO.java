@@ -26,6 +26,7 @@ public class TaskDAO  {
     public static final String SQL_QUERY_ADD_TASK_EXECUTORS = "INSERT INTO REFLIST_EMPL (ID_EMPLOYEE, ID_TASK) VALUES (?, ?)";
     public static final String SQL_QUERY_DELETE_TASK_EXECUTORS = "DELETE FROM REFLIST_EMPL WHERE ID_TASK = ?";
     public static final String SQL_QUERY_GET_NEXT_ID = "SELECT ID FROM TASKS ORDER BY ID DESC LIMIT 1";
+    public static final String SQL_QUERY_GET_TASK_EXECUTORS = "SELECT ID_EMPLOYEE FROM REFLIST_EMPL WHERE ID_TASK = ?";
 
     public void addTask(Task task){
         addTaskExecutors(task.getId(), task.getEmployeeList());
@@ -143,6 +144,28 @@ public class TaskDAO  {
         return taskList;
     }
 
+    public List<Employee> getTaskExecutors(int id_task){
+        List<Employee> employeeList = new ArrayList<>();
+        EmployeeDAO employeeDAO = new EmployeeDAO();
+        try(Connection connection = DBManager.getInstance().getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement(SQL_QUERY_GET_TASK_EXECUTORS)){
+            preparedStatement.setInt(1, id_task);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()){
+                Employee employee = employeeDAO.getById(resultSet.getInt(1));
+                employeeList.add(employee);
+            }
+
+        }  catch (SQLException e) {
+            System.out.println("SQL exception occurred during get task executors");
+            e.printStackTrace();
+            return null;
+        }
+        return employeeList;
+
+
+    }
+
     public int getNextId(){
         int id;
         int id_next;
@@ -164,16 +187,18 @@ public class TaskDAO  {
     }
 
     private Task buildTask(ResultSet resultSet) throws SQLException {
-        int id = resultSet.getInt(1);
+        int id_task = resultSet.getInt(1);
         String name = resultSet.getString(2);
         int duration = resultSet.getInt(3);
         Date startDate = resultSet.getDate(4);
         Date endDate = resultSet.getDate(5);
         State state = State.valueOf(resultSet.getString(6).toUpperCase());
         String projectName = resultSet.getString(7);
+        List<Employee> employees = getTaskExecutors(id_task);
 
         Task task = new Task(name, duration, startDate, endDate, state, projectName);
-        task.setId(id);
+        task.setId(id_task);
+        task.setEmployeeList(employees);
         return task;
     }
 }

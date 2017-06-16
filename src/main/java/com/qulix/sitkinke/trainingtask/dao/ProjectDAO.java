@@ -21,6 +21,7 @@ public class ProjectDAO {
     public static final String SQL_QUERY_GET_BY_ID = "SELECT * FROM PROJECTS WHERE ID = ?";
     public static final String SQL_QUERY_ADD_PROJECT_TASKS = "INSERT INTO REFLIST_PROJ (ID_PROJECT, ID_TASK) VALUES (?, ?)";
     public static final String SQL_QUERY_DELETE_PROJECT_TASKS = "DELETE FROM REFLIST_PROJ WHERE ID_PROJECT = ?";
+    public static final String SQL_QUERY_GET_NEXT_ID = "SELECT ID FROM PROJECTS ORDER BY ID DESC LIMIT 1";
 
     public void addProject(Project project) {
         addProjectTasks(project.getId(), project.getTaskList());
@@ -130,6 +131,26 @@ public class ProjectDAO {
             return null;
         }
         return projectList;
+    }
+
+    public int getNextId(){
+        int id;
+        int id_next;
+        try(Connection connection = DBManager.getInstance().getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement(SQL_QUERY_GET_NEXT_ID);
+            ResultSet resultSet = preparedStatement.executeQuery()){
+            if (resultSet.next())
+                id = resultSet.getInt(1);
+            else
+                return 0;
+
+        }  catch (SQLException e) {
+            System.out.println("SQL exception occurred during get next id project");
+            e.printStackTrace();
+            return -1;
+        }
+        id_next = id + 1;
+        return id_next;
     }
 
     private Project buildProject(ResultSet resultSet) throws SQLException {

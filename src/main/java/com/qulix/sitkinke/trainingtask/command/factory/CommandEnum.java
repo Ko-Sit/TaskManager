@@ -71,6 +71,11 @@ public enum CommandEnum {
         {
             this.command = new ShowProjectsCommand();
         }
+    },
+    GOTOADDPROJECT{
+        {
+            this.command = new GoToAddProjectCommand();
+        }
     };
 
     ActionCommand command;

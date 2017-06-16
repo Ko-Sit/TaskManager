@@ -17,12 +17,13 @@
         <th>Duration</th>
         <th>StartDate</th>
         <th>EndDate</th>
+        <th>Executors</th>
         <th>State</th>
         <th>Delete</th>
         <th>Modify</th>
     </tr>
 
-    <jsp:useBean id="tasks" scope="request" type="java.util.List"/>
+    <jsp:useBean id="tasks" scope="request" type="java.util.List<com.qulix.sitkinke.trainingtask.entities.Task>"/>
     <c:forEach var="task" items="${tasks}">
         <tr>
             <td>${task.id}</td>
@@ -30,6 +31,11 @@
             <td>${task.duration}</td>
             <td>${task.startDate}</td>
             <td>${task.endDate}</td>
+            <td>
+            <c:forEach var="employee" items="${task.employeeList}">
+                ${employee.name} ${employee.surname} ${employee.patronymic} <br>
+            </c:forEach>
+            </td>
             <td>${task.state}</td>
             <td><a href="controller?command=deletetask&id=${task.id}">Delete</a></td>
             <td><a href="controller?command=gotomodifytask&id=${task.id}">Modify</a></td>
