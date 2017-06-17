@@ -1,5 +1,6 @@
-package com.qulix.sitkinke.trainingtask.command;
+package com.qulix.sitkinke.trainingtask.command.task;
 
+import com.qulix.sitkinke.trainingtask.command.ActionCommand;
 import com.qulix.sitkinke.trainingtask.dao.ProjectDAO;
 import com.qulix.sitkinke.trainingtask.dao.TaskDAO;
 import com.qulix.sitkinke.trainingtask.entities.Task;

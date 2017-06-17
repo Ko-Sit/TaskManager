@@ -1,26 +1,32 @@
-package com.qulix.sitkinke.trainingtask.command;
+package com.qulix.sitkinke.trainingtask.command.employee;
 
+import com.qulix.sitkinke.trainingtask.command.ActionCommand;
 import com.qulix.sitkinke.trainingtask.dao.EmployeeDAO;
-import com.qulix.sitkinke.trainingtask.dao.TaskDAO;
 import com.qulix.sitkinke.trainingtask.entities.Employee;
-import com.qulix.sitkinke.trainingtask.entities.Task;
 import com.qulix.sitkinke.trainingtask.resource.ConfigurationManager;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
  *
  * Created by upsit on 14.06.2017.
  */
-public class ShowEmployeesCommand implements ActionCommand {
+public class AddEmployeeCommand implements ActionCommand {
+
     @Override
     public String execute(HttpServletRequest request) {
         String page = null;
+        String surname = request.getParameter("surname");
+        String name = request.getParameter("name");
+        String patronymic = request.getParameter("patronymic");
+        String position = request.getParameter("position");
+
+        Employee employee = new Employee(surname, name, patronymic, position);
+        EmployeeDAO employeeDAO = new EmployeeDAO();
+        employeeDAO.addEmployee(employee);
 
         List<Employee> employees;
-        EmployeeDAO employeeDAO = new EmployeeDAO();
         employees = employeeDAO.getAll();
         request.setAttribute("employees", employees);
 

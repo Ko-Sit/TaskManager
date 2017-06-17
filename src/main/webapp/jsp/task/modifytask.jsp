@@ -3,17 +3,17 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-    <link rel="stylesheet" href="../css/style.css">
-    <title>Add Task</title>
+    <link rel="stylesheet" href="../../css/style.css">
+    <title>Modify Task</title>
 </head>
 <body>
 <form name="loginForm" method="POST" action="controller">
-    <jsp:useBean id="idgenerated" scope="request" type="java.lang.Integer"/>
-    <input type="number" name="id" value="${idgenerated}" placeholder="id" readonly/>
-    <input type="text" name="name" value="" placeholder="name"/>
-    <input type="number" name="duration" value="" placeholder="duration"/>
-    <input type="date" name="startdate" value="" placeholder="startdate"/>
-    <input type="date" name="enddate" value="" placeholder="enddate"/>
+    <jsp:useBean id="selectedtask" scope="request" type="com.qulix.sitkinke.trainingtask.entities.Task"/>
+    <input type="number" name="id" value="${selectedtask.id}" placeholder="id" readonly/>
+    <input type="text" name="name" value="${selectedtask.name}" placeholder="name"/>
+    <input type="number" name="duration" value="${selectedtask.duration}" placeholder="duration"/>
+    <input type="date" name="startdate" value="${selectedtask.startDate}" placeholder="startdate"/>
+    <input type="date" name="enddate" value="${selectedtask.endDate}" placeholder="enddate"/>
     <select name="state" title="State">
         <option>NOTSTARTED</option>
         <option>INPROGRESS</option>
@@ -35,8 +35,8 @@
         </c:forEach>
     </select>
 
-    <input type="hidden" name="command" value="addtask" />
-    <input type="submit" value="Save"/>
+    <input type="hidden" name="command" value="modifytask"/>
+    <input type="submit" value="Modify"/>
 </form>
 <a href="controller?command=showtasks">Cancel</a>
 </body>

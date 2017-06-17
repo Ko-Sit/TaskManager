@@ -5,7 +5,7 @@
 <html>
 <head>
     <link href="https://fonts.googleapis.com/css?family=Pontano+Sans" rel="stylesheet">
-     <link rel="stylesheet" href="../css/style.css">
+     <link rel="stylesheet" href="../../css/style.css">
     <title>Employees</title>
 </head>
 <body>

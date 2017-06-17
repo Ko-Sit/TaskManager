@@ -1,5 +1,6 @@
-package com.qulix.sitkinke.trainingtask.command;
+package com.qulix.sitkinke.trainingtask.command.employee;
 
+import com.qulix.sitkinke.trainingtask.command.ActionCommand;
 import com.qulix.sitkinke.trainingtask.dao.EmployeeDAO;
 import com.qulix.sitkinke.trainingtask.resource.ConfigurationManager;
 
@@ -9,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
  *
  * Created by upsit on 14.06.2017.
  */
-public class GoToAddEmployeesCommand implements ActionCommand{
+public class GoToAddEmployeesCommand implements ActionCommand {
 
     @Override
     public String execute(HttpServletRequest request) {

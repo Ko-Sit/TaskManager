@@ -1,5 +1,6 @@
-package com.qulix.sitkinke.trainingtask.command;
+package com.qulix.sitkinke.trainingtask.command.task;
 
+import com.qulix.sitkinke.trainingtask.command.ActionCommand;
 import com.qulix.sitkinke.trainingtask.dao.ProjectDAO;
 import com.qulix.sitkinke.trainingtask.dao.TaskDAO;
 import com.qulix.sitkinke.trainingtask.entities.Employee;
@@ -16,9 +17,9 @@ import java.util.List;
 
 /**
  *
- * Created by upsit on 15.06.2017.
+ * Created by upsit on 14.06.2017.
  */
-public class ModifyTaskCommand implements ActionCommand {
+public class AddTaskCommand implements ActionCommand {
     @Override
     public String execute(HttpServletRequest request) {
         String page = null;
@@ -38,11 +39,12 @@ public class ModifyTaskCommand implements ActionCommand {
         task.setId(id_task);
         task.setEmployeeList(employees);
         TaskDAO taskDAO = new TaskDAO();
-        taskDAO.modifyTask(task);
+        taskDAO.addTask(task);
 
         ProjectDAO projectDAO = new ProjectDAO();
-        projectDAO.modifyProjectTask(id_project, id_task);
+        projectDAO.addProjectTask(id_project, id_task);
 
+        // page addtask requires attribute employees
         List<Task> tasks;
         tasks = taskDAO.getAll();
         request.setAttribute("tasks", tasks);

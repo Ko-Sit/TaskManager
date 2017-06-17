@@ -1,6 +1,10 @@
 package com.qulix.sitkinke.trainingtask.command.factory;
 
 import com.qulix.sitkinke.trainingtask.command.*;
+import com.qulix.sitkinke.trainingtask.command.employee.*;
+import com.qulix.sitkinke.trainingtask.command.project.GoToAddProjectCommand;
+import com.qulix.sitkinke.trainingtask.command.project.ShowProjectsCommand;
+import com.qulix.sitkinke.trainingtask.command.task.*;
 
 /**
  *

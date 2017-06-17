@@ -1,5 +1,6 @@
-package com.qulix.sitkinke.trainingtask.command;
+package com.qulix.sitkinke.trainingtask.command.employee;
 
+import com.qulix.sitkinke.trainingtask.command.ActionCommand;
 import com.qulix.sitkinke.trainingtask.dao.EmployeeDAO;
 import com.qulix.sitkinke.trainingtask.entities.Employee;
 import com.qulix.sitkinke.trainingtask.resource.ConfigurationManager;
@@ -9,21 +10,22 @@ import java.util.List;
 
 /**
  *
- * Created by upsit on 14.06.2017.
+ * Created by upsit on 15.06.2017.
  */
-public class AddEmployeeCommand implements ActionCommand{
-
+public class ModifyEmployeeCommand implements ActionCommand {
     @Override
     public String execute(HttpServletRequest request) {
         String page = null;
+        int id = Integer.valueOf(request.getParameter("id"));
         String surname = request.getParameter("surname");
         String name = request.getParameter("name");
         String patronymic = request.getParameter("patronymic");
         String position = request.getParameter("position");
 
         Employee employee = new Employee(surname, name, patronymic, position);
+        employee.setId(id);
         EmployeeDAO employeeDAO = new EmployeeDAO();
-        employeeDAO.addEmployee(employee);
+        employeeDAO.modifyEmployee(employee);
 
         List<Employee> employees;
         employees = employeeDAO.getAll();
