@@ -19,7 +19,7 @@ public class Employee {
 
     }
 
-    public Employee( String surname,String name, String patronymic, String position){
+    public Employee(String surname, String name, String patronymic, String position){
         this.surname = surname;
         this.name = name;
         this.patronymic = patronymic;

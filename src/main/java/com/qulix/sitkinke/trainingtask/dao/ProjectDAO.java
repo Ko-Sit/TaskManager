@@ -15,25 +15,25 @@ import java.util.List;
  */
 public class ProjectDAO {
 
-    public static final String SQL_QUERY_ADD_PROJECT = "INSERT INTO PROJECTS (ID, NAME, ABBREVIATION, DESCRIPTION) VALUES (?, ?, ?, ?)";
+    public static final String SQL_QUERY_ADD_PROJECT = "INSERT INTO PROJECTS (NAME, ABBREVIATION, DESCRIPTION) VALUES (?, ?, ?)";
     public static final String SQL_QUERY_MODIFY_PROJECT = "UPDATE PROJECTS SET NAME = ?, ABBREVIATION = ?, DESCRIPTION = ? WHERE ID = ?";
     public static final String SQL_QUERY_DELETE_PROJECT = "DELETE FROM PROJECTS WHERE ID = ?";
     public static final String SQL_QUERY_GET_ALL_PROJECTS = "SELECT * FROM PROJECTS";
     public static final String SQL_QUERY_GET_BY_ID = "SELECT * FROM PROJECTS WHERE ID = ?";
     public static final String SQL_QUERY_ADD_PROJECT_TASKS = "INSERT INTO REFLIST_PROJ (ID_PROJECT, ID_TASK) VALUES (?, ?)";
-    public static final String SQL_QUERY_DELETE_PROJECT_TASKS_BY_ID_PROJECT_ = "DELETE FROM REFLIST_PROJ WHERE ID_PROJECT = ?";
+    public static final String SQL_QUERY_DELETE_PROJECT_TASKS_BY_ID_PROJECT = "DELETE FROM REFLIST_PROJ WHERE ID_PROJECT = ?";
     public static final String SQL_QUERY_DELETE_PROJECT_TASK_BY_ID_TASK = "DELETE FROM REFLIST_PROJ WHERE ID_TASK = ?";
     public static final String SQL_QUERY_GET_NEXT_ID = "SELECT ID FROM PROJECTS ORDER BY ID DESC LIMIT 1";
     public static final String SQL_QUERY_RESET_AUTO_INCREMENT = "ALTER TABLE PROJECTS ALTER COLUMN ID RESTART WITH ";
+    public static final String SQL_QUERY_GET_PROJECT_TASKS = "SELECT ID_TASK FROM REFLIST_PROJ WHERE ID_PROJECT = ?";
 
     public void addProject(Project project) {
         addProjectTasks(project.getId(), project.getTaskList());
         try(Connection connection = DBManager.getInstance().getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement(SQL_QUERY_ADD_PROJECT)){
-            preparedStatement.setInt(1, project.getId());
-            preparedStatement.setString(2, project.getName());
-            preparedStatement.setString(3, project.getAbbreviation());
-            preparedStatement.setString(4, project.getDescription());
+            preparedStatement.setString(1, project.getName());
+            preparedStatement.setString(2, project.getAbbreviation());
+            preparedStatement.setString(3, project.getDescription());
             preparedStatement.executeUpdate();
         }  catch (SQLException e) {
             System.out.println("SQL exception occurred during add project");
@@ -108,7 +108,7 @@ public class ProjectDAO {
 
     private void deleteProjectTasks(int id_project) {
         try(Connection connection = DBManager.getInstance().getConnection();
-            PreparedStatement preparedStatement = connection.prepareStatement(SQL_QUERY_DELETE_PROJECT_TASKS_BY_ID_PROJECT_)){
+            PreparedStatement preparedStatement = connection.prepareStatement(SQL_QUERY_DELETE_PROJECT_TASKS_BY_ID_PROJECT)){
             preparedStatement.setInt(1, id_project);
             preparedStatement.executeUpdate();
         }  catch (SQLException e) {
@@ -165,6 +165,26 @@ public class ProjectDAO {
         return projectList;
     }
 
+    public List<Task> getProjectTasks(int id_project){
+        List<Task> taskList = new ArrayList<>();
+        TaskDAO taskDAO = new TaskDAO();
+        try(Connection connection = DBManager.getInstance().getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement(SQL_QUERY_GET_PROJECT_TASKS)){
+            preparedStatement.setInt(1, id_project);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()){
+                Task task = taskDAO.getById(resultSet.getInt(1));
+                taskList.add(task);
+            }
+
+        }  catch (SQLException e) {
+            System.out.println("SQL exception occurred during get project tasks");
+            e.printStackTrace();
+            return null;
+        }
+        return taskList;
+    }
+
     public int getNextId(){
         int id;
         int id_next;
@@ -188,12 +208,16 @@ public class ProjectDAO {
     }
 
     private Project buildProject(ResultSet resultSet) throws SQLException {
-        int id = resultSet.getInt(1);
+        int id_project = resultSet.getInt(1);
         String name = resultSet.getString(2);
         String abbreviation = resultSet.getString(3);
         String description = resultSet.getString(4);
+        List<Task> tasks = getProjectTasks(id_project);
 
-        return new Project(id, name, abbreviation, description);
+        Project project = new Project(name, abbreviation, description);
+        project.setId(id_project);
+        project.setTaskList(tasks);
+        return project;
     }
 
 }

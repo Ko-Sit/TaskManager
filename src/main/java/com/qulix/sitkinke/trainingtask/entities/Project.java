@@ -18,8 +18,7 @@ public class Project {
 
     }
 
-    public Project(int id, String name, String abbreviation, String description) {
-        this.id = id;
+    public Project(String name, String abbreviation, String description) {
         this.name = name;
         this.abbreviation = abbreviation;
         this.description = description;

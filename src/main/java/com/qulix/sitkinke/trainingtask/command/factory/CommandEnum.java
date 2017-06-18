@@ -2,6 +2,7 @@ package com.qulix.sitkinke.trainingtask.command.factory;
 
 import com.qulix.sitkinke.trainingtask.command.*;
 import com.qulix.sitkinke.trainingtask.command.employee.*;
+import com.qulix.sitkinke.trainingtask.command.project.AddProjectCommand;
 import com.qulix.sitkinke.trainingtask.command.project.DeleteProjectCommand;
 import com.qulix.sitkinke.trainingtask.command.project.GoToAddProjectCommand;
 import com.qulix.sitkinke.trainingtask.command.project.ShowProjectsCommand;
@@ -86,7 +87,13 @@ public enum CommandEnum {
         {
             this.command = new DeleteProjectCommand();
         }
-    };
+    },
+    ADDPROJECT{
+        {
+            this.command = new AddProjectCommand();
+        }
+    }
+    ;
 
     ActionCommand command;
     public ActionCommand getCurrentCommand() {
