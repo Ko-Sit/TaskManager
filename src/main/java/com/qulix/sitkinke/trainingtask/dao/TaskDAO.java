@@ -187,7 +187,6 @@ public class TaskDAO  {
             return -1;
         }
         id_next = id + 1;
-        System.out.println(id_next);
         return id_next;
     }
 
