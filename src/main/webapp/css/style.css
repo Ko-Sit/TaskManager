@@ -3,13 +3,20 @@ body {
     background-color: #E5E7E9;
     font-size: 16px;
 }
+
+button[type="submit"], input {
+    height: 35px;
+    width: 150px;
+    outline:none;
+}
+
 input[type="text"], input[type="number"], input[type="date"], select {
     background-color: #F7F9F9;
     color: #606468;
     padding: 0 20px;
 }
 
-input[type="submit"] {
+button[type="submit"], input[type="submit"] {
     border-radius: 3px;
     border: 1px solid #31d35d;
     -moz-border-radius: 3px;
@@ -22,26 +29,22 @@ input[type="submit"] {
     width: 200px;
 }
 
-input[type="submit"], select {
+button[type="submit"], input[type="submit"], select {
     margin-top: 20px;
 }
 
-input[type="submit"]:hover {
+button[type="submit"], input[type="submit"]:hover {
     background-color: #12d12e;
 }
-
-input {
-    height: 35px;
-    width: 150px;
-    outline:none;
-}
-
 
 table {
     border-collapse: collapse;
     border: 2px solid #0e1929;
+    margin-top: 15px;
+    margin-left: 3px;
 
 }
+
 td, th {
     padding: 5px;
     border: 1px groove #0c0f29;

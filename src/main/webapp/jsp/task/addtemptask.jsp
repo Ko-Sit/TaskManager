@@ -22,10 +22,8 @@
     </select>
 
     <select name="projectname" tabindex="1" title="title">
-        <jsp:useBean id="projects" scope="request" type="java.util.List"/>
-        <c:forEach var="project" items="${projects}">
-            <option>${project.id}. ${project.name} ${project.abbreviation} </option>
-        </c:forEach>
+        <jsp:useBean id="currentproject" scope="request" type="com.qulix.sitkinke.trainingtask.entities.Project"/>
+            <option>${currentproject.id}. ${currentproject.abbreviation} ${currentproject.name}</option>
     </select>
 
     <select name="select2" multiple="multiple" tabindex="1" title="title">
@@ -35,9 +33,10 @@
         </c:forEach>
     </select>
 
-    <input type="hidden" name="command" value="addtask" />
+    <input type="hidden" name="command" value="addtemptask" />
     <input type="submit" value="Save"/>
 </form>
-<a href="controller?command=showtasks">Cancel</a>
+<!-- this command? -->
+<a href="controller?command=gotoaddproject">Cancel</a>
 </body>
 </html>

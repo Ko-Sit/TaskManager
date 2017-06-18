@@ -41,4 +41,16 @@ public class ParseManager {
 
         return project;
     }
+
+    public static Project getFictiveProject(String string){
+        String[] parts = string.split("[. ]");        //regex "dot and space"
+        int id_project = Integer.valueOf(parts[0]);
+        String name = parts[2];
+
+        Project project = new Project();
+        project.setId(id_project);
+        project.setName(name);
+
+        return project;
+    }
 }

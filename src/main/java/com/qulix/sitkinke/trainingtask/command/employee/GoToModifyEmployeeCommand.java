@@ -17,7 +17,6 @@ public class GoToModifyEmployeeCommand implements ActionCommand{
         String page = null;
 
         int id_employee = Integer.valueOf(request.getParameter("id"));
-        System.out.println(id_employee);
         EmployeeDAO employeeDAO = new EmployeeDAO();
         Employee employee = employeeDAO.getById(id_employee);
         request.setAttribute("selectedemployee", employee);

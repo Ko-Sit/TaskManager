@@ -29,6 +29,9 @@ public class TaskDAO  {
     public static final String SQL_QUERY_GET_NEXT_ID = "SELECT ID FROM TASKS ORDER BY ID DESC LIMIT 1";
     public static final String SQL_QUERY_GET_TASK_EXECUTORS = "SELECT ID_EMPLOYEE FROM REFLIST_EMPL WHERE ID_TASK = ?";
     public static final String SQL_QUERY_RESET_AUTO_INCREMENT = "ALTER TABLE TASKS ALTER COLUMN ID RESTART WITH ";
+    public static final String SQL_QUERY_ADD_TEMP_TASK = "INSERT INTO PROJECT_TASKS_TEMP (ID_TASK) VALUES (?)";
+    public static final String SQL_QUERY_GET_TEMP_TASKS = "SELECT ID_TASK FROM PROJECT_TASKS_TEMP";
+    public static final String SQL_QUERY_DELETE_TEMP_TASKS = "DELETE FROM PROJECT_TASKS_TEMP";
 
     public void addTask(Task task){
         addTaskExecutors(task.getId(), task.getEmployeeList());
@@ -165,6 +168,54 @@ public class TaskDAO  {
             return null;
         }
         return employeeList;
+    }
+
+    public void addTempTaskRecord(int id_task) {
+        try(Connection connection = DBManager.getInstance().getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement(SQL_QUERY_ADD_TEMP_TASK)){
+            preparedStatement.setInt(1, id_task);
+            preparedStatement.executeUpdate();
+        }  catch (SQLException e) {
+            System.out.println("SQL exception occurred during delete task");
+            e.printStackTrace();
+        }
+    }
+
+    public List<Task> getTempTasks(){
+        int id_task;
+        List<Task> taskList = new ArrayList<>();
+        try(Connection connection = DBManager.getInstance().getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement(SQL_QUERY_GET_TEMP_TASKS);
+            ResultSet resultSet = preparedStatement.executeQuery()){
+            while (resultSet.next()){
+                id_task = resultSet.getInt(1);
+                Task task = getById(id_task);
+                taskList.add(task);
+            }
+
+        }  catch (SQLException e) {
+            System.out.println("SQL exception occurred during get temp tasks");
+            e.printStackTrace();
+            return null;
+        }
+        return taskList;
+    }
+
+    public void deleteTempTasks() {
+        //todo think in what cases clear table
+        List<Task> tasks = getTempTasks();
+
+        for (Task task : tasks){
+            deleteTask(task.getId());
+        }
+
+        try(Connection connection = DBManager.getInstance().getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement(SQL_QUERY_DELETE_TEMP_TASKS)){
+            preparedStatement.executeUpdate();
+        }  catch (SQLException e) {
+            System.out.println("SQL exception occurred during delete temp tasks");
+            e.printStackTrace();
+        }
     }
 
     public int getNextId(){

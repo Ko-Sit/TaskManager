@@ -9,8 +9,9 @@ public class TestParse {
     public static void main(String[] args) {
 
         String text = "13. djsjadj ekwqke vewq";
-        String parts[] = text.split("\\.");
+        String parts[] = text.split("[. ]");
         System.out.println(parts[0]);
+        System.out.println(parts[2]);
 
     }
 }

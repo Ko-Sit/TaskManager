@@ -92,8 +92,17 @@ public enum CommandEnum {
         {
             this.command = new AddProjectCommand();
         }
-    }
-    ;
+    },
+    GOTOADDTEMPTASK{
+        {
+            this.command = new GoToAddTempTaskCommand();
+        }
+    },
+    ADDTEMPTASK{
+        {
+            this.command = new AddTempTaskCommand();
+        }
+    };
 
     ActionCommand command;
     public ActionCommand getCurrentCommand() {

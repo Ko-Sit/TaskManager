@@ -22,7 +22,6 @@ public class GoToModifyTaskCommand implements ActionCommand {
         String page = null;
 
         int id_task = Integer.valueOf(request.getParameter("id"));
-        System.out.println(id_task);
         TaskDAO taskDAO = new TaskDAO();
         Task task = taskDAO.getById(id_task);
         request.setAttribute("selectedtask", task);
