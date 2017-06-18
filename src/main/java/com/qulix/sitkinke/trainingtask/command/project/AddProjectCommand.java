@@ -27,6 +27,10 @@ public class AddProjectCommand implements ActionCommand {
         List<Task> tasks = taskDAO.getTempTasks();
         taskDAO.deleteTempTasks();
 
+        for (Task task: tasks){
+            taskDAO.addTask(task);
+        }
+
         Project project = new Project(name, abbreviation, description);
         project.setId(id_project);
         project.setTaskList(tasks);
