@@ -26,22 +26,18 @@ public class AddProjectCommand implements ActionCommand {
         TaskDAO taskDAO = new TaskDAO();
         ProjectDAO projectDAO = new ProjectDAO();
         List<Task> tasks = projectDAO.getProjectTasks(id_project);
-        projectDAO.printReflist();
         for (Task task: tasks){
             task.setProjectName(abbreviation);
             taskDAO.modifyTask(task);
         }
-        projectDAO.printReflist();
         Project project = new Project(name, abbreviation, description);
         project.setId(id_project);
         project.setTaskList(tasks);
-        projectDAO.printReflist();
         projectDAO.addProject(project);
 
         List<Project> projects;
         projects = projectDAO.getAll();
         request.setAttribute("projects", projects);
-        projectDAO.printReflist();
         page = ConfigurationManager.getProperty("path.page.showprojects");
         return page;
     }
