@@ -46,12 +46,12 @@
                     </c:forEach>
                 </td>
                 <td>${task.state}</td>
-                <td><a href="controller?command=deletetemptask&id=${task.id}">Delete</a></td>
-                <td><a href="controller?command=gotomodifytemptask&id=${task.id}">Modify</a></td>
+                <td><a href="controller?command=deletetaskfromproject&id=${task.id}">Delete</a></td>
+                <td><a href="controller?command=gotomodifytaskfromproject&id=${task.id}">Modify</a></td>
             </tr>
         </c:forEach>
     </table>
-    <button type="submit" name="command" value="gotoaddtemptask">Add task</button>
+    <button type="submit" name="command" value="gotoaddtaskfromproject">Add task</button>
     <br>
     <button type="submit" name="command" value="modifyproject">Save</button>
 </form>

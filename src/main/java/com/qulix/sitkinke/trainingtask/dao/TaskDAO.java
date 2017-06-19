@@ -40,8 +40,8 @@ public class TaskDAO  {
             PreparedStatement preparedStatement = connection.prepareStatement(SQL_QUERY_ADD_TASK)){
             preparedStatement.setString(1, task.getName());
             preparedStatement.setInt(2, task.getDuration());
-            preparedStatement.setDate(3, new java.sql.Date(task.getStartDate().getDate()));
-            preparedStatement.setDate(4, new java.sql.Date(task.getEndDate().getDate()));
+            preparedStatement.setDate(3, new java.sql.Date(task.getStartDate().getTime()));
+            preparedStatement.setDate(4, new java.sql.Date(task.getEndDate().getTime()));
             preparedStatement.setString(5, task.getState().toString().toUpperCase());
             preparedStatement.setString(6, task.getProjectName());
             preparedStatement.executeUpdate();
@@ -72,8 +72,8 @@ public class TaskDAO  {
             PreparedStatement preparedStatement = connection.prepareStatement(SQL_QUERY_MODIFY_TASK)){
             preparedStatement.setString(1, task.getName());
             preparedStatement.setInt(2, task.getDuration());
-            preparedStatement.setDate(3, new java.sql.Date(task.getStartDate().getDate()));
-            preparedStatement.setDate(4, new java.sql.Date(task.getEndDate().getDate()));
+            preparedStatement.setDate(3, new java.sql.Date(task.getStartDate().getTime()));
+            preparedStatement.setDate(4, new java.sql.Date(task.getEndDate().getTime()));
             preparedStatement.setString(5, task.getState().toString());
             preparedStatement.setString(6, task.getProjectName());
             preparedStatement.setInt(7, task.getId());
