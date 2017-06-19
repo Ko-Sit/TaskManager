@@ -102,6 +102,11 @@ public enum CommandEnum {
         {
             this.command = new AddTempTaskCommand();
         }
+    },
+    DELETETEMPTASK{
+        {
+            this.command = new DeleteTempTaskCommand();
+        }
     };
 
     ActionCommand command;

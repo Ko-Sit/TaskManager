@@ -4,7 +4,7 @@
 <html>
 <head>
     <link rel="stylesheet" href="../../css/style.css">
-    <title>Add Task</title>
+    <title>Add Project</title>
 </head>
 <body>
 <form name="addProjectForm" method="POST" action="controller">

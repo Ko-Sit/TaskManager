@@ -25,6 +25,7 @@ public class AddProjectCommand implements ActionCommand {
 
         TaskDAO taskDAO = new TaskDAO();
         List<Task> tasks = taskDAO.getTempTasks();
+        //todo set last input project name to all tasks
         taskDAO.deleteTempTasks();
 
         for (Task task: tasks){

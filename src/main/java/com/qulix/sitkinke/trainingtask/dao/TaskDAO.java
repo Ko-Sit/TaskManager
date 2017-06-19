@@ -31,6 +31,7 @@ public class TaskDAO  {
     public static final String SQL_QUERY_RESET_AUTO_INCREMENT = "ALTER TABLE TASKS ALTER COLUMN ID RESTART WITH ";
     public static final String SQL_QUERY_ADD_TEMP_TASK = "INSERT INTO PROJECT_TASKS_TEMP (ID_TASK) VALUES (?)";
     public static final String SQL_QUERY_GET_TEMP_TASKS = "SELECT ID_TASK FROM PROJECT_TASKS_TEMP";
+    public static final String SQL_QUERY_DELETE_TEMP_TASK = "DELETE FROM PROJECT_TASKS_TEMP WHERE ID_TASK = ?";
     public static final String SQL_QUERY_DELETE_TEMP_TASKS = "DELETE FROM PROJECT_TASKS_TEMP";
 
     public void addTask(Task task){
@@ -199,6 +200,18 @@ public class TaskDAO  {
             return null;
         }
         return taskList;
+    }
+
+    public void deleteTempTask(int id_task) {
+        try(Connection connection = DBManager.getInstance().getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement(SQL_QUERY_DELETE_TEMP_TASK)){
+            preparedStatement.setInt(1, id_task);
+            preparedStatement.executeUpdate();
+            deleteTask(id_task);
+        }  catch (SQLException e) {
+            System.out.println("SQL exception occurred during delete temp task");
+            e.printStackTrace();
+        }
     }
 
     public void deleteTempTasks() {
