@@ -177,7 +177,7 @@ public class TaskDAO  {
             preparedStatement.setInt(1, id_task);
             preparedStatement.executeUpdate();
         }  catch (SQLException e) {
-            System.out.println("SQL exception occurred during delete task");
+            System.out.println("SQL exception occurred during delete temp task");
             e.printStackTrace();
         }
     }
