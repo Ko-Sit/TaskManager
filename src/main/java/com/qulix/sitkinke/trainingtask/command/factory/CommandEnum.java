@@ -119,6 +119,11 @@ public enum CommandEnum {
         {
             this.command = new GoToModifyProjectCommand();
         }
+    },
+    MODIFYPROJECT{
+        {
+            this.command = new ModifyProjectCommand();
+        }
     };
 
     ActionCommand command;

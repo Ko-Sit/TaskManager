@@ -40,7 +40,7 @@ public class AddTempTaskCommand implements ActionCommand {
 
         List<Employee> employees = ParseManager.getEmployeeList(request.getParameterValues("select2"));
 
-        Task task = new Task(name, duration, startDate, endDate, state, projectName);
+        Task task = new Task(name, duration, startDate, endDate, state, projectAbbreviation);
         task.setId(id_task);
         task.setEmployeeList(employees);
 

@@ -24,7 +24,7 @@
     <select name="projectname" tabindex="1" title="title">
         <jsp:useBean id="projects" scope="request" type="java.util.List"/>
         <c:forEach var="project" items="${projects}">
-            <option>${project.id}. ${project.name} ${project.abbreviation} </option>
+            <option>${project.id}. ${project.abbreviation} ${project.name}</option>
         </c:forEach>
     </select>
 
