@@ -19,24 +19,24 @@ public class DeleteTempTaskCommand implements ActionCommand {
     public String execute(HttpServletRequest request) {
         String page = null;
 
-        List<Task> tasks;
-        TaskDAO taskDAO = new TaskDAO();
-        int id_task = Integer.valueOf(request.getParameter("id"));
-        taskDAO.deleteTempTask(id_task);
-
-        tasks = taskDAO.getTempTasks();
-        request.setAttribute("tasks", tasks);
-        ///need to clear project task ??
-        ProjectDAO projectDAO = new ProjectDAO();
-        projectDAO.deleteProjectTask(id_task);
-
-        request.setAttribute("projecttasks", tasks);
-
         HttpSession session = request.getSession();
         int id_project = (int) session.getAttribute("projectid");
         String projectName = (String) session.getAttribute("projectname");
         String projectAbbreviation = (String) session.getAttribute("projectabbr");
         String projectDescription = (String) session.getAttribute("projectdescr");
+
+        List<Task> tasks;
+        TaskDAO taskDAO = new TaskDAO();
+        ProjectDAO projectDAO = new ProjectDAO();
+        int id_task = Integer.valueOf(request.getParameter("id"));
+        taskDAO.deleteTask(id_task);
+
+        projectDAO.deleteProjectTask(id_task);
+
+        tasks = projectDAO.getProjectTasks(id_project);
+        request.setAttribute("tasks", tasks);
+
+        request.setAttribute("projecttasks", tasks);
 
         request.setAttribute("idgenerated", id_project);
         request.setAttribute("projectname", projectName);

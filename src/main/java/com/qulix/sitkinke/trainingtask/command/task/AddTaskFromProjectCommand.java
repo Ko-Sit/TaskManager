@@ -4,7 +4,6 @@ import com.qulix.sitkinke.trainingtask.command.ActionCommand;
 import com.qulix.sitkinke.trainingtask.dao.ProjectDAO;
 import com.qulix.sitkinke.trainingtask.dao.TaskDAO;
 import com.qulix.sitkinke.trainingtask.entities.Employee;
-import com.qulix.sitkinke.trainingtask.entities.Project;
 import com.qulix.sitkinke.trainingtask.entities.Task;
 import com.qulix.sitkinke.trainingtask.enums.State;
 import com.qulix.sitkinke.trainingtask.managers.ParseManager;
@@ -20,16 +19,10 @@ import java.util.List;
  *
  * Created by upsit on 19.06.2017.
  */
-public class ModifyTempTaskCommand implements ActionCommand {
+public class AddTaskFromProjectCommand implements ActionCommand {
     @Override
     public String execute(HttpServletRequest request) {
         String page = null;
-
-        HttpSession session = request.getSession();
-        int id_project = (int) session.getAttribute("projectid");
-        String projectName = (String) session.getAttribute("projectname");
-        String projectAbbreviation = (String) session.getAttribute("projectabbr");
-        String projectDescription = (String) session.getAttribute("projectdescr");
 
         int id_task = Integer.valueOf(request.getParameter("id"));
         String name = request.getParameter("name");
@@ -37,20 +30,24 @@ public class ModifyTempTaskCommand implements ActionCommand {
         Date startDate = SQLDateConverter.getDate(request.getParameter("startdate"));
         Date endDate = SQLDateConverter.getDate(request.getParameter("enddate"));
         State state = State.valueOf(request.getParameter("state"));
+
+        HttpSession session = request.getSession();
+        int id_project = (int) session.getAttribute("projectid");
+        String projectName = (String) session.getAttribute("projectname");
+        String projectAbbreviation = (String) session.getAttribute("projectabbr");
+        String projectDescription = (String) session.getAttribute("projectdescr");
+
         List<Employee> employees = ParseManager.getEmployeeList(request.getParameterValues("select2"));
 
-        Project project = new Project(projectName, projectAbbreviation, projectDescription);
-        project.setId(id_project);
-
-        Task task = new Task(name, duration, startDate, endDate, state, projectName);
+        Task task = new Task(name, duration, startDate, endDate, state, projectAbbreviation);
         task.setId(id_task);
         task.setEmployeeList(employees);
 
         TaskDAO taskDAO = new TaskDAO();
-        taskDAO.modifyTask(task);
+        taskDAO.addTask(task);
 
         ProjectDAO projectDAO = new ProjectDAO();
-        projectDAO.modifyProjectTask(id_project, id_task);
+        projectDAO.addProjectTask(id_project, id_task);
 
         request.setAttribute("idgenerated", id_project);
 
@@ -61,7 +58,7 @@ public class ModifyTempTaskCommand implements ActionCommand {
         request.setAttribute("projectabbr", projectAbbreviation);
         request.setAttribute("projectdescr", projectDescription);
 
-        page = ConfigurationManager.getProperty("path.page.addproject");
+        page = ConfigurationManager.getProperty("path.page.modifyproject");
         return page;
     }
 }

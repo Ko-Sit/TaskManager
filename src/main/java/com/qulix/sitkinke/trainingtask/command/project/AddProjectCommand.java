@@ -24,27 +24,24 @@ public class AddProjectCommand implements ActionCommand {
         String description = request.getParameter("description");
 
         TaskDAO taskDAO = new TaskDAO();
-        List<Task> tasks = taskDAO.getTempTasks();
-        //todo set last input project name to all tasks
-        taskDAO.deleteTempTasks();
-
+        ProjectDAO projectDAO = new ProjectDAO();
+        List<Task> tasks = projectDAO.getProjectTasks(id_project);
+        projectDAO.printReflist();
         for (Task task: tasks){
-            taskDAO.addTask(task);
             task.setProjectName(abbreviation);
             taskDAO.modifyTask(task);
         }
-
+        projectDAO.printReflist();
         Project project = new Project(name, abbreviation, description);
         project.setId(id_project);
         project.setTaskList(tasks);
-
-        ProjectDAO projectDAO = new ProjectDAO();
+        projectDAO.printReflist();
         projectDAO.addProject(project);
 
         List<Project> projects;
         projects = projectDAO.getAll();
         request.setAttribute("projects", projects);
-
+        projectDAO.printReflist();
         page = ConfigurationManager.getProperty("path.page.showprojects");
         return page;
     }

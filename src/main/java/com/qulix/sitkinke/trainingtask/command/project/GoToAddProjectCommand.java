@@ -20,11 +20,10 @@ public class GoToAddProjectCommand implements ActionCommand {
         String page = null;
 
         ProjectDAO projectDAO = new ProjectDAO();
-        int id = projectDAO.getNextId();
-        request.setAttribute("idgenerated", id);
+        int id_project = projectDAO.getNextId();
+        request.setAttribute("idgenerated", id_project);
 
-        TaskDAO taskDAO = new TaskDAO();
-        List<Task> tasks = taskDAO.getTempTasks();
+        List<Task> tasks = projectDAO.getProjectTasks(id_project);
         request.setAttribute("projecttasks", tasks);
 
         request.setAttribute("projectname", "");

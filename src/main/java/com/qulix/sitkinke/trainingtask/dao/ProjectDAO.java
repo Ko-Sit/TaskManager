@@ -26,9 +26,10 @@ public class ProjectDAO {
     public static final String SQL_QUERY_GET_NEXT_ID = "SELECT ID FROM PROJECTS ORDER BY ID DESC LIMIT 1";
     public static final String SQL_QUERY_RESET_AUTO_INCREMENT = "ALTER TABLE PROJECTS ALTER COLUMN ID RESTART WITH ";
     public static final String SQL_QUERY_GET_PROJECT_TASKS = "SELECT ID_TASK FROM REFLIST_PROJ WHERE ID_PROJECT = ?";
+    public static final String SQL_GET_REFLIST = "SELECT ID FROM REFLIST_PROJ";
 
     public void addProject(Project project) {
-        addProjectTasks(project.getId(), project.getTaskList());
+        //addProjectTasks(project.getId(), project.getTaskList());
         try(Connection connection = DBManager.getInstance().getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement(SQL_QUERY_ADD_PROJECT)){
             preparedStatement.setString(1, project.getName());
@@ -54,6 +55,22 @@ public class ProjectDAO {
             System.out.println("SQL exception occurred during add project tasks");
             e.printStackTrace();
         }
+        printReflist();
+    }
+
+    public void printReflist(){
+        try(Connection connection = DBManager.getInstance().getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement(SQL_GET_REFLIST)){
+            ResultSet resultSet = preparedStatement.executeQuery();
+            int i=0;
+            while (resultSet.next()){
+                i++;
+            }
+            System.out.println("SIZE OF REFLIST: " + i);
+        }  catch (SQLException e) {
+            System.out.println("SQL exception occurred during get size reflist");
+            e.printStackTrace();
+        }
     }
 
     public void addProjectTask(int id_project, int id_task) {
@@ -69,7 +86,7 @@ public class ProjectDAO {
     }
 
     public void modifyProject(Project project) {
-        modifyProjectTasks(project.getId(), project.getTaskList());
+        //modifyProjectTasks(project.getId(), project.getTaskList());
         try(Connection connection = DBManager.getInstance().getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement(SQL_QUERY_MODIFY_PROJECT)){
             preparedStatement.setString(1, project.getName());

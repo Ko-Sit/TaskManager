@@ -27,7 +27,7 @@ public class ModifyProjectCommand implements ActionCommand {
         List<Task> taskList = projectDAO.getProjectTasks(id_project);
         Project project = new Project(name, abbreviation, description);
         project.setId(id_project);
-        //todo change task project names on last input
+
         TaskDAO taskDAO = new TaskDAO();
         for (Task task: taskList) {
             task.setProjectName(abbreviation);
@@ -36,8 +36,6 @@ public class ModifyProjectCommand implements ActionCommand {
 
         project.setTaskList(taskList);
         projectDAO.modifyProject(project);
-
-        taskDAO.deleteTempTasks();
 
         List<Project> projects;
         projects = projectDAO.getAll();

@@ -134,6 +134,11 @@ public enum CommandEnum {
         {
             this.command = new GoToAddTaskFromProjectCommand();
         }
+    },
+    ADDTASKFROMPROJECT{
+        {
+            this.command = new AddTaskFromProjectCommand();
+        }
     };
 
     ActionCommand command;

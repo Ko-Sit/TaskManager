@@ -45,7 +45,6 @@ public class AddTempTaskCommand implements ActionCommand {
         task.setEmployeeList(employees);
 
         TaskDAO taskDAO = new TaskDAO();
-        taskDAO.addTempTaskRecord(id_task);
         taskDAO.addTask(task);
 
         ProjectDAO projectDAO = new ProjectDAO();
@@ -53,7 +52,7 @@ public class AddTempTaskCommand implements ActionCommand {
 
         request.setAttribute("idgenerated", id_project);
 
-        List<Task> tasks = taskDAO.getTempTasks();
+        List<Task> tasks = projectDAO.getProjectTasks(id_project);
         request.setAttribute("projecttasks", tasks);
 
         request.setAttribute("projectname", projectName);
