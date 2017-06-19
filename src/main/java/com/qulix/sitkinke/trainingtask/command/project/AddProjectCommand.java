@@ -30,6 +30,8 @@ public class AddProjectCommand implements ActionCommand {
 
         for (Task task: tasks){
             taskDAO.addTask(task);
+            task.setProjectName(abbreviation);
+            taskDAO.modifyTask(task);
         }
 
         Project project = new Project(name, abbreviation, description);
