@@ -254,18 +254,6 @@ public class TaskDAO  {
         return id_next;
     }
 
-    public  void resetAutoIncrement() {
-        try(Connection connection = DBManager.getInstance().getConnection();
-            PreparedStatement preparedStatement = connection.prepareStatement(SQL_QUERY_RESET_AUTO_INCREMENT + getNextId())){
-            //preparedStatement.setString(1, tableName);
-            //preparedStatement.setInt(1, getNextId());
-            preparedStatement.executeUpdate();
-        }  catch (SQLException e) {
-            System.out.println("SQL exception occurred during reset autoincrement");
-            e.printStackTrace();
-        }
-    }
-
     private Task buildTask(ResultSet resultSet) throws SQLException {
         int id_task = resultSet.getInt(1);
         String name = resultSet.getString(2);
