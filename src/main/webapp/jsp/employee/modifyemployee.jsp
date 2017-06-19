@@ -14,9 +14,9 @@
     <input type="text" value="${selectedemployee.name}" name="name" placeholder="name"/>
     <input type="text" value="${selectedemployee.patronymic}" name="patronymic" placeholder="patronymic"/>
     <input type="text" value="${selectedemployee.position}" name="position" placeholder="position"/>
-    <input type="hidden" name="command" value="modifyemployee"/>
-    <input type="submit" value="Modify"/>
+    <button type="submit" name="command" value="modifyemployee">Modify</button>
+
+    <button type="submit" name="command" value="showemployees">Cancel</button>
 </form>
-<a href="controller?command=showemployees">Cancel</a>
 </body>
 </html>

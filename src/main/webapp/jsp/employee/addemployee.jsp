@@ -14,9 +14,10 @@
     <input type="text" name="name" value="" placeholder="name"/>
     <input type="text" name="patronymic" value="" placeholder="patronymic"/>
     <input type="text" name="position" value="" placeholder="position"/>
-    <input type="hidden" name="command" value="addemployee"/>
-    <input type="submit" value="Save"/>
+    <button type="submit" name="command" value="addemployee">Add task</button>
+
+    <button type="submit" name="command" value="showemployees">Cancel</button>
 </form>
-<a href="controller?command=showemployees">Cancel</a>
+
 </body>
 </html>

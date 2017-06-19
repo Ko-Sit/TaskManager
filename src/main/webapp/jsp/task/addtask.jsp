@@ -34,10 +34,9 @@
             <option>${employee.id}. ${employee.surname} ${employee.name}</option>
         </c:forEach>
     </select>
+    <button type="submit" name="command" value="addtask">Add</button>
 
-    <input type="hidden" name="command" value="addtask" />
-    <input type="submit" value="Save"/>
+    <button type="submit" name="command" value="showtasks">Cancel</button>
 </form>
-<a href="controller?command=showtasks">Cancel</a>
 </body>
 </html>

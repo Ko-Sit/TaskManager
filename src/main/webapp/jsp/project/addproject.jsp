@@ -50,10 +50,10 @@
         </c:forEach>
     </table>
     <button type="submit" name="command" value="gotoaddtemptask">Add task</button>
-    <br>
-    <button type="submit" name="command" value="addproject">Save</button>
-</form>
 
-<a href="controller?command=showprojects">Cancel</a>
+    <button type="submit" name="command" value="addproject">Save</button>
+
+    <button type="submit" name="command" value="showprojects">Cancel</button>
+</form>
 </body>
 </html>

@@ -33,9 +33,9 @@
         </c:forEach>
     </select>
 
-    <input type="hidden" name="command" value="modifytemptask"/>
-    <input type="submit" value="Modify"/>
+    <button type="submit" name="command" value="modifytemptask">Modify</button>
+
+    <button type="submit" name="command" value="addproject">Cancel</button>
 </form>
-<a href="controller?command=addproject">Cancel</a>
 </body>
 </html>

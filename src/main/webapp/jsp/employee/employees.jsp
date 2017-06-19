@@ -35,8 +35,7 @@
     </c:forEach>
 </table>
 <form name="loginForm" method="POST" action="controller">
-    <input type="hidden" name="command" value="gotoaddemployee"/>
-    <input type="submit" value="Add Employee">
+    <button type="submit" name="command" value="gotoaddemployee">Add Employee</button>
 </form>
 
 </body>

@@ -14,16 +14,13 @@
 </head>
 <body>
     <form name="loginForm" method="POST" action="controller">
-        <input type="hidden" name="command" value="showprojects" />
-        <input type="submit" value="Projects">
+        <button type="submit" name="command" value="showprojects">Projects</button>
     </form>
     <form name="loginForm" method="POST" action="controller">
-        <input type="hidden" name="command" value="showtasks" />
-        <input type="submit" value="Tasks">
+        <button type="submit" name="command" value="showtasks">Tasks</button>
     </form>
     <form name="loginForm" method="POST" action="controller">
-        <input type="hidden" name="command" value="showemployees" />
-        <input type="submit" value="Employees">
+        <button type="submit" name="command" value="showemployees">Employees</button>
     </form>
 
 </body>
