@@ -13,10 +13,11 @@
 <table>
     <tr>
         <th>ID</th>
-        <th>Name</th>
+        <th>Task Name</th>
         <th>Duration</th>
         <th>StartDate</th>
         <th>EndDate</th>
+        <th>Project Abbr</th>
         <th>Executors</th>
         <th>State</th>
         <th>Delete</th>
@@ -31,6 +32,7 @@
             <td>${task.duration}</td>
             <td>${task.startDate}</td>
             <td>${task.endDate}</td>
+            <td>${task.projectName}</td>
             <td>
             <c:forEach var="employee" items="${task.employeeList}">
                 ${employee.name} ${employee.surname} ${employee.patronymic} <br>
