@@ -9,11 +9,26 @@
 <body>
 <form name="loginForm" method="POST" action="controller">
     <jsp:useBean id="selectedemployee" scope="request" type="com.qulix.sitkinke.trainingtask.entities.Employee"/>
-    <input type="number" value="${selectedemployee.id}" name="id" placeholder="id" readonly/>
-    <input type="text" value="${selectedemployee.surname}" name="surname" placeholder="surname"/>
-    <input type="text" value="${selectedemployee.name}" name="name" placeholder="name"/>
-    <input type="text" value="${selectedemployee.patronymic}" name="patronymic" placeholder="patronymic"/>
-    <input type="text" value="${selectedemployee.position}" name="position" placeholder="position"/>
+    <div class="field">
+        <label>ID</label>
+        <input type="number" value="${selectedemployee.id}" name="id"  readonly/>
+    </div>
+    <div class="field">
+        <label>Surname</label>
+        <input type="text" value="${selectedemployee.surname}" name="surname" />
+    </div>
+    <div class="field">
+        <label>Name</label>
+        <input type="text" value="${selectedemployee.name}" name="name" />
+    </div>
+    <div class="field">
+        <label>Patronymic</label>
+        <input type="text" value="${selectedemployee.patronymic}" name="patronymic" />
+    </div>
+    <div class="field">
+        <label>Position</label>
+        <input type="text" value="${selectedemployee.position}" name="position" />
+    </div>
     <button type="submit" name="command" value="modifyemployee">Modify</button>
 
     <button type="submit" name="command" value="showemployees">Cancel</button>

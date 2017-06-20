@@ -1,72 +1,44 @@
 body {
     font-family: 'Pontano Sans', sans-serif;
     background-color: #E5E7E9;
-    font-size: 16px;
+    font-size: 14px;
 }
 
-button[type="submit"], input {
-    height: 35px;
-    width: 150px;
-    outline:none;
+label {
+    float:left;
+    padding-right:10px;
 }
 
-input[type="text"], input[type="number"], input[type="date"], select {
-    background-color: #F7F9F9;
-    color: #606468;
-    padding: 0 20px;
+.field {
+    clear:both;
+    text-align:right;
+    line-height:25px;
+    max-width: 280px;
 }
 
-button[type="submit"], input[type="submit"] {
-    border-radius: 3px;
-    border: 1px solid #31d35d;
-    -moz-border-radius: 3px;
-    -webkit-border-radius: 3px;
-    background-color: #31d35d;
-    color: #eee;
-    font-weight: bold;
-    text-transform: uppercase;
-    cursor:pointer;
-    width: 200px;
-}
-
-button[type="submit"], input[type="submit"], select {
-    margin-top: 20px;
-}
-
-button[type="submit"], input[type="submit"]:hover {
-    background-color: #12d12e;
-}
+form {
+     float:left;
+ }
 
 table {
-    border-collapse: collapse;
-    border: 2px solid #0e1929;
-    margin-top: 15px;
-    margin-left: 3px;
-
-}
+     border-collapse: collapse;
+     border: 2px solid #0e1929;
+     margin-left: 3px;
+ }
 
 td, th {
     padding: 5px;
     border: 1px groove #0c0f29;
 }
 
-select[name=state], select[name=projectname] {
-    -webkit-appearance: button;
-    -webkit-border-radius: 2px;
-    -webkit-box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.1);
-    -webkit-padding-end: 20px;
-    -webkit-padding-start: 2px;
-    -webkit-user-select: none;
-    background-image: url(http://i62.tinypic.com/15xvbd5.png), -webkit-linear-gradient(#FAFAFA, #F4F4F4 40%, #E5E5E5);
-    background-position: 97% center;
-    background-repeat: no-repeat;
-    border: 1px solid #AAA;
-    color: #555;
-    font-size: inherit;
-    overflow: hidden;
-    padding: 5px 10px;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    width: 150px;
+button {
+    margin-top: 10px;
+    margin-left: 10px;
+    clear:both;
+    text-align:right;
+    line-height:25px;
 }
 
+select {
+    width: 160px;
+}

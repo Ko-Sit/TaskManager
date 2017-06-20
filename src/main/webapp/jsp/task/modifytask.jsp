@@ -9,31 +9,53 @@
 <body>
 <form name="loginForm" method="POST" action="controller">
     <jsp:useBean id="selectedtask" scope="request" type="com.qulix.sitkinke.trainingtask.entities.Task"/>
-    <input type="number" name="id" value="${selectedtask.id}" placeholder="id" readonly/>
-    <input type="text" name="name" value="${selectedtask.name}" placeholder="name"/>
-    <input type="number" name="duration" value="${selectedtask.duration}" placeholder="duration"/>
-    <input type="date" name="startdate" value="${selectedtask.startDate}" placeholder="startdate"/>
-    <input type="date" name="enddate" value="${selectedtask.endDate}" placeholder="enddate"/>
-    <select name="state" title="State">
-        <option>NOTSTARTED</option>
-        <option>INPROGRESS</option>
-        <option>COMPLETED</option>
-        <option>POSTPONED</option>
-    </select>
-
-    <select name="projectname" tabindex="1" title="title">
-        <jsp:useBean id="projects" scope="request" type="java.util.List"/>
-        <c:forEach var="project" items="${projects}">
-            <option>${project.id}. ${project.abbreviation} ${project.name}</option>
-        </c:forEach>
-    </select>
-
-    <select name="select2" multiple="multiple" tabindex="1" title="title">
-        <jsp:useBean id="employees" scope="request" type="java.util.List"/>
-        <c:forEach var="employee" items="${employees}">
-            <option>${employee.id}. ${employee.surname} ${employee.name}</option>
-        </c:forEach>
-    </select>
+    <div class="field">
+        <label>ID</label>
+        <input type="number" name="id" value="${selectedtask.id}" placeholder="id" readonly/>
+    </div>
+    <div class="field">
+        <label>Name</label>
+        <input type="text" name="name" value="${selectedtask.name}" placeholder="name"/>
+    </div>
+    <div class="field">
+        <label>Duration</label>
+        <input type="number" name="duration" value="${selectedtask.duration}" placeholder="duration"/>
+    </div>
+    <div class="field">
+        <label>Start Date</label>
+        <input type="date" name="startdate" value="${selectedtask.startDate}" placeholder="startdate"/>
+    </div>
+    <div class="field">
+        <label>End Date</label>
+        <input type="date" name="enddate" value="${selectedtask.endDate}" placeholder="enddate"/>
+    </div>
+    <div class="field">
+        <label>State</label>
+        <select name="state" title="State">
+            <option>NOTSTARTED</option>
+            <option>INPROGRESS</option>
+            <option>COMPLETED</option>
+            <option>POSTPONED</option>
+        </select>
+    </div>
+    <div class="field">
+        <label>Project Name</label>
+        <select name="projectname" tabindex="1" title="title">
+            <jsp:useBean id="projects" scope="request" type="java.util.List"/>
+            <c:forEach var="project" items="${projects}">
+                <option>${project.id}. ${project.abbreviation} ${project.name}</option>
+            </c:forEach>
+        </select>
+    </div>
+    <div class="field">
+        <label>Employees</label>
+        <select name="select2" multiple="multiple" tabindex="1" title="title">
+            <jsp:useBean id="employees" scope="request" type="java.util.List"/>
+            <c:forEach var="employee" items="${employees}">
+                <option>${employee.id}. ${employee.surname} ${employee.name}</option>
+            </c:forEach>
+        </select>
+    </div>
 
     <button type="submit" name="command" value="modifytask">Modify</button>
 

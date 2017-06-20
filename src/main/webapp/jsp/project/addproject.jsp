@@ -12,10 +12,22 @@
     <jsp:useBean id="projectname" scope="request" type="java.lang.String"/>
     <jsp:useBean id="projectabbr" scope="request" type="java.lang.String"/>
     <jsp:useBean id="projectdescr" scope="request" type="java.lang.String"/>
-    <input type="number" name="id" value="${idgenerated}" placeholder="id" readonly/>
-    <input type="text" name="name" value="${projectname}" placeholder="name"/>
-    <input type="text" name="abbreviation" value="${projectabbr}" placeholder="abbreviation"/>
-    <input type="text" name="description" value="${projectdescr}" placeholder="description"/>
+    <div class="field">
+        <label>ID</label>
+        <input type="number" name="id" value="${idgenerated}"  readonly/>
+    </div>
+    <div class="field">
+        <label>Name</label>
+        <input type="text" name="name" value="${projectname}" />
+    </div>
+    <div class="field">
+        <label>Abbreviation</label>
+        <input type="text" name="abbreviation" value="${projectabbr}" />
+    </div>
+    <div class="field">
+        <label>Description</label>
+        <input type="text" name="description" value="${projectdescr}" placeholder="description"/>
+    </div>
     <br>
     <table>
         <tr>

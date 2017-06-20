@@ -9,14 +9,30 @@
 <body>
 <form name="loginForm" method="POST" action="controller">
     <jsp:useBean id="idgenerated" scope="request" type="java.lang.Integer"/>
-    <input type="number" name="id" value="${idgenerated}" placeholder="id" disabled/>
-    <input type="text" name="surname" value="" placeholder="surname"/>
-    <input type="text" name="name" value="" placeholder="name"/>
-    <input type="text" name="patronymic" value="" placeholder="patronymic"/>
-    <input type="text" name="position" value="" placeholder="position"/>
+    <div class="field">
+        <label>ID</label>
+        <input type="number" name="id" value="${idgenerated}" disabled/>
+    </div>
+    <div class="field">
+        <label>Surname</label>
+        <input type="text" name="surname" value="" />
+    </div>
+    <div class="field">
+        <label>Name</label>
+        <input type="text" name="name" value="" />
+    </div>
+    <div class="field">
+        <label>Patronymic</label>
+        <input type="text" name="patronymic" value="" />
+    </div>
+    <div class="field">
+        <label>Position</label>
+        <input type="text" name="position" value="" />
+    </div>
     <button type="submit" name="command" value="addemployee">Add task</button>
 
     <button type="submit" name="command" value="showemployees">Cancel</button>
+
 </form>
 
 </body>
