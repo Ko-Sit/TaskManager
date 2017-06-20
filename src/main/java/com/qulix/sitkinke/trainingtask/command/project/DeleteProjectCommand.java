@@ -23,8 +23,6 @@ public class DeleteProjectCommand implements ActionCommand {
         int id_project = Integer.valueOf(request.getParameter("id"));
         projectDAO.deleteProject(id_project);
 
-        //todo linked tasks don't clear
-        //todo linked employees don't clear
         projects = projectDAO.getAll();
         request.setAttribute("projects", projects);
 

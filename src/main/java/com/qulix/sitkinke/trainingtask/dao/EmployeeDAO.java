@@ -1,5 +1,6 @@
 package com.qulix.sitkinke.trainingtask.dao;
 
+import com.qulix.sitkinke.trainingtask.constants.SqlRequests;
 import com.qulix.sitkinke.trainingtask.entities.Employee;
 import com.qulix.sitkinke.trainingtask.managers.DBManager;
 import com.qulix.sitkinke.trainingtask.managers.DBUtility;
@@ -14,18 +15,9 @@ import java.util.List;
  */
 public class EmployeeDAO{
 
-    public static final String SQL_QUERY_ADD_EMPLOYEE = "INSERT INTO EMPLOYEES (NAME, SURNAME, PATRONYMIC, POSITION) VALUES (?, ?, ?, ?)";
-    public static final String SQL_QUERY_MODIFY_EMPLOYEE = "UPDATE EMPLOYEES SET NAME = ?, SURNAME = ?, PATRONYMIC = ?, POSITION = ? WHERE ID = ?";
-    public static final String SQL_QUERY_DELETE_EMPLOYEE = "DELETE FROM EMPLOYEES WHERE ID = ?";
-    public static final String SQL_QUERY_GET_ALL_EMPLOYEES = "SELECT * FROM EMPLOYEES";
-    public static final String SQL_QUERY_GET_BY_ID = "SELECT * FROM EMPLOYEES WHERE ID = ?";
-    public static final String SQL_QUERY_DELETE_EMPLOYEE_TASKS = "DELETE FROM REFLIST_EMPL WHERE ID_EMPLOYEE = ?";
-    public static final String SQL_QUERY_GET_NEXT_ID = "SELECT ID FROM EMPLOYEES ORDER BY ID DESC LIMIT 1";
-    public static final String SQL_QUERY_RESET_AUTO_INCREMENT = "ALTER TABLE EMPLOYEES ALTER COLUMN ID RESTART WITH ";
-
     public void addEmployee(Employee employee) {
         try(Connection connection = DBManager.getInstance().getConnection();
-            PreparedStatement preparedStatement = connection.prepareStatement(SQL_QUERY_ADD_EMPLOYEE)){
+            PreparedStatement preparedStatement = connection.prepareStatement(SqlRequests.ADD_EMPLOYEE)){
             preparedStatement.setString(1, employee.getName());
             preparedStatement.setString(2, employee.getSurname());
             preparedStatement.setString(3, employee.getPatronymic());
@@ -39,7 +31,7 @@ public class EmployeeDAO{
 
     public void modifyEmployee(Employee employee) {
         try(Connection connection = DBManager.getInstance().getConnection();
-            PreparedStatement preparedStatement = connection.prepareStatement(SQL_QUERY_MODIFY_EMPLOYEE)){
+            PreparedStatement preparedStatement = connection.prepareStatement(SqlRequests.MODIFY_EMPLOYEE)){
             preparedStatement.setString(1, employee.getName());
             preparedStatement.setString(2, employee.getSurname());
             preparedStatement.setString(3, employee.getPatronymic());
@@ -55,19 +47,19 @@ public class EmployeeDAO{
     public void deleteEmployee(int id) {
         deleteEmployeeTasks(id);
         try(Connection connection = DBManager.getInstance().getConnection();
-            PreparedStatement preparedStatement = connection.prepareStatement(SQL_QUERY_DELETE_EMPLOYEE)){
+            PreparedStatement preparedStatement = connection.prepareStatement(SqlRequests.DELETE_EMPLOYEE)){
             preparedStatement.setInt(1, id);
             preparedStatement.executeUpdate();
         }  catch (SQLException e) {
             System.out.println("SQL exception occurred during delete employee");
             e.printStackTrace();
         }
-        DBUtility.resetAutoIncrement(SQL_QUERY_RESET_AUTO_INCREMENT + getNextId());
+        DBUtility.resetAutoIncrement(SqlRequests.RESET_EMPLOYEES_AUTO_INCREMENT + getNextId());
     }
 
     private void deleteEmployeeTasks(int id_employee){
         try(Connection connection = DBManager.getInstance().getConnection();
-            PreparedStatement preparedStatement = connection.prepareStatement(SQL_QUERY_DELETE_EMPLOYEE_TASKS)){
+            PreparedStatement preparedStatement = connection.prepareStatement(SqlRequests.DELETE_EMPLOYEE_TASKS)){
             preparedStatement.setInt(1, id_employee);
             preparedStatement.executeUpdate();
         }  catch (SQLException e) {
@@ -79,7 +71,7 @@ public class EmployeeDAO{
     public Employee getById(int id){
         Employee employee;
         try(Connection connection = DBManager.getInstance().getConnection();
-            PreparedStatement preparedStatement = connection.prepareStatement(SQL_QUERY_GET_BY_ID)){
+            PreparedStatement preparedStatement = connection.prepareStatement(SqlRequests.GET_BY_ID)){
             preparedStatement.setInt(1, id);
             ResultSet resultSet = preparedStatement.executeQuery();
             if (resultSet.next())
@@ -98,7 +90,7 @@ public class EmployeeDAO{
     public List<Employee> getAll(){
         List<Employee> employeeList = new ArrayList<>();
         try(Connection connection = DBManager.getInstance().getConnection();
-            PreparedStatement preparedStatement = connection.prepareStatement(SQL_QUERY_GET_ALL_EMPLOYEES);
+            PreparedStatement preparedStatement = connection.prepareStatement(SqlRequests.GET_ALL_EMPLOYEES);
             ResultSet resultSet = preparedStatement.executeQuery()){
             while (resultSet.next()){
                 Employee employee = buildEmployee(resultSet);
@@ -117,12 +109,12 @@ public class EmployeeDAO{
         int id;
         int id_next;
         try(Connection connection = DBManager.getInstance().getConnection();
-            PreparedStatement preparedStatement = connection.prepareStatement(SQL_QUERY_GET_NEXT_ID);
+            PreparedStatement preparedStatement = connection.prepareStatement(SqlRequests.GET_NEXT_ID);
             ResultSet resultSet = preparedStatement.executeQuery()){
             if (resultSet.next())
                 id = resultSet.getInt(1);
             else {
-                DBUtility.resetAutoIncrement(SQL_QUERY_RESET_AUTO_INCREMENT + 1);
+                DBUtility.resetAutoIncrement(SqlRequests.RESET_EMPLOYEES_AUTO_INCREMENT + 1);
                 return 1;
             }
 
