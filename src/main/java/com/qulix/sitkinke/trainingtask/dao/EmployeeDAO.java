@@ -71,7 +71,7 @@ public class EmployeeDAO{
     public Employee getById(int id){
         Employee employee;
         try(Connection connection = DBManager.getInstance().getConnection();
-            PreparedStatement preparedStatement = connection.prepareStatement(SqlRequests.GET_BY_ID)){
+            PreparedStatement preparedStatement = connection.prepareStatement(SqlRequests.GET_EMPLOYEES_BY_ID)){
             preparedStatement.setInt(1, id);
             ResultSet resultSet = preparedStatement.executeQuery();
             if (resultSet.next())
@@ -109,7 +109,7 @@ public class EmployeeDAO{
         int id;
         int id_next;
         try(Connection connection = DBManager.getInstance().getConnection();
-            PreparedStatement preparedStatement = connection.prepareStatement(SqlRequests.GET_NEXT_ID);
+            PreparedStatement preparedStatement = connection.prepareStatement(SqlRequests.GET_NEXT_EMPLOYEE_ID);
             ResultSet resultSet = preparedStatement.executeQuery()){
             if (resultSet.next())
                 id = resultSet.getInt(1);

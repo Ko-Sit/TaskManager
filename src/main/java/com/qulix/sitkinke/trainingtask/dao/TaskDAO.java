@@ -1,5 +1,6 @@
 package com.qulix.sitkinke.trainingtask.dao;
 
+import com.qulix.sitkinke.trainingtask.constants.SqlRequests;
 import com.qulix.sitkinke.trainingtask.entities.Employee;
 import com.qulix.sitkinke.trainingtask.entities.Task;
 import com.qulix.sitkinke.trainingtask.enums.State;
@@ -14,28 +15,17 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+
 /**
  *
  * Created by upsit on 12.06.2017.
  */
 public class TaskDAO  {
-    public static final String SQL_QUERY_ADD_TASK = "INSERT INTO TASKS (NAME, DURATION, STARTDATE, ENDDATE, STATE, PROJECTNAME) VALUES (?, ?, ?, ?, ?, ?)";
-    public static final String SQL_QUERY_MODIFY_TASK = "UPDATE TASKS SET NAME = ?, DURATION = ?, STARTDATE = ?, ENDDATE = ?, STATE = ?, PROJECTNAME = ? WHERE ID = ?";
-    public static final String SQL_QUERY_DELETE_TASK = "DELETE FROM TASKS WHERE ID = ?";
-    public static final String SQL_QUERY_GET_ALL_TASKS = "SELECT * FROM TASKS";
-    public static final String SQL_QUERY_GET_BY_ID = "SELECT * FROM TASKS WHERE ID = ?";
-    public static final String SQL_QUERY_ADD_TASK_EXECUTORS = "INSERT INTO REFLIST_EMPL (ID_EMPLOYEE, ID_TASK) VALUES (?, ?)";
-    public static final String SQL_QUERY_DELETE_TASK_EXECUTORS = "DELETE FROM REFLIST_EMPL WHERE ID_TASK = ?";
-    public static final String SQL_QUERY_GET_NEXT_ID = "SELECT ID FROM TASKS ORDER BY ID DESC LIMIT 1";
-    public static final String SQL_QUERY_GET_TASK_EXECUTORS = "SELECT ID_EMPLOYEE FROM REFLIST_EMPL WHERE ID_TASK = ?";
-    public static final String SQL_QUERY_RESET_AUTO_INCREMENT = "ALTER TABLE TASKS ALTER COLUMN ID RESTART WITH ";
-    public static final String SQL_QUERY_DELETE_TASKS_BY_PROJECT_ABBR = "DELETE FROM TASKS WHERE TASKS.PROJECTNAME = ?";
-    public static final String SQL_QUERY_GET_TASKS_BY_PROJECT_ABBR = "SELECT TASKS.ID FROM TASKS WHERE TASKS.PROJECTNAME = ?";
 
     public void addTask(Task task){
         addTaskExecutors(task.getId(), task.getEmployeeList());
         try(Connection connection = DBManager.getInstance().getConnection();
-            PreparedStatement preparedStatement = connection.prepareStatement(SQL_QUERY_ADD_TASK)){
+            PreparedStatement preparedStatement = connection.prepareStatement(SqlRequests.ADD_TASK)){
             preparedStatement.setString(1, task.getName());
             preparedStatement.setInt(2, task.getDuration());
             preparedStatement.setDate(3, new java.sql.Date(task.getStartDate().getTime()));
@@ -51,7 +41,7 @@ public class TaskDAO  {
 
     private void addTaskExecutors(int id_task, List<Employee> employeeList) {
         try(Connection connection = DBManager.getInstance().getConnection();
-            PreparedStatement preparedStatement = connection.prepareStatement(SQL_QUERY_ADD_TASK_EXECUTORS)){
+            PreparedStatement preparedStatement = connection.prepareStatement(SqlRequests.ADD_TASK_EXECUTORS)){
             for (Employee employee : employeeList) {
                 int id_employee = employee.getId();
                 preparedStatement.setInt(1, id_employee);
@@ -67,7 +57,7 @@ public class TaskDAO  {
     public void modifyTask(Task task) {
         modifyTaskExecutors(task.getId(), task.getEmployeeList());
         try(Connection connection = DBManager.getInstance().getConnection();
-            PreparedStatement preparedStatement = connection.prepareStatement(SQL_QUERY_MODIFY_TASK)){
+            PreparedStatement preparedStatement = connection.prepareStatement(SqlRequests.MODIFY_TASK)){
             preparedStatement.setString(1, task.getName());
             preparedStatement.setInt(2, task.getDuration());
             preparedStatement.setDate(3, new java.sql.Date(task.getStartDate().getTime()));
@@ -91,20 +81,20 @@ public class TaskDAO  {
     public void deleteTask(int id) {
         deleteTaskExecutors(id);
         try(Connection connection = DBManager.getInstance().getConnection();
-            PreparedStatement preparedStatement = connection.prepareStatement(SQL_QUERY_DELETE_TASK)){
+            PreparedStatement preparedStatement = connection.prepareStatement(SqlRequests.DELETE_TASK)){
             preparedStatement.setInt(1, id);
             preparedStatement.executeUpdate();
         }  catch (SQLException e) {
             System.out.println("SQL exception occurred during delete task");
             e.printStackTrace();
         }
-        DBUtility.resetAutoIncrement(SQL_QUERY_RESET_AUTO_INCREMENT + getNextId());
+        DBUtility.resetAutoIncrement(SqlRequests.RESET_TASKS_AUTO_INCREMENT + getNextId());
     }
 
     public List<Integer> getTasksByProjectAbbr(String projectAbbr){
         List<Integer> taskList = new ArrayList<>();
         try(Connection connection = DBManager.getInstance().getConnection();
-            PreparedStatement preparedStatement = connection.prepareStatement(SQL_QUERY_GET_TASKS_BY_PROJECT_ABBR)){
+            PreparedStatement preparedStatement = connection.prepareStatement(SqlRequests.GET_TASKS_BY_PROJECT_ABBR)){
             preparedStatement.setString(1, projectAbbr);
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()){
@@ -123,7 +113,7 @@ public class TaskDAO  {
             deleteTaskExecutors(id_task);
         }
         try(Connection connection = DBManager.getInstance().getConnection();
-            PreparedStatement preparedStatement = connection.prepareStatement(SQL_QUERY_DELETE_TASKS_BY_PROJECT_ABBR)){
+            PreparedStatement preparedStatement = connection.prepareStatement(SqlRequests.DELETE_TASKS_BY_PROJECT_ABBR)){
             preparedStatement.setString(1, projectAbbr);
             preparedStatement.executeUpdate();
         }  catch (SQLException e) {
@@ -134,7 +124,7 @@ public class TaskDAO  {
 
     private void deleteTaskExecutors(int id_task) {
         try(Connection connection = DBManager.getInstance().getConnection();
-            PreparedStatement preparedStatement = connection.prepareStatement(SQL_QUERY_DELETE_TASK_EXECUTORS)){
+            PreparedStatement preparedStatement = connection.prepareStatement(SqlRequests.DELETE_TASK_EXECUTORS)){
             preparedStatement.setInt(1, id_task);
             preparedStatement.executeUpdate();
         }  catch (SQLException e) {
@@ -146,7 +136,7 @@ public class TaskDAO  {
     public Task getById(int id){
         Task task;
         try(Connection connection = DBManager.getInstance().getConnection();
-            PreparedStatement preparedStatement = connection.prepareStatement(SQL_QUERY_GET_BY_ID)){
+            PreparedStatement preparedStatement = connection.prepareStatement(SqlRequests.GET_TASKS_BY_ID)){
             preparedStatement.setInt(1, id);
             ResultSet resultSet = preparedStatement.executeQuery();
             if (resultSet.next())
@@ -165,7 +155,7 @@ public class TaskDAO  {
     public List<Task> getAll(){
         List<Task> taskList = new ArrayList<>();
         try(Connection connection = DBManager.getInstance().getConnection();
-            PreparedStatement preparedStatement = connection.prepareStatement(SQL_QUERY_GET_ALL_TASKS);
+            PreparedStatement preparedStatement = connection.prepareStatement(SqlRequests.GET_ALL_TASKS);
             ResultSet resultSet = preparedStatement.executeQuery()){
             while (resultSet.next()){
                 Task task = buildTask(resultSet);
@@ -184,7 +174,7 @@ public class TaskDAO  {
         List<Employee> employeeList = new ArrayList<>();
         EmployeeDAO employeeDAO = new EmployeeDAO();
         try(Connection connection = DBManager.getInstance().getConnection();
-            PreparedStatement preparedStatement = connection.prepareStatement(SQL_QUERY_GET_TASK_EXECUTORS)){
+            PreparedStatement preparedStatement = connection.prepareStatement(SqlRequests.GET_TASK_EXECUTORS)){
             preparedStatement.setInt(1, id_task);
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()){
@@ -204,12 +194,12 @@ public class TaskDAO  {
         int id;
         int id_next;
         try(Connection connection = DBManager.getInstance().getConnection();
-            PreparedStatement preparedStatement = connection.prepareStatement(SQL_QUERY_GET_NEXT_ID);
+            PreparedStatement preparedStatement = connection.prepareStatement(SqlRequests.GET_NEXT_TASK_ID);
             ResultSet resultSet = preparedStatement.executeQuery()){
             if (resultSet.next())
                 id = resultSet.getInt(1);
             else {
-                DBUtility.resetAutoIncrement(SQL_QUERY_RESET_AUTO_INCREMENT + 1);
+                DBUtility.resetAutoIncrement(SqlRequests.RESET_TASKS_AUTO_INCREMENT + 1);
                 System.out.println("resetting");
                 return 1;
             }
