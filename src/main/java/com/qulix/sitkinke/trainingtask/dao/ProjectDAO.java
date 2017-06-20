@@ -1,5 +1,6 @@
 package com.qulix.sitkinke.trainingtask.dao;
 
+import com.qulix.sitkinke.trainingtask.constants.SqlRequests;
 import com.qulix.sitkinke.trainingtask.entities.Project;
 import com.qulix.sitkinke.trainingtask.entities.Task;
 import com.qulix.sitkinke.trainingtask.managers.DBManager;
@@ -15,22 +16,10 @@ import java.util.List;
  */
 public class ProjectDAO {
 
-    public static final String SQL_QUERY_ADD_PROJECT = "INSERT INTO PROJECTS (NAME, ABBREVIATION, DESCRIPTION) VALUES (?, ?, ?)";
-    public static final String SQL_QUERY_MODIFY_PROJECT = "UPDATE PROJECTS SET NAME = ?, ABBREVIATION = ?, DESCRIPTION = ? WHERE ID = ?";
-    public static final String SQL_QUERY_DELETE_PROJECT = "DELETE FROM PROJECTS WHERE ID = ?";
-    public static final String SQL_QUERY_GET_ALL_PROJECTS = "SELECT * FROM PROJECTS";
-    public static final String SQL_QUERY_GET_BY_ID = "SELECT * FROM PROJECTS WHERE ID = ?";
-    public static final String SQL_QUERY_ADD_PROJECT_TASKS = "INSERT INTO REFLIST_PROJ (ID_PROJECT, ID_TASK) VALUES (?, ?)";
-    public static final String SQL_QUERY_DELETE_PROJECT_TASKS_BY_ID_PROJECT = "DELETE FROM REFLIST_PROJ WHERE ID_PROJECT = ?";
-    public static final String SQL_QUERY_DELETE_PROJECT_TASK_BY_ID_TASK = "DELETE FROM REFLIST_PROJ WHERE ID_TASK = ?";
-    public static final String SQL_QUERY_GET_NEXT_ID = "SELECT ID FROM PROJECTS ORDER BY ID DESC LIMIT 1";
-    public static final String SQL_QUERY_RESET_AUTO_INCREMENT = "ALTER TABLE PROJECTS ALTER COLUMN ID RESTART WITH ";
-    public static final String SQL_QUERY_GET_PROJECT_TASKS = "SELECT ID_TASK FROM REFLIST_PROJ WHERE ID_PROJECT = ?";
-
     public void addProject(Project project) {
         //addProjectTasks(project.getId(), project.getTaskList());
         try(Connection connection = DBManager.getInstance().getConnection();
-            PreparedStatement preparedStatement = connection.prepareStatement(SQL_QUERY_ADD_PROJECT)){
+            PreparedStatement preparedStatement = connection.prepareStatement(SqlRequests.ADD_PROJECT)){
             preparedStatement.setString(1, project.getName());
             preparedStatement.setString(2, project.getAbbreviation());
             preparedStatement.setString(3, project.getDescription());
@@ -43,7 +32,7 @@ public class ProjectDAO {
 
     private void addProjectTasks(int id_project, List<Task> taskList) {
         try(Connection connection = DBManager.getInstance().getConnection();
-            PreparedStatement preparedStatement = connection.prepareStatement(SQL_QUERY_ADD_PROJECT_TASKS)){
+            PreparedStatement preparedStatement = connection.prepareStatement(SqlRequests.ADD_PROJECT_TASKS)){
             for (Task task : taskList) {
                 int id_task = task.getId();
                 preparedStatement.setInt(1, id_project);
@@ -58,7 +47,7 @@ public class ProjectDAO {
 
     public void addProjectTask(int id_project, int id_task) {
         try(Connection connection = DBManager.getInstance().getConnection();
-            PreparedStatement preparedStatement = connection.prepareStatement(SQL_QUERY_ADD_PROJECT_TASKS)){
+            PreparedStatement preparedStatement = connection.prepareStatement(SqlRequests.ADD_PROJECT_TASKS)){
             preparedStatement.setInt(1, id_project);
             preparedStatement.setInt(2, id_task);
             preparedStatement.executeUpdate();
@@ -71,7 +60,7 @@ public class ProjectDAO {
     public void modifyProject(Project project) {
         //modifyProjectTasks(project.getId(), project.getTaskList());
         try(Connection connection = DBManager.getInstance().getConnection();
-            PreparedStatement preparedStatement = connection.prepareStatement(SQL_QUERY_MODIFY_PROJECT)){
+            PreparedStatement preparedStatement = connection.prepareStatement(SqlRequests.MODIFY_PROJECT)){
             preparedStatement.setString(1, project.getName());
             preparedStatement.setString(2, project.getAbbreviation());
             preparedStatement.setString(3, project.getDescription());
@@ -96,14 +85,14 @@ public class ProjectDAO {
     public void deleteProject(int id) {
         deleteProjectTasks(id);
         try(Connection connection = DBManager.getInstance().getConnection();
-            PreparedStatement preparedStatement = connection.prepareStatement(SQL_QUERY_DELETE_PROJECT)){
+            PreparedStatement preparedStatement = connection.prepareStatement(SqlRequests.DELETE_PROJECT)){
             preparedStatement.setInt(1, id);
             preparedStatement.executeUpdate();
         }  catch (SQLException e) {
             System.out.println("SQL exception occurred during delete project");
             e.printStackTrace();
         }
-        DBUtility.resetAutoIncrement(SQL_QUERY_RESET_AUTO_INCREMENT + getNextId());
+        DBUtility.resetAutoIncrement(SqlRequests.RESET_PROJECTS_AUTO_INCREMENT + getNextId());
     }
 
     private void deleteProjectTasks(int id_project) {
@@ -112,7 +101,7 @@ public class ProjectDAO {
         String projectAbbr = project.getAbbreviation();
         taskDAO.deleteTasksByProjectAbbr(projectAbbr);
         try(Connection connection = DBManager.getInstance().getConnection();
-            PreparedStatement preparedStatement = connection.prepareStatement(SQL_QUERY_DELETE_PROJECT_TASKS_BY_ID_PROJECT)){
+            PreparedStatement preparedStatement = connection.prepareStatement(SqlRequests.DELETE_PROJECT_TASKS_BY_ID_PROJECT)){
             preparedStatement.setInt(1, id_project);
             preparedStatement.executeUpdate();
         }  catch (SQLException e) {
@@ -123,7 +112,7 @@ public class ProjectDAO {
 
     public void deleteProjectTask(int id_task) {
         try(Connection connection = DBManager.getInstance().getConnection();
-            PreparedStatement preparedStatement = connection.prepareStatement(SQL_QUERY_DELETE_PROJECT_TASK_BY_ID_TASK)){
+            PreparedStatement preparedStatement = connection.prepareStatement(SqlRequests.DELETE_PROJECT_TASK_BY_ID_TASK)){
             preparedStatement.setInt(1, id_task);
             preparedStatement.executeUpdate();
         }  catch (SQLException e) {
@@ -135,7 +124,7 @@ public class ProjectDAO {
     public Project getById(int id){
         Project project;
         try(Connection connection = DBManager.getInstance().getConnection();
-            PreparedStatement preparedStatement = connection.prepareStatement(SQL_QUERY_GET_BY_ID)){
+            PreparedStatement preparedStatement = connection.prepareStatement(SqlRequests.GET_PROJECTS_BY_ID)){
             preparedStatement.setInt(1, id);
             ResultSet resultSet = preparedStatement.executeQuery();
             if (resultSet.next())
@@ -154,7 +143,7 @@ public class ProjectDAO {
     public List<Project> getAll(){
         List<Project> projectList = new ArrayList<>();
         try(Connection connection = DBManager.getInstance().getConnection();
-            PreparedStatement preparedStatement = connection.prepareStatement(SQL_QUERY_GET_ALL_PROJECTS);
+            PreparedStatement preparedStatement = connection.prepareStatement(SqlRequests.GET_ALL_PROJECTS);
             ResultSet resultSet = preparedStatement.executeQuery()){
             while (resultSet.next()){
                 Project project = buildProject(resultSet);
@@ -173,7 +162,7 @@ public class ProjectDAO {
         List<Task> taskList = new ArrayList<>();
         TaskDAO taskDAO = new TaskDAO();
         try(Connection connection = DBManager.getInstance().getConnection();
-            PreparedStatement preparedStatement = connection.prepareStatement(SQL_QUERY_GET_PROJECT_TASKS)){
+            PreparedStatement preparedStatement = connection.prepareStatement(SqlRequests.GET_PROJECT_TASKS)){
             preparedStatement.setInt(1, id_project);
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()){
@@ -193,12 +182,12 @@ public class ProjectDAO {
         int id;
         int id_next;
         try(Connection connection = DBManager.getInstance().getConnection();
-            PreparedStatement preparedStatement = connection.prepareStatement(SQL_QUERY_GET_NEXT_ID);
+            PreparedStatement preparedStatement = connection.prepareStatement(SqlRequests.GET_NEXT_PROJECT_ID);
             ResultSet resultSet = preparedStatement.executeQuery()){
             if (resultSet.next())
                 id = resultSet.getInt(1);
             else {
-                DBUtility.resetAutoIncrement(SQL_QUERY_RESET_AUTO_INCREMENT + 1);
+                DBUtility.resetAutoIncrement(SqlRequests.RESET_PROJECTS_AUTO_INCREMENT + 1);
                 return 1;
             }
 
