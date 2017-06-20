@@ -9,7 +9,7 @@
     <title>Projects</title>
 </head>
 <body>
-
+<h1>Project List</h1>
 <table>
     <tr>
         <th>ID</th>

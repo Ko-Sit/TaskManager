@@ -8,11 +8,12 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
+    <link href="https://fonts.googleapis.com/css?family=Pontano+Sans" rel="stylesheet">
     <link rel="stylesheet" href="../css/style.css">
     <title>Main</title>
-
 </head>
 <body>
+    <h1>Main menu</h1>
     <form name="loginForm" method="POST" action="controller">
         <button type="submit" name="command" value="showprojects">Projects</button>
     </form>

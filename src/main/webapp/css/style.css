@@ -42,3 +42,8 @@ button {
 select {
     width: 160px;
 }
+
+h1 {
+    font-size: 18px;
+    margin-left: 50px;
+}

@@ -3,6 +3,7 @@
 <!DOCTYPE HTML>
 <html>
 <head>
+    <link href="https://fonts.googleapis.com/css?family=Pontano+Sans" rel="stylesheet">
     <link rel="stylesheet" href="../../css/style.css">
     <title>Add Project</title>
 </head>
@@ -28,7 +29,7 @@
         <label>Description</label>
         <input type="text" name="description" value="${projectdescr}" placeholder="description"/>
     </div>
-    <br>
+    <h1>Task List</h1>
     <table>
         <tr>
             <th>ID</th>
