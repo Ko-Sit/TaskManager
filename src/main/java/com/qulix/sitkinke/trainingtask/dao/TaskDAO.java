@@ -29,6 +29,8 @@ public class TaskDAO  {
     public static final String SQL_QUERY_GET_NEXT_ID = "SELECT ID FROM TASKS ORDER BY ID DESC LIMIT 1";
     public static final String SQL_QUERY_GET_TASK_EXECUTORS = "SELECT ID_EMPLOYEE FROM REFLIST_EMPL WHERE ID_TASK = ?";
     public static final String SQL_QUERY_RESET_AUTO_INCREMENT = "ALTER TABLE TASKS ALTER COLUMN ID RESTART WITH ";
+    public static final String SQL_QUERY_DELETE_TASKS_BY_PROJECT_ABBR = "DELETE FROM TASKS WHERE TASKS.PROJECTNAME = ?";
+    public static final String SQL_QUERY_GET_TASKS_BY_PROJECT_ABBR = "SELECT TASKS.ID FROM TASKS WHERE TASKS.PROJECTNAME = ?";
 
     public void addTask(Task task){
         addTaskExecutors(task.getId(), task.getEmployeeList());
@@ -97,6 +99,37 @@ public class TaskDAO  {
             e.printStackTrace();
         }
         DBUtility.resetAutoIncrement(SQL_QUERY_RESET_AUTO_INCREMENT + getNextId());
+    }
+
+    public List<Integer> getTasksByProjectAbbr(String projectAbbr){
+        List<Integer> taskList = new ArrayList<>();
+        try(Connection connection = DBManager.getInstance().getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement(SQL_QUERY_GET_TASKS_BY_PROJECT_ABBR)){
+            preparedStatement.setString(1, projectAbbr);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()){
+                taskList.add(resultSet.getInt(1));
+            }
+        }  catch (SQLException e) {
+            System.out.println("SQL exception occurred during get tasks by project abbr");
+            e.printStackTrace();
+        }
+        return taskList;
+    }
+
+    public void deleteTasksByProjectAbbr(String projectAbbr) {
+        List<Integer> taskList = getTasksByProjectAbbr(projectAbbr);
+        for (Integer id_task: taskList){
+            deleteTaskExecutors(id_task);
+        }
+        try(Connection connection = DBManager.getInstance().getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement(SQL_QUERY_DELETE_TASKS_BY_PROJECT_ABBR)){
+            preparedStatement.setString(1, projectAbbr);
+            preparedStatement.executeUpdate();
+        }  catch (SQLException e) {
+            System.out.println("SQL exception occurred during delete tasks by project abbr");
+            e.printStackTrace();
+        }
     }
 
     private void deleteTaskExecutors(int id_task) {

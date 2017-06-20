@@ -107,6 +107,10 @@ public class ProjectDAO {
     }
 
     private void deleteProjectTasks(int id_project) {
+        TaskDAO taskDAO = new TaskDAO();
+        Project project = getById(id_project);
+        String projectAbbr = project.getAbbreviation();
+        taskDAO.deleteTasksByProjectAbbr(projectAbbr);
         try(Connection connection = DBManager.getInstance().getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement(SQL_QUERY_DELETE_PROJECT_TASKS_BY_ID_PROJECT)){
             preparedStatement.setInt(1, id_project);

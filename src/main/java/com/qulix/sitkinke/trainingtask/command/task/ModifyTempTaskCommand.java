@@ -38,6 +38,8 @@ public class ModifyTempTaskCommand implements ActionCommand {
         Date endDate = SQLDateConverter.getDate(request.getParameter("enddate"));
         State state = State.valueOf(request.getParameter("state"));
         List<Employee> employees = ParseManager.getEmployeeList(request.getParameterValues("select2"));
+        ProjectDAO projectDAO = new ProjectDAO();
+        System.out.println(projectDAO.getProjectTasks(id_project));
 
         Project project = new Project(projectName, projectAbbreviation, projectDescription);
         project.setId(id_project);
@@ -48,10 +50,10 @@ public class ModifyTempTaskCommand implements ActionCommand {
 
         TaskDAO taskDAO = new TaskDAO();
         taskDAO.modifyTask(task);
-
-        ProjectDAO projectDAO = new ProjectDAO();
+        System.out.println(projectDAO.getProjectTasks(id_project));
+        //ProjectDAO projectDAO = new ProjectDAO();
         projectDAO.modifyProjectTask(id_project, id_task);
-
+        System.out.println(projectDAO.getProjectTasks(id_project));
         request.setAttribute("idgenerated", id_project);
 
         List<Task> tasks = projectDAO.getProjectTasks(id_project);
