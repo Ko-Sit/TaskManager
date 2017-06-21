@@ -11,27 +11,27 @@
     <jsp:useBean id="idgenerated" scope="request" type="java.lang.Integer"/>
     <div class="field">
         <label>ID</label>
-        <input type="number" name="id" value="${idgenerated}" disabled/>
+        <input type="number" name="id" value="${idgenerated}" readonly/>
     </div>
     <div class="field">
         <label>Surname</label>
-        <input type="text" name="surname" value="" />
+        <input type="text" name="surname" value="" required/>
     </div>
     <div class="field">
         <label>Name</label>
-        <input type="text" name="name" value="" />
+        <input type="text" name="name" value="" required/>
     </div>
     <div class="field">
         <label>Patronymic</label>
-        <input type="text" name="patronymic" value="" />
+        <input type="text" name="patronymic" value="" required/>
     </div>
     <div class="field">
         <label>Position</label>
-        <input type="text" name="position" value="" />
+        <input type="text" name="position" value="" required/>
     </div>
     <button type="submit" name="command" value="addemployee">Add task</button>
 
-    <button type="submit" name="command" value="showemployees">Cancel</button>
+    <button type="submit" name="command" value="showemployees" formnovalidate>Cancel</button>
 
 </form>
 

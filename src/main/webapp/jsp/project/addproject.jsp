@@ -19,15 +19,15 @@
     </div>
     <div class="field">
         <label>Name</label>
-        <input type="text" name="name" value="${projectname}" />
+        <input type="text" name="name" value="${projectname}" required/>
     </div>
     <div class="field">
         <label>Abbreviation</label>
-        <input type="text" name="abbreviation" value="${projectabbr}" />
+        <input type="text" name="abbreviation" value="${projectabbr}" required/>
     </div>
     <div class="field">
         <label>Description</label>
-        <input type="text" name="description" value="${projectdescr}" placeholder="description"/>
+        <input type="text" name="description" value="${projectdescr}" required/>
     </div>
     <h1>Task List</h1>
     <table>
@@ -66,7 +66,7 @@
 
     <button type="submit" name="command" value="addproject">Save</button>
 
-    <button type="submit" name="command" value="showprojects">Cancel</button>
+    <button type="submit" name="command" value="showprojects" formnovalidate>Cancel</button>
 </form>
 </body>
 </html>

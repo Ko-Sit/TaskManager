@@ -15,23 +15,23 @@
     </div>
     <div class="field">
         <label>Surname</label>
-        <input type="text" value="${selectedemployee.surname}" name="surname" />
+        <input type="text" value="${selectedemployee.surname}" name="surname" required/>
     </div>
     <div class="field">
         <label>Name</label>
-        <input type="text" value="${selectedemployee.name}" name="name" />
+        <input type="text" value="${selectedemployee.name}" name="name" required>
     </div>
     <div class="field">
         <label>Patronymic</label>
-        <input type="text" value="${selectedemployee.patronymic}" name="patronymic" />
+        <input type="text" value="${selectedemployee.patronymic}" name="patronymic" required/>
     </div>
     <div class="field">
         <label>Position</label>
-        <input type="text" value="${selectedemployee.position}" name="position" />
+        <input type="text" value="${selectedemployee.position}" name="position" required/>
     </div>
     <button type="submit" name="command" value="modifyemployee">Modify</button>
 
-    <button type="submit" name="command" value="showemployees">Cancel</button>
+    <button type="submit" name="command" value="showemployees" formnovalidate>Cancel</button>
 </form>
 </body>
 </html>
