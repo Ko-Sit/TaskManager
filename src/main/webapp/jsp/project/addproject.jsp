@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE HTML>
 <html>
@@ -15,7 +15,7 @@
     <jsp:useBean id="projectdescr" scope="request" type="java.lang.String"/>
     <div class="field">
         <label>ID</label>
-        <input type="number" name="id" value="${idgenerated}"  readonly/>
+        <input type="number" name="id" value="${idgenerated}" readonly/>
     </div>
     <div class="field">
         <label>Name</label>
@@ -66,7 +66,7 @@
 
     <button type="submit" name="command" value="addproject">Save</button>
 
-    <button type="submit" name="command" value="showprojects" formnovalidate>Cancel</button>
+    <button type="submit" name="command" value="canceladdproject" formnovalidate>Cancel</button>
 </form>
 </body>
 </html>

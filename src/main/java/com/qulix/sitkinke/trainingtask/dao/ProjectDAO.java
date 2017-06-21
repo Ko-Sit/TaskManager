@@ -121,6 +121,17 @@ public class ProjectDAO {
         }
     }
 
+    public void deleteTasksByIdProject(int id_project) {
+        int id_task;
+        TaskDAO taskDAO = new TaskDAO();
+        List<Task> tasks = getProjectTasks(id_project);
+        for (Task task: tasks){
+            id_task = task.getId();
+            deleteProjectTask(id_task);
+            taskDAO.deleteTask(id_task);
+        }
+    }
+
     public Project getById(int id){
         Project project;
         try(Connection connection = DBManager.getInstance().getConnection();
