@@ -5,6 +5,7 @@
 <head>
     <link href="https://fonts.googleapis.com/css?family=Pontano+Sans" rel="stylesheet">
     <link rel="stylesheet" href="../../css/style.css">
+    <script type="text/javascript" src="../../js/loadprojectfields.js"> </script>
     <title>Modify Project</title>
 </head>
 <body>
@@ -60,15 +61,8 @@
                     </c:forEach>
                 </td>
                 <td>${task.state}</td>
-                <td><a id="deletelink" href="controller?command=deletetaskfromproject&id=${task.id}" onclick="var a = function () {
-                    var name = document.getElementById('name').value;
-                    var abbr = document.getElementById('abbr').value;
-                    var descr = document.getElementById('descr').value;
-                    var parameters = '&name=' + name + '&abbr=' + abbr + '&descr=' + descr;
-                    document.getElementById('deletelink').href += parameters;
-                };
-                a()">Delete</a></td>
-                <td><a href="controller?command=gotomodifytaskfromproject&id=${task.id}">Modify</a></td>
+                <td><a id="deletelink" href="controller?command=deletetaskfromproject&id=${task.id}" onclick="load('deletelink')">Delete</a></td>
+                <td><a id="modifylink" href="controller?command=gotomodifytaskfromproject&id=${task.id}" onclick="load('modifylink')">Modify</a></td>
             </tr>
         </c:forEach>
     </table>

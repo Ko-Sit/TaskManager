@@ -32,10 +32,10 @@ public class ModifyTaskCommand implements ActionCommand {
         State state = State.valueOf(request.getParameter("state"));
         Project project = ParseManager.getTaskProject(request.getParameter("projectname"));
         int id_project = project.getId();
-        String projectName = project.getName();
+        String projectAbbreviation = project.getAbbreviation();
         List<Employee> employees = ParseManager.getEmployeeList(request.getParameterValues("select2"));
 
-        Task task = new Task(name, duration, startDate, endDate, state, projectName);
+        Task task = new Task(name, duration, startDate, endDate, state, projectAbbreviation);
         task.setId(id_task);
         task.setEmployeeList(employees);
         TaskDAO taskDAO = new TaskDAO();

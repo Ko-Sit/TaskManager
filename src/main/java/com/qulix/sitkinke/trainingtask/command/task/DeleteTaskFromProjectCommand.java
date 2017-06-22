@@ -20,8 +20,8 @@ public class DeleteTaskFromProjectCommand implements ActionCommand {
         String page = null;
 
         String projectName = request.getParameter("name");
-        String projectAbbr = request.getParameter("abbr");
-        String projectDescr = request.getParameter("descr");
+        String projectAbbreviation = request.getParameter("abbr");
+        String projectDescription = request.getParameter("descr");
 
         TaskDAO taskDAO = new TaskDAO();
         int id_task = Integer.valueOf(request.getParameter("id"));
@@ -36,8 +36,8 @@ public class DeleteTaskFromProjectCommand implements ActionCommand {
         request.setAttribute("projecttasks", tasks);
 
         request.setAttribute("projectname", projectName);
-        request.setAttribute("projectabbr", projectAbbr);
-        request.setAttribute("projectdescr", projectDescr);
+        request.setAttribute("projectabbr", projectAbbreviation);
+        request.setAttribute("projectdescr", projectDescription);
 
         page = ConfigurationManager.getProperty("path.page.modifyproject");
         return page;

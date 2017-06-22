@@ -44,7 +44,7 @@ public class ModifyTempTaskCommand implements ActionCommand {
         Project project = new Project(projectName, projectAbbreviation, projectDescription);
         project.setId(id_project);
 
-        Task task = new Task(name, duration, startDate, endDate, state, projectName);
+        Task task = new Task(name, duration, startDate, endDate, state, projectAbbreviation);
         task.setId(id_task);
         task.setEmployeeList(employees);
 

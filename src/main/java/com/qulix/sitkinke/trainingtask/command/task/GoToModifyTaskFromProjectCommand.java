@@ -21,6 +21,10 @@ public class GoToModifyTaskFromProjectCommand implements ActionCommand {
     public String execute(HttpServletRequest request) {
         String page = null;
 
+        String projectName = request.getParameter("name");
+        String projectAbbreviation = request.getParameter("abbr");
+        String projectDescription = request.getParameter("descr");
+
         int id_task = Integer.valueOf(request.getParameter("id"));
         TaskDAO taskDAO = new TaskDAO();
         Task task = taskDAO.getById(id_task);
@@ -33,9 +37,9 @@ public class GoToModifyTaskFromProjectCommand implements ActionCommand {
 
         HttpSession session = request.getSession();
         int id_project = (int) session.getAttribute("projectid");
-        String projectName = (String) session.getAttribute("projectname");
-        String projectAbbreviation = (String) session.getAttribute("projectabbr");
-        String projectDescription = (String) session.getAttribute("projectdescr");
+        session.setAttribute("projectname", projectName);
+        session.setAttribute("projectabbr", projectAbbreviation);
+        session.setAttribute("projectdescr", projectDescription);
 
         Project project = new Project(projectName, projectAbbreviation, projectDescription);
         project.setId(id_project);
