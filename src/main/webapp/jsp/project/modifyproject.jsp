@@ -19,15 +19,15 @@
     </div>
     <div class="field">
         <label>Name</label>
-        <input type="text" name="name" value="${projectname}" placeholder="name" required/>
+        <input type="text" name="name" id="name" value="${projectname}" placeholder="name" required/>
     </div>
     <div class="field">
         <label>Abbreviation</label>
-        <input type="text" name="abbreviation" value="${projectabbr}" placeholder="abbreviation" required/>
+        <input type="text" name="abbreviation" id="abbr" value="${projectabbr}" placeholder="abbreviation" required/>
     </div>
     <div class="field">
         <label>Description</label>
-        <input type="text" name="description" value="${projectdescr}" placeholder="description" required/>
+        <input type="text" name="description" id="descr" value="${projectdescr}" placeholder="description" required/>
     </div>
     <br>
     <h1>Task List</h1>
@@ -60,7 +60,14 @@
                     </c:forEach>
                 </td>
                 <td>${task.state}</td>
-                <td><a href="controller?command=deletetaskfromproject&id=${task.id}">Delete</a></td>
+                <td><a id="deletelink" href="controller?command=deletetaskfromproject&id=${task.id}" onclick="var a = function () {
+                    var name = document.getElementById('name').value;
+                    var abbr = document.getElementById('abbr').value;
+                    var descr = document.getElementById('descr').value;
+                    var parameters = '&name=' + name + '&abbr=' + abbr + '&descr=' + descr;
+                    document.getElementById('deletelink').href += parameters;
+                };
+                a()">Delete</a></td>
                 <td><a href="controller?command=gotomodifytaskfromproject&id=${task.id}">Modify</a></td>
             </tr>
         </c:forEach>
