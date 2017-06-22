@@ -55,6 +55,11 @@ public class ModifyTaskFromProjectCommand implements ActionCommand {
         request.setAttribute("idgenerated", id_project);
 
         List<Task> tasks = projectDAO.getProjectTasks(id_project);
+        for (Task tempTask: tasks) {
+            taskDAO.modifyProjectNameInTask(projectAbbreviation, tempTask.getId());
+        }
+        tasks = projectDAO.getProjectTasks(id_project);
+
         request.setAttribute("projecttasks", tasks);
 
         request.setAttribute("projectname", projectName);

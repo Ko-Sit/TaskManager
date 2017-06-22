@@ -25,6 +25,7 @@ public class SqlRequests {
     public static final String GET_TASKS_BY_PROJECT_ABBR = "SELECT TASKS.ID FROM TASKS WHERE TASKS.PROJECTNAME = ?";
     public static final String GET_TASK_EXECUTORS = "SELECT ID_EMPLOYEE FROM REFLIST_EMPL WHERE ID_TASK = ?";
     public static final String MODIFY_TASK = "UPDATE TASKS SET NAME = ?, DURATION = ?, STARTDATE = ?, ENDDATE = ?, STATE = ?, PROJECTNAME = ? WHERE ID = ?";
+    public static final String MODIFY_PROJECT_ABBR = "UPDATE TASKS SET PROJECTNAME = ? WHERE ID = ?";
     public static final String DELETE_TASK = "DELETE FROM TASKS WHERE ID = ?";
     public static final String DELETE_TASK_EXECUTORS = "DELETE FROM REFLIST_EMPL WHERE ID_TASK = ?";
     public static final String DELETE_TASKS_BY_PROJECT_ABBR = "DELETE FROM TASKS WHERE TASKS.PROJECTNAME = ?";

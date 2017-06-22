@@ -77,6 +77,17 @@ public class TaskDAO  {
         addTaskExecutors(id_task, employeeList);
     }
 
+    public void modifyProjectNameInTask(String projectAbbreviation, int id_task) {
+        try(Connection connection = DBManager.getInstance().getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement(SqlRequests.MODIFY_PROJECT_ABBR)){
+                preparedStatement.setString(1, projectAbbreviation);
+                preparedStatement.setInt(2, id_task);
+                preparedStatement.executeUpdate();
+        }  catch (SQLException e) {
+            System.out.println("SQL exception occurred modify task project abbr");
+            e.printStackTrace();
+        }
+    }
 
     public void deleteTask(int id) {
         deleteTaskExecutors(id);
@@ -228,4 +239,5 @@ public class TaskDAO  {
         task.setEmployeeList(employees);
         return task;
     }
+
 }

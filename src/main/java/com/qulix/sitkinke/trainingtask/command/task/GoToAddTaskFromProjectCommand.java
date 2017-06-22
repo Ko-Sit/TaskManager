@@ -22,9 +22,9 @@ public class GoToAddTaskFromProjectCommand implements ActionCommand {
 
         HttpSession session = request.getSession();
         int id_project = (int) session.getAttribute("projectid");
-        String projectName = (String) session.getAttribute("projectname");
-        String projectAbbreviation = (String) session.getAttribute("projectabbr");
-        String projectDescription = (String) session.getAttribute("projectdescr");
+        String projectName = request.getParameter("name");
+        String projectAbbreviation = request.getParameter("abbreviation");
+        String projectDescription = request.getParameter("description");
 
         List<Employee> employees;
         EmployeeDAO employeeDAO = new EmployeeDAO();
@@ -39,6 +39,10 @@ public class GoToAddTaskFromProjectCommand implements ActionCommand {
         project.setId(id_project);
 
         request.setAttribute("currentproject", project);
+
+        session.setAttribute("projectname", projectName);
+        session.setAttribute("projectabbr", projectAbbreviation);
+        session.setAttribute("projectdescr", projectDescription);
 
         page = ConfigurationManager.getProperty("path.page.addtaskfromproject");
         return page;
