@@ -69,7 +69,7 @@
 
     <button type="submit" name="command" value="modifyproject">Save</button>
 
-    <button type="submit" name="command" value="showprojects" formnovalidate>Cancel</button>
+    <button type="submit" name="command" value="cancelmodifyproject" formnovalidate>Cancel</button>
 </form>
 </body>
 </html>

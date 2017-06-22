@@ -154,6 +154,11 @@ public enum CommandEnum {
         {
             this.command = new CancelAddProjectCommand();
         }
+    },
+    CANCELMODIFYPROJECT{
+        {
+            this.command = new CancelModifyProjectCommand();
+        }
     };
 
     ActionCommand command;

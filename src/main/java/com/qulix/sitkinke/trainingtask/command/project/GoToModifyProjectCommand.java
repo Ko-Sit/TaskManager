@@ -1,6 +1,7 @@
 package com.qulix.sitkinke.trainingtask.command.project;
 
 import com.qulix.sitkinke.trainingtask.command.ActionCommand;
+import com.qulix.sitkinke.trainingtask.containters.ProjectContainer;
 import com.qulix.sitkinke.trainingtask.dao.ProjectDAO;
 import com.qulix.sitkinke.trainingtask.dao.TaskDAO;
 import com.qulix.sitkinke.trainingtask.entities.Project;
@@ -23,6 +24,8 @@ public class GoToModifyProjectCommand implements ActionCommand {
         int id_project = Integer.valueOf(request.getParameter("id"));
         ProjectDAO projectDAO = new ProjectDAO();
         Project project = projectDAO.getById(id_project);
+
+        ProjectContainer.put(project);
 
         List<Task> tasks = project.getTaskList();
         request.setAttribute("projecttasks", tasks);
