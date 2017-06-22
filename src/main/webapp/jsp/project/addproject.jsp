@@ -5,6 +5,7 @@
 <head>
     <link href="https://fonts.googleapis.com/css?family=Pontano+Sans" rel="stylesheet">
     <link rel="stylesheet" href="../../css/style.css">
+    <script type="text/javascript" src="../../js/loadprojectfields.js"> </script>
     <title>Add Project</title>
 </head>
 <body>
@@ -19,15 +20,15 @@
     </div>
     <div class="field">
         <label>Name</label>
-        <input type="text" name="name" value="${projectname}" required/>
+        <input type="text" name="name" id="name" value="${projectname}" required/>
     </div>
     <div class="field">
         <label>Abbreviation</label>
-        <input type="text" name="abbreviation" value="${projectabbr}" required/>
+        <input type="text" name="abbreviation" id="abbr" value="${projectabbr}" required/>
     </div>
     <div class="field">
         <label>Description</label>
-        <input type="text" name="description" value="${projectdescr}" required/>
+        <input type="text" name="description" id="descr" value="${projectdescr}" required/>
     </div>
     <h1>Task List</h1>
     <table>
@@ -57,8 +58,8 @@
                     </c:forEach>
                 </td>
                 <td>${task.state}</td>
-                <td><a href="controller?command=deletetemptask&id=${task.id}">Delete</a></td>
-                <td><a href="controller?command=gotomodifytemptask&id=${task.id}">Modify</a></td>
+                <td><a id="deletelink" href="controller?command=deletetemptask&id=${task.id}" onclick="load('deletelink')">Delete</a></td>
+                <td><a id="modifylink" href="controller?command=gotomodifytemptask&id=${task.id}" onclick="load('modifylink')">Modify</a></td>
             </tr>
         </c:forEach>
     </table>

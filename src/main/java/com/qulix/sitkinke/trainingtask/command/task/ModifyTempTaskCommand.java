@@ -30,7 +30,9 @@ public class ModifyTempTaskCommand implements ActionCommand {
         String projectName = (String) session.getAttribute("projectname");
         String projectAbbreviation = (String) session.getAttribute("projectabbr");
         String projectDescription = (String) session.getAttribute("projectdescr");
-
+        System.out.println(projectName);
+        System.out.println(projectAbbreviation);
+        System.out.println(projectDescription);
         int id_task = Integer.valueOf(request.getParameter("id"));
         String name = request.getParameter("name");
         int duration = Integer.valueOf(request.getParameter("duration"));
@@ -39,7 +41,6 @@ public class ModifyTempTaskCommand implements ActionCommand {
         State state = State.valueOf(request.getParameter("state"));
         List<Employee> employees = ParseManager.getEmployeeList(request.getParameterValues("select2"));
         ProjectDAO projectDAO = new ProjectDAO();
-        System.out.println(projectDAO.getProjectTasks(id_project));
 
         Project project = new Project(projectName, projectAbbreviation, projectDescription);
         project.setId(id_project);
@@ -50,13 +51,16 @@ public class ModifyTempTaskCommand implements ActionCommand {
 
         TaskDAO taskDAO = new TaskDAO();
         taskDAO.modifyTask(task);
-        System.out.println(projectDAO.getProjectTasks(id_project));
-        //ProjectDAO projectDAO = new ProjectDAO();
+
         projectDAO.modifyProjectTask(id_project, id_task);
-        System.out.println(projectDAO.getProjectTasks(id_project));
+
         request.setAttribute("idgenerated", id_project);
 
         List<Task> tasks = projectDAO.getProjectTasks(id_project);
+        for (Task tempTask: tasks) {
+            taskDAO.modifyProjectNameInTask(projectAbbreviation, tempTask.getId());
+        }
+        tasks = projectDAO.getProjectTasks(id_project);
         request.setAttribute("projecttasks", tasks);
 
         request.setAttribute("projectname", projectName);

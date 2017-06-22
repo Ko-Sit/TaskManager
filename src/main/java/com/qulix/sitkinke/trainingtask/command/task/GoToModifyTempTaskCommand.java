@@ -27,6 +27,13 @@ public class GoToModifyTempTaskCommand implements ActionCommand {
         Task task = taskDAO.getById(id_task);
         request.setAttribute("selectedtask", task);
 
+        String projectName = request.getParameter("name");
+        String projectAbbreviation = request.getParameter("abbr");
+        String projectDescription = request.getParameter("descr");
+        System.out.println(id_task);
+        System.out.println(projectName);
+        System.out.println(projectAbbreviation);
+        System.out.println(projectDescription);
         List<Employee> employees;
         EmployeeDAO employeeDAO = new EmployeeDAO();
         employees = employeeDAO.getAll();
@@ -34,9 +41,9 @@ public class GoToModifyTempTaskCommand implements ActionCommand {
 
         HttpSession session = request.getSession();
         int id_project = (int) session.getAttribute("projectid");
-        String projectName = (String) session.getAttribute("projectname");
-        String projectAbbreviation = (String) session.getAttribute("projectabbr");
-        String projectDescription = (String) session.getAttribute("projectdescr");
+        session.setAttribute("projectname", projectName);
+        session.setAttribute("projectabbr", projectAbbreviation);
+        session.setAttribute("projectdescr", projectDescription);
 
         Project project = new Project(projectName, projectAbbreviation, projectDescription);
         project.setId(id_project);
