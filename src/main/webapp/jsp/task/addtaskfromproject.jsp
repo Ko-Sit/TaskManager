@@ -54,7 +54,7 @@
             </c:forEach>
         </select>
     </div>
-    <button type="submit" name="command" value="addtaskfromproject">Save</button>
+    <button type="submit" name="command" value="addtaskfromproject">Save Task</button>
 
     <button type="submit" name="command" value="canceltaskinmodifyproject" formnovalidate>Cancel</button>
 </form>

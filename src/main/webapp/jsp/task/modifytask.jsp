@@ -57,7 +57,7 @@
         </select>
     </div>
 
-    <button type="submit" name="command" value="modifytask">Modify</button>
+    <button type="submit" name="command" value="modifytask">Save Task</button>
 
     <button type="submit" name="command" value="showtasks" formnovalidate>Cancel</button>
 </form>

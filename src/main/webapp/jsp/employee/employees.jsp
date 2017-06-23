@@ -36,6 +36,8 @@
 </table>
 <form name="loginForm" method="POST" action="controller">
     <button type="submit" name="command" value="gotoaddemployee">Add Employee</button>
+
+    <button type="submit" name="command" value="gotomenu">Back</button>
 </form>
 
 </body>

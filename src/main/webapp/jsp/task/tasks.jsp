@@ -46,6 +46,8 @@
 </table>
 <form name="loginForm" method="POST" action="controller">
     <button type="submit" name="command" value="gotoaddtask">Add Task</button>
+
+    <button type="submit" name="command" value="gotomenu">Back</button>
 </form>
 </body>
 </html>

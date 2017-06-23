@@ -65,7 +65,7 @@
     </table>
     <button type="submit" name="command" value="gotoaddtemptask">Add task</button>
 
-    <button type="submit" name="command" value="addproject">Save</button>
+    <button type="submit" name="command" value="addproject">Save Project</button>
 
     <button type="submit" name="command" value="canceladdproject" formnovalidate>Cancel</button>
 </form>

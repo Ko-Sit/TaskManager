@@ -29,7 +29,7 @@
         <label>Position</label>
         <input type="text" value="${selectedemployee.position}" name="position" required/>
     </div>
-    <button type="submit" name="command" value="modifyemployee">Modify</button>
+    <button type="submit" name="command" value="modifyemployee">Save Employee</button>
 
     <button type="submit" name="command" value="showemployees" formnovalidate>Cancel</button>
 </form>

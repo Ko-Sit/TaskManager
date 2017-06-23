@@ -2,6 +2,7 @@ package com.qulix.sitkinke.trainingtask.command.factory;
 
 import com.qulix.sitkinke.trainingtask.command.*;
 import com.qulix.sitkinke.trainingtask.command.employee.*;
+import com.qulix.sitkinke.trainingtask.command.menu.GoToMenuCommand;
 import com.qulix.sitkinke.trainingtask.command.project.*;
 import com.qulix.sitkinke.trainingtask.command.task.*;
 
@@ -168,6 +169,11 @@ public enum CommandEnum {
     CANCELTASKINADDPROJECT{
         {
             this.command = new CancelTaskInAddProjectCommand();
+        }
+    },
+    GOTOMENU{
+        {
+            this.command = new GoToMenuCommand();
         }
     };
 

@@ -29,7 +29,7 @@
         <label>Position</label>
         <input type="text" name="position" value="" required/>
     </div>
-    <button type="submit" name="command" value="addemployee">Add task</button>
+    <button type="submit" name="command" value="addemployee">Save task</button>
 
     <button type="submit" name="command" value="showemployees" formnovalidate>Cancel</button>
 
