@@ -30,9 +30,7 @@ public class ModifyTempTaskCommand implements ActionCommand {
         String projectName = (String) session.getAttribute("projectname");
         String projectAbbreviation = (String) session.getAttribute("projectabbr");
         String projectDescription = (String) session.getAttribute("projectdescr");
-        System.out.println(projectName);
-        System.out.println(projectAbbreviation);
-        System.out.println(projectDescription);
+
         int id_task = Integer.valueOf(request.getParameter("id"));
         String name = request.getParameter("name");
         int duration = Integer.valueOf(request.getParameter("duration"));

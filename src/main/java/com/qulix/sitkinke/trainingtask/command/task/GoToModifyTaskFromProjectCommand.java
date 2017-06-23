@@ -22,8 +22,8 @@ public class GoToModifyTaskFromProjectCommand implements ActionCommand {
         String page = null;
 
         String projectName = request.getParameter("name");
-        String projectAbbreviation = request.getParameter("abbreviation");
-        String projectDescription = request.getParameter("description");
+        String projectAbbreviation = request.getParameter("abbr");
+        String projectDescription = request.getParameter("descr");
 
         int id_task = Integer.valueOf(request.getParameter("id"));
         TaskDAO taskDAO = new TaskDAO();

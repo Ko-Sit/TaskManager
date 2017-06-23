@@ -44,7 +44,6 @@ public class AddTaskCommand implements ActionCommand {
         ProjectDAO projectDAO = new ProjectDAO();
         projectDAO.addProjectTask(id_project, id_task);
 
-        // page addtask requires attribute employees
         List<Task> tasks;
         tasks = taskDAO.getAll();
         request.setAttribute("tasks", tasks);

@@ -37,9 +37,7 @@ public class AddTempTaskCommand implements ActionCommand {
         String projectName = (String) session.getAttribute("projectname");
         String projectAbbreviation = (String) session.getAttribute("projectabbr");
         String projectDescription = (String) session.getAttribute("projectdescr");
-        System.out.println(projectName);
-        System.out.println(projectAbbreviation);
-        System.out.println(projectDescription);
+
         List<Employee> employees = ParseManager.getEmployeeList(request.getParameterValues("select2"));
 
         Task task = new Task(name, duration, startDate, endDate, state, projectAbbreviation);

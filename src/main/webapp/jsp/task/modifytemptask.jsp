@@ -56,7 +56,7 @@
     </div>
     <button type="submit" name="command" value="modifytemptask">Modify</button>
 
-    <button type="submit" name="command" value="addproject" formnovalidate>Cancel</button>
+    <button type="submit" name="command" value="canceltaskinaddproject" formnovalidate>Cancel</button>
 </form>
 </body>
 </html>

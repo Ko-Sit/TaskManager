@@ -30,10 +30,7 @@ public class GoToModifyTempTaskCommand implements ActionCommand {
         String projectName = request.getParameter("name");
         String projectAbbreviation = request.getParameter("abbr");
         String projectDescription = request.getParameter("descr");
-        System.out.println(id_task);
-        System.out.println(projectName);
-        System.out.println(projectAbbreviation);
-        System.out.println(projectDescription);
+
         List<Employee> employees;
         EmployeeDAO employeeDAO = new EmployeeDAO();
         employees = employeeDAO.getAll();

@@ -24,9 +24,7 @@ public class GoToAddTempTaskCommand implements ActionCommand {
         String name = request.getParameter("name");
         String abbreviation = request.getParameter("abbreviation");
         String description = request.getParameter("description");
-        System.out.println(name);
-        System.out.println(abbreviation);
-        System.out.println(description);
+
         HttpSession session = request.getSession();
         session.setAttribute("projectid", id_project);
         session.setAttribute("projectname", name);

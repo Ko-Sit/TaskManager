@@ -57,7 +57,7 @@
 
     <button type="submit" name="command" value="addtemptask">Add</button>
 
-    <button type="submit" name="command" value="gotoaddproject" formnovalidate>Cancel</button>
+    <button type="submit" name="command" value="canceltaskinaddproject" formnovalidate>Cancel</button>
 </form>
 </body>
 </html>
