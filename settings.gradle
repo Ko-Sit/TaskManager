@@ -1,2 +1,5 @@
 rootProject.name = 'manager'
+include 'com.qulix.sitkinke.trainingtask.database'
+include 'com.qulix.sitkinke.trainingtask.server'
+
 

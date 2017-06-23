@@ -1,0 +1,56 @@
+import groovy.sql.Sql
+
+configurations {
+    database
+}
+
+dependencies {
+    database group: 'org.hsqldb', name: 'hsqldb', version: '2.3.4'
+}
+
+
+task createTables << {
+    executeSqlFile('/scripts/createTables.sql')
+}
+
+task insertTestData {
+    dependsOn createTables
+    doLast {
+        executeSqlFile('/scripts/insertTestData.sql')
+    }
+}
+
+task dropTables {
+    finalizedBy createTables
+    doLast {
+        executeSqlFile('/scripts/dropTables.sql')
+    }
+}
+
+
+task startDatabaseServer(type: JavaExec) {
+    classpath configurations.database
+    main = 'org.hsqldb.server.Server'
+    args = ['-database.0', 'file:database/database', '-dbname.0', 'database']
+}
+
+task stopDatabaseServer << {
+    executeSqlFile('/scripts/stopServer.sql')
+}
+
+configurations.database.each { file ->
+    GroovyObject.class.classLoader.addURL(file.toURI().toURL())
+}
+
+def executeSqlFile(String fileName) {
+    def props = [user: 'c', password: '', allowMultiQueries: 'true'] as Properties
+    def url = 'jdbc:hsqldb:hsql://localhost:9001/database'
+    def driver = 'org.hsqldb.jdbc.JDBCDriver'
+
+    String command = new File(project.getProjectDir().absolutePath + fileName).text
+    println command
+
+    def connection = Sql.newInstance(url, props, driver)
+    connection.execute(command)
+    connection.close()
+}

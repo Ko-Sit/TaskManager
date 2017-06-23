@@ -1,0 +1,18 @@
+apply plugin: 'java'
+apply plugin: 'war'
+apply from: 'https://raw.github.com/akhikhl/gretty/master/pluginScripts/gretty-1.4.0.plugin'
+
+gretty {
+    servletContainer = 'tomcat8'
+    contextPath = '/'
+}
+
+dependencies {
+    compile 'org.hsqldb:hsqldb:2.4.0'
+    compile 'javax.servlet:jstl:1.2'
+    testCompile 'junit:junit:4.12'
+}
+
+task startServer(dependsOn: 'appStart')
+
+task stopServer(dependsOn: 'appStop')
