@@ -17,3 +17,18 @@
     ```
     http://localhost:8080/
     ```
+To terminate all servers:
+```
+gradlew stopServer
+gradlew stopDatabaseServer
+```
+
+If you want to fill the tables with test data, run this after starting database server:
+```
+gradlew insertTestData
+```
+
+If you want drop the tables, run this code when database server is up:
+```
+gradlew dropTables
+```
