@@ -9,10 +9,10 @@
 </head>
 <body>
 <form name="addProjectForm" method="POST" action="controller">
-    <jsp:useBean id="idgenerated" scope="request" type="java.lang.Integer"/>
-    <jsp:useBean id="projectname" scope="request" type="java.lang.String"/>
-    <jsp:useBean id="projectabbr" scope="request" type="java.lang.String"/>
-    <jsp:useBean id="projectdescr" scope="request" type="java.lang.String"/>
+    <jsp:useBean id="idgenerated" scope="session" type="java.lang.Integer"/>
+    <jsp:useBean id="projectname" scope="session" type="java.lang.String"/>
+    <jsp:useBean id="projectabbr" scope="session" type="java.lang.String"/>
+    <jsp:useBean id="projectdescr" scope="session" type="java.lang.String"/>
     <div class="field">
         <label>ID</label>
         <input type="number" name="id" value="${idgenerated}" readonly/>

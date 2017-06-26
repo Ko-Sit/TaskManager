@@ -7,6 +7,7 @@ import com.qulix.sitkinke.trainingtask.entities.Task;
 import com.qulix.sitkinke.trainingtask.resource.ConfigurationManager;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,14 +22,16 @@ public class GoToAddProjectCommand implements ActionCommand {
 
         ProjectDAO projectDAO = new ProjectDAO();
         int id_project = projectDAO.getNextId();
-        request.setAttribute("idgenerated", id_project);
 
         List<Task> tasks = projectDAO.getProjectTasks(id_project);
+
         request.setAttribute("projecttasks", tasks);
 
-        request.setAttribute("projectname", "");
-        request.setAttribute("projectabbr", "");
-        request.setAttribute("projectdescr", "");
+        HttpSession session = request.getSession();
+        session.setAttribute("idgenerated", id_project);
+        session.setAttribute("projectname", "");
+        session.setAttribute("projectabbr", "");
+        session.setAttribute("projectdescr", "");
 
         page = ConfigurationManager.getProperty("path.page.addproject");
         return page;

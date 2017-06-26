@@ -27,10 +27,10 @@ public class CancelTaskInAddProjectCommand implements ActionCommand {
         String projectDescription = (String) session.getAttribute("projectdescr");
 
         List<Task> tasks = projectDAO.getProjectTasks(id_project);
-        System.out.println(tasks);
+
         request.setAttribute("projecttasks", tasks);
 
-        session.setAttribute("projectid", id_project);
+        session.setAttribute("idgenerated", id_project);
         session.setAttribute("projectname", projectName);
         session.setAttribute("projectabbr", projectAbbreviation);
         session.setAttribute("projectdescr", projectDescription);
