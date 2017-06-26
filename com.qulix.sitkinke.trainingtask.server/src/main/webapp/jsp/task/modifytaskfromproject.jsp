@@ -14,11 +14,11 @@
     </div>
     <div class="field">
         <label>Name</label>
-        <input type="text" name="name" value="${selectedtask.name}" required/>
+        <input type="text" name="name" value="${selectedtask.name}" maxlength="30" required/>
     </div>
     <div class="field">
         <label>Duration</label>
-        <input type="number" name="duration" value="${selectedtask.duration}" required/>
+        <input type="number" name="duration" value="${selectedtask.duration}" min="1" max="2147483647" required/>
     </div>
     <div class="field">
         <label>Start Date</label>

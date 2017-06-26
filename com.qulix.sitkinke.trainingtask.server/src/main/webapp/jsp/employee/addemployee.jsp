@@ -14,15 +14,15 @@
     </div>
     <div class="field">
         <label>Surname</label>
-        <input type="text" name="surname" value="" required/>
+        <input type="text" name="surname" value="" maxlength="30" required/>
     </div>
     <div class="field">
         <label>Name</label>
-        <input type="text" name="name" value="" required/>
+        <input type="text" name="name" value="" maxlength="30" required/>
     </div>
     <div class="field">
         <label>Patronymic</label>
-        <input type="text" name="patronymic" value="" required/>
+        <input type="text" name="patronymic" value="" maxlength="30" required/>
     </div>
     <div class="field">
         <label>Position</label>

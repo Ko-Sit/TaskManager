@@ -14,15 +14,15 @@
     </div>
     <div class="field">
         <label>Surname</label>
-        <input type="text" value="${selectedemployee.surname}" name="surname" required/>
+        <input type="text" value="${selectedemployee.surname}" maxlength="30" name="surname" required/>
     </div>
     <div class="field">
         <label>Name</label>
-        <input type="text" value="${selectedemployee.name}" name="name" required>
+        <input type="text" value="${selectedemployee.name}" maxlength="30" name="name" required>
     </div>
     <div class="field">
         <label>Patronymic</label>
-        <input type="text" value="${selectedemployee.patronymic}" name="patronymic" required/>
+        <input type="text" value="${selectedemployee.patronymic}" maxlength="30" name="patronymic" required/>
     </div>
     <div class="field">
         <label>Position</label>

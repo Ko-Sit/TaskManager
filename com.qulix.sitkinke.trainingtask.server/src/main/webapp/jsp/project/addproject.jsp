@@ -19,15 +19,15 @@
     </div>
     <div class="field">
         <label>Name</label>
-        <input type="text" name="name" id="name" value="${projectname}" required/>
+        <input type="text" name="name" id="name" value="${projectname}" maxlength="30" required/>
     </div>
     <div class="field">
         <label>Abbreviation</label>
-        <input type="text" name="abbreviation" id="abbr" value="${projectabbr}" required/>
+        <input type="text" name="abbreviation" id="abbr" value="${projectabbr}" maxlength="30" required/>
     </div>
     <div class="field">
         <label>Description</label>
-        <input type="text" name="description" id="descr" value="${projectdescr}" required/>
+        <input type="text" name="description" id="descr" value="${projectdescr}" maxlength="100" required/>
     </div>
     <h1>Task List</h1>
     <table>

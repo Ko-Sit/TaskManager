@@ -14,11 +14,11 @@
     </div>
     <div class="field">
         <label>Name</label>
-        <input type="text" name="name" value="" required/>
+        <input type="text" name="name" value="" maxlength="30" required/>
     </div>
     <div class="field">
         <label>Duration</label>
-        <input type="number" name="duration" value="" required/>
+        <input type="number" min="1" max="2147483647" name="duration" value="" required/>
     </div>
     <div class="field">
         <label>Start Date</label>

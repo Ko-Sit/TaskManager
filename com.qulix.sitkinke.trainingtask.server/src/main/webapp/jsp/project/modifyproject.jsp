@@ -15,15 +15,15 @@
     <jsp:useBean id="projectdescr" scope="session" type="java.lang.String"/>
     <div class="field">
         <label>ID</label>
-        <input type="number" name="id" value="${projectid}" placeholder="id" readonly/>
+        <input type="number" name="id" value="${projectid}" maxlength="30" readonly/>
     </div>
     <div class="field">
         <label>Name</label>
-        <input type="text" name="name" id="name" value="${projectname}" placeholder="name" required/>
+        <input type="text" name="name" id="name" value="${projectname}" maxlength="30" required/>
     </div>
     <div class="field">
         <label>Abbreviation</label>
-        <input type="text" name="abbreviation" id="abbr" value="${projectabbr}" placeholder="abbreviation" required/>
+        <input type="text" name="abbreviation" id="abbr" value="${projectabbr}" maxlength="100" required/>
     </div>
     <div class="field">
         <label>Description</label>
