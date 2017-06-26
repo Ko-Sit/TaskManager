@@ -14,7 +14,6 @@ task createTables << {
 }
 
 task insertTestData {
-    dependsOn createTables
     doLast {
         executeSqlFile('/scripts/insertTestData.sql')
     }
@@ -43,7 +42,7 @@ configurations.database.each { file ->
 }
 
 def executeSqlFile(String fileName) {
-    def props = [user: 'c', password: '', allowMultiQueries: 'true'] as Properties
+    def props = [user: 'sa', password: '', allowMultiQueries: 'true'] as Properties
     def url = 'jdbc:hsqldb:hsql://localhost:9001/database'
     def driver = 'org.hsqldb.jdbc.JDBCDriver'
 
