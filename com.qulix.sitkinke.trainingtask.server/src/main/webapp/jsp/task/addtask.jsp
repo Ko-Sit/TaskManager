@@ -3,6 +3,7 @@
 <html>
 <head>
     <link rel="stylesheet" href="../../css/style.css">
+    <script type="text/javascript" src="../../js/setdate.js"> </script>
     <title>Add Task</title>
 </head>
 <body>
@@ -22,11 +23,11 @@
     </div>
     <div class="field">
         <label>Start Date</label>
-        <input type="date" name="startdate" value="" required/>
+        <input type="date" name="startdate" id="startdate" value="" onclick="setMax()" required/>
     </div>
     <div class="field">
         <label>End Date</label>
-        <input type="date" name="enddate" value="" required/>
+        <input type="date" name="enddate" id="enddate" value="" onclick="setMin()" required/>
     </div>
     <div class="field">
         <label>State</label>
