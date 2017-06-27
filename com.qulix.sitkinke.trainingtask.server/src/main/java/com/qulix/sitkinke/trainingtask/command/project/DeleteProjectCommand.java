@@ -2,7 +2,6 @@ package com.qulix.sitkinke.trainingtask.command.project;
 
 import com.qulix.sitkinke.trainingtask.command.ActionCommand;
 import com.qulix.sitkinke.trainingtask.dao.ProjectDAO;
-import com.qulix.sitkinke.trainingtask.dao.TaskDAO;
 import com.qulix.sitkinke.trainingtask.entities.Project;
 import com.qulix.sitkinke.trainingtask.resource.ConfigurationManager;
 
@@ -21,7 +20,7 @@ public class DeleteProjectCommand implements ActionCommand {
         List<Project> projects;
         ProjectDAO projectDAO = new ProjectDAO();
         int id_project = Integer.valueOf(request.getParameter("id"));
-        projectDAO.deleteProject(id_project);
+        projectDAO.delete(id_project);
 
         projects = projectDAO.getAll();
         request.setAttribute("projects", projects);

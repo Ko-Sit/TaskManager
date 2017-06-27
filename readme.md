@@ -1,3 +1,8 @@
+### Required software:
+
+* JDK 1.8
+
+
 1. Run database server:
     ```
     gradlew startDatabaseServer

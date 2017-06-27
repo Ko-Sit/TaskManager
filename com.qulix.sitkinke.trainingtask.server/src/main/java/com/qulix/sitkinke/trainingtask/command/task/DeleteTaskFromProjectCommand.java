@@ -25,7 +25,7 @@ public class DeleteTaskFromProjectCommand implements ActionCommand {
 
         TaskDAO taskDAO = new TaskDAO();
         int id_task = Integer.valueOf(request.getParameter("id"));
-        taskDAO.deleteTask(id_task);
+        taskDAO.delete(id_task);
         ProjectDAO projectDAO = new ProjectDAO();
         projectDAO.deleteProjectTask(id_task);
 

@@ -7,8 +7,7 @@ import java.util.List;
  *
  * Created by upsit on 09.06.2017.
  */
-public class Project {
-    private int id;
+public class Project extends Entity {
     private String name;
     private String abbreviation;
     private String description;
@@ -23,14 +22,6 @@ public class Project {
         this.abbreviation = abbreviation;
         this.description = description;
         this.taskList = new ArrayList<>();
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public String getName() {
@@ -68,7 +59,7 @@ public class Project {
     @Override
     public String toString() {
         return "Project{" +
-                "id = " + id +
+                "id = " + getId() +
                 ", name = '" + name + '\'' +
                 ", abbreviation = '" + abbreviation + '\'' +
                 ", description = " + description +'}';

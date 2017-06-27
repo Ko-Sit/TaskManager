@@ -44,7 +44,7 @@ public class AddTaskFromProjectCommand implements ActionCommand {
         task.setEmployeeList(employees);
 
         TaskDAO taskDAO = new TaskDAO();
-        taskDAO.addTask(task);
+        taskDAO.add(task);
 
         ProjectDAO projectDAO = new ProjectDAO();
         projectDAO.addProjectTask(id_project, id_task);

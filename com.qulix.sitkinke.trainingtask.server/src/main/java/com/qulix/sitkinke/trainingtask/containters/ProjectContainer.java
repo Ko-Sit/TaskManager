@@ -8,7 +8,7 @@ import com.qulix.sitkinke.trainingtask.entities.Project;
  */
 public class ProjectContainer {
 
-    public static Project savedProject;
+    private static Project savedProject;
 
     public static void put(Project project) {
         savedProject = project;

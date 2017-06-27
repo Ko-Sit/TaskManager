@@ -24,7 +24,7 @@ public class AddEmployeeCommand implements ActionCommand {
 
         Employee employee = new Employee(surname, name, patronymic, position);
         EmployeeDAO employeeDAO = new EmployeeDAO();
-        employeeDAO.addEmployee(employee);
+        employeeDAO.add(employee);
 
         List<Employee> employees;
         employees = employeeDAO.getAll();

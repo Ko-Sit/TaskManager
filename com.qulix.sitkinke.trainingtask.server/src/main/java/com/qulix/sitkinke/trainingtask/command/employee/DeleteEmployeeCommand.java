@@ -20,7 +20,7 @@ public class DeleteEmployeeCommand implements ActionCommand {
         List<Employee> employees;
         EmployeeDAO employeeDAO = new EmployeeDAO();
         int id_employee = Integer.valueOf(request.getParameter("id"));
-        employeeDAO.deleteEmployee(id_employee);
+        employeeDAO.delete(id_employee);
 
         employees = employeeDAO.getAll();
         request.setAttribute("employees", employees);

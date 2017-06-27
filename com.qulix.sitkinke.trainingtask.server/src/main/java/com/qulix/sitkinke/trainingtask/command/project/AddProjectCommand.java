@@ -28,12 +28,12 @@ public class AddProjectCommand implements ActionCommand {
         List<Task> tasks = projectDAO.getProjectTasks(id_project);
         for (Task task: tasks){
             task.setProjectName(abbreviation);
-            taskDAO.modifyTask(task);
+            taskDAO.modify(task);
         }
         Project project = new Project(name, abbreviation, description);
         project.setId(id_project);
         project.setTaskList(tasks);
-        projectDAO.addProject(project);
+        projectDAO.add(project);
 
         List<Project> projects;
         projects = projectDAO.getAll();

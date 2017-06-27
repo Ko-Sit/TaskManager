@@ -13,9 +13,10 @@ import java.util.List;
  *
  * Created by upsit on 12.06.2017.
  */
-public class EmployeeDAO{
+public class EmployeeDAO implements IDao<Employee> {
 
-    public void addEmployee(Employee employee) {
+    @Override
+    public void add(Employee employee) {
         try(Connection connection = DBManager.getInstance().getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement(SqlRequests.ADD_EMPLOYEE)){
             preparedStatement.setString(1, employee.getName());
@@ -29,7 +30,8 @@ public class EmployeeDAO{
         }
     }
 
-    public void modifyEmployee(Employee employee) {
+    @Override
+    public void modify(Employee employee) {
         try(Connection connection = DBManager.getInstance().getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement(SqlRequests.MODIFY_EMPLOYEE)){
             preparedStatement.setString(1, employee.getName());
@@ -44,7 +46,8 @@ public class EmployeeDAO{
         }
     }
 
-    public void deleteEmployee(int id) {
+    @Override
+    public void delete(int id) {
         deleteEmployeeTasks(id);
         try(Connection connection = DBManager.getInstance().getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement(SqlRequests.DELETE_EMPLOYEE)){
@@ -57,6 +60,7 @@ public class EmployeeDAO{
         DBUtility.resetAutoIncrement(SqlRequests.RESET_EMPLOYEES_AUTO_INCREMENT + getNextId());
     }
 
+
     private void deleteEmployeeTasks(int id_employee){
         try(Connection connection = DBManager.getInstance().getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement(SqlRequests.DELETE_EMPLOYEE_TASKS)){
@@ -68,6 +72,7 @@ public class EmployeeDAO{
         }
     }
 
+    @Override
     public Employee getById(int id){
         Employee employee;
         try(Connection connection = DBManager.getInstance().getConnection();
@@ -87,6 +92,7 @@ public class EmployeeDAO{
         return employee;
     }
 
+    @Override
     public List<Employee> getAll(){
         List<Employee> employeeList = new ArrayList<>();
         try(Connection connection = DBManager.getInstance().getConnection();
@@ -105,6 +111,7 @@ public class EmployeeDAO{
         return employeeList;
     }
 
+    @Override
     public int getNextId(){
         int id;
         int id_next;

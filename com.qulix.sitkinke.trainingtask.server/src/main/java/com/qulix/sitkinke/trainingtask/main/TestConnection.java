@@ -1,16 +1,10 @@
 package com.qulix.sitkinke.trainingtask.main;
 
-import com.qulix.sitkinke.trainingtask.dao.EmployeeDAO;
 import com.qulix.sitkinke.trainingtask.dao.ProjectDAO;
 import com.qulix.sitkinke.trainingtask.dao.TaskDAO;
-import com.qulix.sitkinke.trainingtask.entities.Employee;
 import com.qulix.sitkinke.trainingtask.entities.Project;
 import com.qulix.sitkinke.trainingtask.entities.Task;
-import com.qulix.sitkinke.trainingtask.enums.State;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.GregorianCalendar;
 import java.util.List;
 
 /**
@@ -34,7 +28,7 @@ public class TestConnection {
         project.getTaskList().get(4).setId(447);
         project.getTaskList().get(5).setId(448);
         project.getTaskList().get(6).setId(441);
-        projectDAO.addProject(project);
+        projectDAO.add(project);
 
     }
 

@@ -48,7 +48,7 @@ public class ModifyTempTaskCommand implements ActionCommand {
         task.setEmployeeList(employees);
 
         TaskDAO taskDAO = new TaskDAO();
-        taskDAO.modifyTask(task);
+        taskDAO.modify(task);
 
         projectDAO.modifyProjectTask(id_project, id_task);
 

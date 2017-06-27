@@ -21,7 +21,7 @@ public class DeleteTaskCommand implements ActionCommand {
         List<Task> tasks;
         TaskDAO taskDAO = new TaskDAO();
         int id_task = Integer.valueOf(request.getParameter("id"));
-        taskDAO.deleteTask(id_task);
+        taskDAO.delete(id_task);
 
         tasks = taskDAO.getAll();
         request.setAttribute("tasks", tasks);

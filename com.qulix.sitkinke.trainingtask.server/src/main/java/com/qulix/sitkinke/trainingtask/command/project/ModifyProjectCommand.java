@@ -31,11 +31,11 @@ public class ModifyProjectCommand implements ActionCommand {
         TaskDAO taskDAO = new TaskDAO();
         for (Task task: taskList) {
             task.setProjectName(abbreviation);
-            taskDAO.modifyTask(task);
+            taskDAO.modify(task);
         }
 
         project.setTaskList(taskList);
-        projectDAO.modifyProject(project);
+        projectDAO.modify(project);
 
         List<Project> projects;
         projects = projectDAO.getAll();

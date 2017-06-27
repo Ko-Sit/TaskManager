@@ -10,8 +10,7 @@ import java.util.List;
  *
  * Created by upsit on 09.06.2017.
  */
-public class Task {
-    private int id;
+public class Task extends Entity {
     private String name;
     private int duration;
     private Date startDate;
@@ -21,6 +20,7 @@ public class Task {
     private List<Employee> employeeList;
 
     public Task() {
+
     }
 
     public Task(String name, int duration, Date startDate, Date endDate, State state, String projectName) {
@@ -31,14 +31,6 @@ public class Task {
         this.state = state;
         this.projectName = projectName;
         this.employeeList = new ArrayList<>();
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public String getName() {
@@ -100,7 +92,7 @@ public class Task {
     @Override
     public String toString() {
         return "Task{" +
-                "id=" + id +
+                "id=" + getId() +
                 ", name='" + name + '\'' +
                 ", duration=" + duration +
                 ", startDate=" + startDate +

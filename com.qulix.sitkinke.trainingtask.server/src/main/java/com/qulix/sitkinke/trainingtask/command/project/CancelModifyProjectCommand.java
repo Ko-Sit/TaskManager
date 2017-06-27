@@ -24,15 +24,15 @@ public class CancelModifyProjectCommand implements ActionCommand {
         ProjectDAO projectDAO = new ProjectDAO();
         int id_project = Integer.valueOf(request.getParameter("id"));
         projectDAO.deleteTasksByIdProject(id_project);
-        projectDAO.deleteProject(id_project);
+        projectDAO.delete(id_project);
 
         TaskDAO taskDAO = new TaskDAO();
         Project project = ProjectContainer.get();
-        projectDAO.addProject(project);
+        projectDAO.add(project);
 
         int id_task;
         for (Task task: project.getTaskList()) {
-            taskDAO.addTask(task);
+            taskDAO.add(task);
             id_task = task.getId();
             projectDAO.addProjectTask(id_project, id_task);
         }

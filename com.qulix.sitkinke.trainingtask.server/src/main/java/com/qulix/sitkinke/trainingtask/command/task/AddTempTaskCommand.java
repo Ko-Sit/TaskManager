@@ -4,7 +4,6 @@ import com.qulix.sitkinke.trainingtask.command.ActionCommand;
 import com.qulix.sitkinke.trainingtask.dao.ProjectDAO;
 import com.qulix.sitkinke.trainingtask.dao.TaskDAO;
 import com.qulix.sitkinke.trainingtask.entities.Employee;
-import com.qulix.sitkinke.trainingtask.entities.Project;
 import com.qulix.sitkinke.trainingtask.entities.Task;
 import com.qulix.sitkinke.trainingtask.enums.State;
 import com.qulix.sitkinke.trainingtask.managers.ParseManager;
@@ -45,7 +44,7 @@ public class AddTempTaskCommand implements ActionCommand {
         task.setEmployeeList(employees);
 
         TaskDAO taskDAO = new TaskDAO();
-        taskDAO.addTask(task);
+        taskDAO.add(task);
 
         ProjectDAO projectDAO = new ProjectDAO();
         projectDAO.addProjectTask(id_project, id_task);

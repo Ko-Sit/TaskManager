@@ -20,9 +20,10 @@ import java.util.List;
  *
  * Created by upsit on 12.06.2017.
  */
-public class TaskDAO  {
+public class TaskDAO implements IDao<Task>{
 
-    public void addTask(Task task){
+    @Override
+    public void add(Task task){
         addTaskExecutors(task.getId(), task.getEmployeeList());
         try(Connection connection = DBManager.getInstance().getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement(SqlRequests.ADD_TASK)){
@@ -54,7 +55,8 @@ public class TaskDAO  {
         }
     }
 
-    public void modifyTask(Task task) {
+    @Override
+    public void modify(Task task) {
         modifyTaskExecutors(task.getId(), task.getEmployeeList());
         try(Connection connection = DBManager.getInstance().getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement(SqlRequests.MODIFY_TASK)){
@@ -89,7 +91,8 @@ public class TaskDAO  {
         }
     }
 
-    public void deleteTask(int id) {
+    @Override
+    public void delete(int id) {
         deleteTaskExecutors(id);
         try(Connection connection = DBManager.getInstance().getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement(SqlRequests.DELETE_TASK)){
@@ -144,6 +147,7 @@ public class TaskDAO  {
         }
     }
 
+    @Override
     public Task getById(int id){
         Task task;
         try(Connection connection = DBManager.getInstance().getConnection();
@@ -163,6 +167,7 @@ public class TaskDAO  {
         return task;
     }
 
+    @Override
     public List<Task> getAll(){
         List<Task> taskList = new ArrayList<>();
         try(Connection connection = DBManager.getInstance().getConnection();
@@ -201,6 +206,7 @@ public class TaskDAO  {
         return employeeList;
     }
 
+    @Override
     public int getNextId(){
         int id;
         int id_next;

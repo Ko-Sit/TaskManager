@@ -7,8 +7,7 @@ import java.util.List;
  *
  * Created by upsit on 09.06.2017.
  */
-public class Employee {
-    private int id;
+public class Employee extends Entity {
     private String surname;
     private String name;
     private String patronymic;
@@ -25,14 +24,6 @@ public class Employee {
         this.patronymic = patronymic;
         this.position = position;
         this.taskList = new ArrayList<>();
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public String getSurname() {
@@ -78,7 +69,7 @@ public class Employee {
     @Override
     public String toString() {
         return "Employee{" +
-                "id = " + id +
+                "id = " + getId() +
                 ", surname = '" + surname + '\'' +
                 ", name = '" + name + '\'' +
                 ", patronymic = '" + patronymic + '\'' +

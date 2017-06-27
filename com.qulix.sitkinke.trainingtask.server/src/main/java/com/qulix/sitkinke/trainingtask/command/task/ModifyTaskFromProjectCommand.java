@@ -47,7 +47,7 @@ public class ModifyTaskFromProjectCommand implements ActionCommand {
         task.setEmployeeList(employees);
 
         TaskDAO taskDAO = new TaskDAO();
-        taskDAO.modifyTask(task);
+        taskDAO.modify(task);
 
         ProjectDAO projectDAO = new ProjectDAO();
         projectDAO.modifyProjectTask(id_project, id_task);

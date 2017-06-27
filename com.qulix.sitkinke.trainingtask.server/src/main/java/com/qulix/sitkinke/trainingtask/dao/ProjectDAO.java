@@ -14,9 +14,10 @@ import java.util.List;
  *
  * Created by upsit on 12.06.2017.
  */
-public class ProjectDAO {
+public class ProjectDAO implements IDao<Project> {
 
-    public void addProject(Project project) {
+    @Override
+    public void add(Project project) {
         //addProjectTasks(project.getId(), project.getTaskList());
         try(Connection connection = DBManager.getInstance().getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement(SqlRequests.ADD_PROJECT)){
@@ -57,7 +58,8 @@ public class ProjectDAO {
         }
     }
 
-    public void modifyProject(Project project) {
+    @Override
+    public void modify(Project project) {
         //modifyProjectTasks(project.getId(), project.getTaskList());
         try(Connection connection = DBManager.getInstance().getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement(SqlRequests.MODIFY_PROJECT)){
@@ -82,7 +84,8 @@ public class ProjectDAO {
         addProjectTask(id_project, id_task);
     }
 
-    public void deleteProject(int id) {
+    @Override
+    public void delete(int id) {
         deleteProjectTasks(id);
         try(Connection connection = DBManager.getInstance().getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement(SqlRequests.DELETE_PROJECT)){
@@ -128,10 +131,11 @@ public class ProjectDAO {
         for (Task task: tasks){
             id_task = task.getId();
             deleteProjectTask(id_task);
-            taskDAO.deleteTask(id_task);
+            taskDAO.delete(id_task);
         }
     }
 
+    @Override
     public Project getById(int id){
         Project project;
         try(Connection connection = DBManager.getInstance().getConnection();
@@ -151,6 +155,7 @@ public class ProjectDAO {
         return project;
     }
 
+    @Override
     public List<Project> getAll(){
         List<Project> projectList = new ArrayList<>();
         try(Connection connection = DBManager.getInstance().getConnection();
@@ -189,6 +194,7 @@ public class ProjectDAO {
         return taskList;
     }
 
+    @Override
     public int getNextId(){
         int id;
         int id_next;

@@ -25,7 +25,7 @@ public class ModifyEmployeeCommand implements ActionCommand {
         Employee employee = new Employee(surname, name, patronymic, position);
         employee.setId(id);
         EmployeeDAO employeeDAO = new EmployeeDAO();
-        employeeDAO.modifyEmployee(employee);
+        employeeDAO.modify(employee);
 
         List<Employee> employees;
         employees = employeeDAO.getAll();

@@ -29,7 +29,7 @@ public class DeleteTempTaskCommand implements ActionCommand {
         TaskDAO taskDAO = new TaskDAO();
         ProjectDAO projectDAO = new ProjectDAO();
         int id_task = Integer.valueOf(request.getParameter("id"));
-        taskDAO.deleteTask(id_task);
+        taskDAO.delete(id_task);
 
         projectDAO.deleteProjectTask(id_task);
 
