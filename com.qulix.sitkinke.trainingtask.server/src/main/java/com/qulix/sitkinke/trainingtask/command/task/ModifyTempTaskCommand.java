@@ -36,7 +36,7 @@ public class ModifyTempTaskCommand implements ActionCommand {
 
         int id_task = Integer.valueOf(request.getParameter(Parameters.ID));
         String name = request.getParameter(Parameters.TASK_NAME);
-        int duration = Integer.valueOf(request.getParameter(Parameters.TASK_NAME));
+        int duration = Integer.valueOf(request.getParameter(Parameters.TASK_DURATION));
         Date startDate = SQLDateConverter.getDate(request.getParameter(Parameters.TASK_STARTDATE));
         Date endDate = SQLDateConverter.getDate(request.getParameter(Parameters.TASK_ENDDATE));
         State state = State.valueOf(request.getParameter(Parameters.TASK_STATE));
