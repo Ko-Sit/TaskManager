@@ -11,174 +11,143 @@ import com.qulix.sitkinke.trainingtask.command.task.*;
  * Created by upsit on 14.06.2017.
  */
 public enum CommandEnum {
-    ADDEMPLOYEE {
-        {
-            this.command = new AddEmployeeCommand();
-        }
-    },
-    SHOWEMPLOYEES {
-        {
-            this.command = new ShowEmployeesCommand();
-        }
-    },
-    GOTOADDEMPLOYEE {
-        {
-            this.command = new GoToAddEmployeesCommand();
-        }
-    },
-    GOTOADDTASK {
-        {
-            this.command = new GoToAddTasksCommand();
-        }
-    },
-    SHOWTASKS {
-        {
-            this.command = new ShowTasksCommand();
-        }
-    },
-    ADDTASK {
-        {
-            this.command = new AddTaskCommand();
-        }
-    },
-    DELETEEMPLOYEE{
-        {
-            this.command = new DeleteEmployeeCommand();
-        }
-    },
-    GOTOMODIFYEMPLOYEE{
-        {
-            this.command = new GoToModifyEmployeeCommand();
-        }
-    },
-    MODIFYEMPLOYEE{
-        {
-            this.command = new ModifyEmployeeCommand();
-        }
-    },
-    DELETETASK{
-        {
-            this.command = new DeleteTaskCommand();
-        }
-    },
-    GOTOMODIFYTASK{
-        {
-            this.command = new GoToModifyTaskCommand();
-        }
-    },
-    MODIFYTASK{
-        {
-            this.command = new ModifyTaskCommand();
-        }
-    },
-    SHOWPROJECTS{
-        {
-            this.command = new ShowProjectsCommand();
-        }
-    },
-    GOTOADDPROJECT{
-        {
-            this.command = new GoToAddProjectCommand();
-        }
-    },
-    DELETEPROJECT{
-        {
-            this.command = new DeleteProjectCommand();
-        }
-    },
-    ADDPROJECT{
-        {
-            this.command = new AddProjectCommand();
-        }
-    },
-    GOTOADDTEMPTASK{
-        {
-            this.command = new GoToAddTempTaskCommand();
-        }
-    },
-    ADDTEMPTASK{
-        {
-            this.command = new AddTempTaskCommand();
-        }
-    },
-    DELETETEMPTASK{
-        {
-            this.command = new DeleteTempTaskCommand();
-        }
-    },
-    GOTOMODIFYTEMPTASK{
-        {
-            this.command = new GoToModifyTempTaskCommand();
-        }
-    },
-    MODIFYTEMPTASK{
-        {
-            this.command = new ModifyTempTaskCommand();
-        }
-    },
-    GOTOMODIFYPROJECT{
-        {
-            this.command = new GoToModifyProjectCommand();
-        }
-    },
-    MODIFYPROJECT{
-        {
-            this.command = new ModifyProjectCommand();
-        }
-    },
-    DELETETASKFROMPROJECT{
-        {
-            this.command = new DeleteTaskFromProjectCommand();
-        }
-    },
-    GOTOADDTASKFROMPROJECT{
-        {
-            this.command = new GoToAddTaskFromProjectCommand();
-        }
-    },
-    ADDTASKFROMPROJECT{
-        {
-            this.command = new AddTaskFromProjectCommand();
-        }
-    },
-    GOTOMODIFYTASKFROMPROJECT{
-        {
-            this.command = new GoToModifyTaskFromProjectCommand();
-        }
-    },
-    MODIFYTASKFROMPROJECT{
-        {
-            this.command = new ModifyTaskFromProjectCommand();
-        }
-    },
-    CANCELADDPROJECT{
-        {
-            this.command = new CancelAddProjectCommand();
-        }
-    },
-    CANCELMODIFYPROJECT{
-        {
-            this.command = new CancelModifyProjectCommand();
-        }
-    },
-    CANCELTASKINMODIFYPROJECT{
-        {
-            this.command = new CancelTaskInModifyProjectCommand();
-        }
-    },
-    CANCELTASKINADDPROJECT{
-        {
-            this.command = new CancelTaskInAddProjectCommand();
-        }
-    },
-    GOTOMENU{
-        {
-            this.command = new GoToMenuCommand();
-        }
-    };
+    ADDEMPLOYEE,
+    SHOWEMPLOYEES ,
+    GOTOADDEMPLOYEE ,
+    GOTOADDTASK ,
+    SHOWTASKS ,
+    ADDTASK,
+    DELETEEMPLOYEE ,
+    GOTOMODIFYEMPLOYEE,
+    MODIFYEMPLOYEE,
+    DELETETASK,
+    GOTOMODIFYTASK,
+    MODIFYTASK,
+    SHOWPROJECTS,
+    GOTOADDPROJECT,
+    DELETEPROJECT,
+    ADDPROJECT,
+    GOTOADDTEMPTASK,
+    ADDTEMPTASK,
+    DELETETEMPTASK,
+    GOTOMODIFYTEMPTASK,
+    MODIFYTEMPTASK,
+    GOTOMODIFYPROJECT,
+    MODIFYPROJECT,
+    DELETETASKFROMPROJECT,
+    GOTOADDTASKFROMPROJECT,
+    ADDTASKFROMPROJECT,
+    GOTOMODIFYTASKFROMPROJECT,
+    MODIFYTASKFROMPROJECT,
+    CANCELADDPROJECT,
+    CANCELMODIFYPROJECT,
+    CANCELTASKINMODIFYPROJECT,
+    CANCELTASKINADDPROJECT,
+    GOTOMENU;
 
-    ActionCommand command;
     public ActionCommand getCurrentCommand() {
-        return command;
+        switch (this){
+            case ADDEMPLOYEE:
+                return new AddEmployeeCommand();
+
+            case SHOWEMPLOYEES:
+                return new ShowEmployeesCommand();
+
+            case GOTOADDEMPLOYEE:
+                return new GoToAddEmployeesCommand();
+
+            case GOTOADDTASK:
+                return new GoToAddTasksCommand();
+
+            case SHOWTASKS:
+                return new ShowTasksCommand();
+
+            case ADDTASK:
+                return new AddTaskCommand();
+
+            case DELETEEMPLOYEE:
+                return new DeleteEmployeeCommand();
+
+            case GOTOMODIFYEMPLOYEE:
+                return new GoToModifyEmployeeCommand();
+
+            case MODIFYEMPLOYEE:
+                return new ModifyEmployeeCommand();
+
+            case DELETETASK:
+                return new DeleteTaskCommand();
+
+            case GOTOMODIFYTASK:
+                return new GoToModifyTaskCommand();
+
+            case MODIFYTASK:
+                return new ModifyTaskCommand();
+
+            case SHOWPROJECTS:
+                return new ShowProjectsCommand();
+
+            case GOTOADDPROJECT:
+                return new GoToAddProjectCommand();
+
+            case DELETEPROJECT:
+                return new DeleteProjectCommand();
+
+            case ADDPROJECT:
+                return new AddProjectCommand();
+
+            case GOTOADDTEMPTASK:
+                return new GoToAddTempTaskCommand();
+
+            case ADDTEMPTASK:
+                return new AddTempTaskCommand();
+
+            case DELETETEMPTASK:
+                return new DeleteTempTaskCommand();
+
+            case GOTOMODIFYTEMPTASK:
+                return new GoToModifyTempTaskCommand();
+
+            case MODIFYTEMPTASK:
+                return new ModifyTempTaskCommand();
+
+            case GOTOMODIFYPROJECT:
+                return new GoToModifyProjectCommand();
+
+            case MODIFYPROJECT:
+                return new ModifyProjectCommand();
+
+            case DELETETASKFROMPROJECT:
+                return new DeleteTaskFromProjectCommand();
+
+            case GOTOADDTASKFROMPROJECT:
+                return new GoToAddTaskFromProjectCommand();
+
+            case ADDTASKFROMPROJECT:
+                return new AddTaskFromProjectCommand();
+
+            case GOTOMODIFYTASKFROMPROJECT:
+                return new GoToModifyTaskFromProjectCommand();
+
+            case MODIFYTASKFROMPROJECT:
+                return new ModifyTaskFromProjectCommand();
+
+            case CANCELADDPROJECT:
+                return new CancelAddProjectCommand();
+
+            case CANCELMODIFYPROJECT:
+                return new CancelModifyProjectCommand();
+
+            case CANCELTASKINMODIFYPROJECT:
+                return new CancelTaskInModifyProjectCommand();
+
+            case CANCELTASKINADDPROJECT:
+                return new CancelTaskInAddProjectCommand();
+
+            case GOTOMENU:
+                return new GoToMenuCommand();
+
+            default:
+                return new EmptyCommand();
+        }
     }
 }

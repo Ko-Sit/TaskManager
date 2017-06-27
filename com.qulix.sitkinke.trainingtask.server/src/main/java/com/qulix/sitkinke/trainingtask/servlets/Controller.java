@@ -2,6 +2,7 @@ package com.qulix.sitkinke.trainingtask.servlets;
 
 import com.qulix.sitkinke.trainingtask.command.ActionCommand;
 import com.qulix.sitkinke.trainingtask.command.factory.ActionFactory;
+import com.qulix.sitkinke.trainingtask.constants.PathConfigs;
 import com.qulix.sitkinke.trainingtask.entities.Employee;
 import com.qulix.sitkinke.trainingtask.resource.ConfigurationManager;
 
@@ -46,7 +47,7 @@ public class Controller extends HttpServlet {
             dispatcher.forward(request, response);
         } else {
             // установка страницы c cообщением об ошибке
-            page = ConfigurationManager.getProperty("path.page.index");
+            page = ConfigurationManager.getProperty(PathConfigs.INDEX_PAGE);
             response.sendRedirect(request.getContextPath() + page);
         }
     }
