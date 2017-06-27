@@ -1,6 +1,7 @@
 package com.qulix.sitkinke.trainingtask.command.task;
 
 import com.qulix.sitkinke.trainingtask.command.ActionCommand;
+import com.qulix.sitkinke.trainingtask.constants.Parameters;
 import com.qulix.sitkinke.trainingtask.constants.PathConfigs;
 import com.qulix.sitkinke.trainingtask.dao.ProjectDAO;
 import com.qulix.sitkinke.trainingtask.dao.TaskDAO;
@@ -25,16 +26,16 @@ public class ModifyTaskCommand implements ActionCommand {
     public String execute(HttpServletRequest request) {
         String page = null;
 
-        int id_task = Integer.valueOf(request.getParameter("id"));
-        String name = request.getParameter("name");
-        int duration = Integer.valueOf(request.getParameter("duration"));
-        Date startDate = SQLDateConverter.getDate(request.getParameter("startdate"));
-        Date endDate = SQLDateConverter.getDate(request.getParameter("enddate"));
-        State state = State.valueOf(request.getParameter("state"));
-        Project project = ParseManager.getTaskProject(request.getParameter("projectname"));
+        int id_task = Integer.valueOf(request.getParameter(Parameters.ID));
+        String name = request.getParameter(Parameters.TASK_NAME);
+        int duration = Integer.valueOf(request.getParameter(Parameters.TASK_DURATION));
+        Date startDate = SQLDateConverter.getDate(request.getParameter(Parameters.TASK_STARTDATE));
+        Date endDate = SQLDateConverter.getDate(request.getParameter(Parameters.TASK_ENDDATE));
+        State state = State.valueOf(request.getParameter(Parameters.TASK_STATE));
+        Project project = ParseManager.getTaskProject(request.getParameter(Parameters.TASK_PROJECT_NAME));
         int id_project = project.getId();
         String projectAbbreviation = project.getAbbreviation();
-        List<Employee> employees = ParseManager.getEmployeeList(request.getParameterValues("select2"));
+        List<Employee> employees = ParseManager.getEmployeeList(request.getParameterValues(Parameters.TASK_EMPLOYEES));
 
         Task task = new Task(name, duration, startDate, endDate, state, projectAbbreviation);
         task.setId(id_task);
@@ -47,7 +48,7 @@ public class ModifyTaskCommand implements ActionCommand {
 
         List<Task> tasks;
         tasks = taskDAO.getAll();
-        request.setAttribute("tasks", tasks);
+        request.setAttribute(Parameters.TASK_LIST, tasks);
 
         page = ConfigurationManager.getProperty(PathConfigs.SHOW_TASKS_PAGE);
         return page;

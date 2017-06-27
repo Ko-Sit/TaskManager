@@ -1,6 +1,7 @@
 package com.qulix.sitkinke.trainingtask.command.employee;
 
 import com.qulix.sitkinke.trainingtask.command.ActionCommand;
+import com.qulix.sitkinke.trainingtask.constants.Parameters;
 import com.qulix.sitkinke.trainingtask.constants.PathConfigs;
 import com.qulix.sitkinke.trainingtask.dao.EmployeeDAO;
 import com.qulix.sitkinke.trainingtask.entities.Employee;
@@ -20,11 +21,11 @@ public class DeleteEmployeeCommand implements ActionCommand {
 
         List<Employee> employees;
         EmployeeDAO employeeDAO = new EmployeeDAO();
-        int id_employee = Integer.valueOf(request.getParameter("id"));
+        int id_employee = Integer.valueOf(request.getParameter(Parameters.ID));
         employeeDAO.delete(id_employee);
 
         employees = employeeDAO.getAll();
-        request.setAttribute("employees", employees);
+        request.setAttribute(Parameters.EMPLOYEE_LIST, employees);
 
         page = ConfigurationManager.getProperty(PathConfigs.SHOW_EMPLOYEES_PAGE);
         return page;

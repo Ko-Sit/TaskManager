@@ -1,6 +1,8 @@
 package com.qulix.sitkinke.trainingtask.command.task;
 
 import com.qulix.sitkinke.trainingtask.command.ActionCommand;
+import com.qulix.sitkinke.trainingtask.constants.Attributes;
+import com.qulix.sitkinke.trainingtask.constants.Parameters;
 import com.qulix.sitkinke.trainingtask.constants.PathConfigs;
 import com.qulix.sitkinke.trainingtask.dao.EmployeeDAO;
 import com.qulix.sitkinke.trainingtask.dao.ProjectDAO;
@@ -23,30 +25,30 @@ public class GoToModifyTempTaskCommand implements ActionCommand {
     public String execute(HttpServletRequest request) {
         String page = null;
 
-        int id_task = Integer.valueOf(request.getParameter("id"));
+        int id_task = Integer.valueOf(request.getParameter(Parameters.ID));
         TaskDAO taskDAO = new TaskDAO();
         Task task = taskDAO.getById(id_task);
-        request.setAttribute("selectedtask", task);
+        request.setAttribute(Parameters.SELECTED_TASK, task);
 
-        String projectName = request.getParameter("name");
-        String projectAbbreviation = request.getParameter("abbr");
-        String projectDescription = request.getParameter("descr");
+        String projectName = request.getParameter(Parameters.LINK_NAME);
+        String projectAbbreviation = request.getParameter(Parameters.LINK_ABBREVIATION);
+        String projectDescription = request.getParameter(Parameters.LINK_DESCRIPTION);
 
         List<Employee> employees;
         EmployeeDAO employeeDAO = new EmployeeDAO();
         employees = employeeDAO.getAll();
-        request.setAttribute("employees", employees);
+        request.setAttribute(Parameters.EMPLOYEE_LIST, employees);
 
         HttpSession session = request.getSession();
-        int id_project = (int) session.getAttribute("projectid");
-        session.setAttribute("projectname", projectName);
-        session.setAttribute("projectabbr", projectAbbreviation);
-        session.setAttribute("projectdescr", projectDescription);
+        int id_project = (int) session.getAttribute(Attributes.PROJECT_ID);
+        session.setAttribute(Attributes.PROJECT_NAME, projectName);
+        session.setAttribute(Attributes.PROJECT_ABBREVIATION, projectAbbreviation);
+        session.setAttribute(Attributes.PROJECT_DESCRIPTION, projectDescription);
 
         Project project = new Project(projectName, projectAbbreviation, projectDescription);
         project.setId(id_project);
 
-        request.setAttribute("currentproject", project);
+        request.setAttribute(Parameters.CURRENT_PROJECT, project);
 
         page = ConfigurationManager.getProperty(PathConfigs.MODIFY_TEMP_TASK_PAGE);
         return page;

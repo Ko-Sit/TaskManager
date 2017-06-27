@@ -1,6 +1,7 @@
 package com.qulix.sitkinke.trainingtask.command.task;
 
 import com.qulix.sitkinke.trainingtask.command.ActionCommand;
+import com.qulix.sitkinke.trainingtask.constants.Parameters;
 import com.qulix.sitkinke.trainingtask.constants.PathConfigs;
 import com.qulix.sitkinke.trainingtask.dao.TaskDAO;
 import com.qulix.sitkinke.trainingtask.entities.Task;
@@ -21,7 +22,7 @@ public class ShowTasksCommand implements ActionCommand {
         List<Task> tasks;
         TaskDAO taskDAO = new TaskDAO();
         tasks = taskDAO.getAll();
-        request.setAttribute("tasks", tasks);
+        request.setAttribute(Parameters.TASK_LIST, tasks);
 
         page = ConfigurationManager.getProperty(PathConfigs.SHOW_TASKS_PAGE);
         return page;

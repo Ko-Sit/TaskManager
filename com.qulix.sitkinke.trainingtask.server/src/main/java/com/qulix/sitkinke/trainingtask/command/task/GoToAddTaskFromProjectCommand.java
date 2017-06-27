@@ -1,6 +1,8 @@
 package com.qulix.sitkinke.trainingtask.command.task;
 
 import com.qulix.sitkinke.trainingtask.command.ActionCommand;
+import com.qulix.sitkinke.trainingtask.constants.Attributes;
+import com.qulix.sitkinke.trainingtask.constants.Parameters;
 import com.qulix.sitkinke.trainingtask.constants.PathConfigs;
 import com.qulix.sitkinke.trainingtask.dao.EmployeeDAO;
 import com.qulix.sitkinke.trainingtask.dao.TaskDAO;
@@ -22,28 +24,28 @@ public class GoToAddTaskFromProjectCommand implements ActionCommand {
         String page = null;
 
         HttpSession session = request.getSession();
-        int id_project = (int) session.getAttribute("projectid");
-        String projectName = request.getParameter("name");
-        String projectAbbreviation = request.getParameter("abbreviation");
-        String projectDescription = request.getParameter("description");
+        int id_project = (int) session.getAttribute(Attributes.PROJECT_ID);
+        String projectName = request.getParameter(Parameters.PROJECT_NAME);
+        String projectAbbreviation = request.getParameter(Parameters.PROJECT_ABBREVIATION);
+        String projectDescription = request.getParameter(Parameters.PROJECT_DESCRIPTION);
 
         List<Employee> employees;
         EmployeeDAO employeeDAO = new EmployeeDAO();
         employees = employeeDAO.getAll();
-        request.setAttribute("employees", employees);
+        request.setAttribute(Parameters.EMPLOYEE_LIST, employees);
 
         TaskDAO taskDAO = new TaskDAO();
         int id = taskDAO.getNextId();
-        request.setAttribute("idgenerated", id);
+        request.setAttribute(Parameters.ID_GENERATED, id);
 
         Project project = new Project(projectName, projectAbbreviation, projectDescription);
         project.setId(id_project);
 
-        request.setAttribute("currentproject", project);
+        request.setAttribute(Parameters.CURRENT_PROJECT, project);
 
-        session.setAttribute("projectname", projectName);
-        session.setAttribute("projectabbr", projectAbbreviation);
-        session.setAttribute("projectdescr", projectDescription);
+        session.setAttribute(Attributes.PROJECT_NAME, projectName);
+        session.setAttribute(Attributes.PROJECT_ABBREVIATION, projectAbbreviation);
+        session.setAttribute(Attributes.PROJECT_DESCRIPTION, projectDescription);
 
         page = ConfigurationManager.getProperty(PathConfigs.ADD_TASK_FROM_PROJECT_PAGE);
         return page;

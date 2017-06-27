@@ -1,6 +1,7 @@
 package com.qulix.sitkinke.trainingtask.command.task;
 
 import com.qulix.sitkinke.trainingtask.command.ActionCommand;
+import com.qulix.sitkinke.trainingtask.constants.Parameters;
 import com.qulix.sitkinke.trainingtask.constants.PathConfigs;
 import com.qulix.sitkinke.trainingtask.dao.EmployeeDAO;
 import com.qulix.sitkinke.trainingtask.dao.ProjectDAO;
@@ -25,16 +26,16 @@ public class GoToAddTasksCommand implements ActionCommand {
         List<Employee> employees;
         EmployeeDAO employeeDAO = new EmployeeDAO();
         employees = employeeDAO.getAll();
-        request.setAttribute("employees", employees);
+        request.setAttribute(Parameters.EMPLOYEE_LIST, employees);
 
         TaskDAO taskDAO = new TaskDAO();
         int id = taskDAO.getNextId();
-        request.setAttribute("idgenerated", id);
+        request.setAttribute(Parameters.ID_GENERATED, id);
 
         List<Project> projects;
         ProjectDAO projectDAO = new ProjectDAO();
         projects = projectDAO.getAll();
-        request.setAttribute("projects", projects);
+        request.setAttribute(Parameters.PROJECT_LIST, projects);
 
         page = ConfigurationManager.getProperty(PathConfigs.ADD_TASK_PAGE);
         return page;

@@ -1,6 +1,7 @@
 package com.qulix.sitkinke.trainingtask.command.employee;
 
 import com.qulix.sitkinke.trainingtask.command.ActionCommand;
+import com.qulix.sitkinke.trainingtask.constants.Parameters;
 import com.qulix.sitkinke.trainingtask.constants.PathConfigs;
 import com.qulix.sitkinke.trainingtask.dao.EmployeeDAO;
 import com.qulix.sitkinke.trainingtask.entities.Employee;
@@ -18,10 +19,10 @@ public class AddEmployeeCommand implements ActionCommand {
     @Override
     public String execute(HttpServletRequest request) {
         String page = null;
-        String surname = request.getParameter("surname");
-        String name = request.getParameter("name");
-        String patronymic = request.getParameter("patronymic");
-        String position = request.getParameter("position");
+        String surname = request.getParameter(Parameters.EMPLOYEE_SURNAME);
+        String name = request.getParameter(Parameters.EMPLOYEE_NAME);
+        String patronymic = request.getParameter(Parameters.EMPLOYEE_PATRONYMIC);
+        String position = request.getParameter(Parameters.EMPLOYEE_POSITION);
 
         Employee employee = new Employee(surname, name, patronymic, position);
         EmployeeDAO employeeDAO = new EmployeeDAO();
@@ -29,7 +30,7 @@ public class AddEmployeeCommand implements ActionCommand {
 
         List<Employee> employees;
         employees = employeeDAO.getAll();
-        request.setAttribute("employees", employees);
+        request.setAttribute(Parameters.EMPLOYEE_LIST, employees);
 
         page = ConfigurationManager.getProperty(PathConfigs.SHOW_EMPLOYEES_PAGE);
         return page;

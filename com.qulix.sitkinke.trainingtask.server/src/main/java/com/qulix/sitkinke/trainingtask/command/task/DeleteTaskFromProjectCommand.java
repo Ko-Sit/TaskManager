@@ -1,6 +1,8 @@
 package com.qulix.sitkinke.trainingtask.command.task;
 
 import com.qulix.sitkinke.trainingtask.command.ActionCommand;
+import com.qulix.sitkinke.trainingtask.constants.Attributes;
+import com.qulix.sitkinke.trainingtask.constants.Parameters;
 import com.qulix.sitkinke.trainingtask.constants.PathConfigs;
 import com.qulix.sitkinke.trainingtask.dao.ProjectDAO;
 import com.qulix.sitkinke.trainingtask.dao.TaskDAO;
@@ -20,25 +22,25 @@ public class DeleteTaskFromProjectCommand implements ActionCommand {
     public String execute(HttpServletRequest request) {
         String page = null;
 
-        String projectName = request.getParameter("name");
-        String projectAbbreviation = request.getParameter("abbr");
-        String projectDescription = request.getParameter("descr");
+        String projectName = request.getParameter(Parameters.LINK_NAME);
+        String projectAbbreviation = request.getParameter(Parameters.LINK_ABBREVIATION);
+        String projectDescription = request.getParameter(Parameters.LINK_DESCRIPTION);
 
         TaskDAO taskDAO = new TaskDAO();
-        int id_task = Integer.valueOf(request.getParameter("id"));
+        int id_task = Integer.valueOf(request.getParameter(Parameters.ID));
         taskDAO.delete(id_task);
         ProjectDAO projectDAO = new ProjectDAO();
         projectDAO.deleteProjectTask(id_task);
 
         HttpSession session = request.getSession();
-        int id_project = (int) session.getAttribute("projectid");
+        int id_project = (int) session.getAttribute(Attributes.PROJECT_ID);
 
         List<Task> tasks = projectDAO.getProjectTasks(id_project);
-        request.setAttribute("projecttasks", tasks);
+        request.setAttribute(Parameters.PROJECT_TASKS, tasks);
 
-        request.setAttribute("projectname", projectName);
-        request.setAttribute("projectabbr", projectAbbreviation);
-        request.setAttribute("projectdescr", projectDescription);
+        request.setAttribute(Attributes.PROJECT_NAME, projectName);
+        request.setAttribute(Attributes.PROJECT_ABBREVIATION, projectAbbreviation);
+        request.setAttribute(Attributes.PROJECT_DESCRIPTION, projectDescription);
 
         page = ConfigurationManager.getProperty(PathConfigs.MODIFY_PROJECT_PAGE);
         return page;

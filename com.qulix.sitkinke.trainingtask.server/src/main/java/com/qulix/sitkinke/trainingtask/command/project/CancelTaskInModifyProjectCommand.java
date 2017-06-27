@@ -1,6 +1,8 @@
 package com.qulix.sitkinke.trainingtask.command.project;
 
 import com.qulix.sitkinke.trainingtask.command.ActionCommand;
+import com.qulix.sitkinke.trainingtask.constants.Attributes;
+import com.qulix.sitkinke.trainingtask.constants.Parameters;
 import com.qulix.sitkinke.trainingtask.constants.PathConfigs;
 import com.qulix.sitkinke.trainingtask.dao.ProjectDAO;
 import com.qulix.sitkinke.trainingtask.entities.Task;
@@ -22,19 +24,19 @@ public class CancelTaskInModifyProjectCommand implements ActionCommand {
         ProjectDAO projectDAO = new ProjectDAO();
 
         HttpSession session = request.getSession();
-        int id_project = (Integer) session.getAttribute("projectid");
-        String projectName = (String) session.getAttribute("projectname");
-        String projectAbbreviation = (String) session.getAttribute("projectabbr");
-        String projectDescription = (String) session.getAttribute("projectdescr");
+        int id_project = (Integer) session.getAttribute(Attributes.PROJECT_ID);
+        String projectName = (String) session.getAttribute(Attributes.PROJECT_NAME);
+        String projectAbbreviation = (String) session.getAttribute(Attributes.PROJECT_ABBREVIATION);
+        String projectDescription = (String) session.getAttribute(Attributes.PROJECT_DESCRIPTION);
 
         List<Task> tasks = projectDAO.getProjectTasks(id_project);
         System.out.println(tasks);
-        request.setAttribute("projecttasks", tasks);
+        request.setAttribute(Parameters.PROJECT_TASKS, tasks);
 
-        session.setAttribute("projectid", id_project);
-        session.setAttribute("projectname", projectName);
-        session.setAttribute("projectabbr", projectAbbreviation);
-        session.setAttribute("projectdescr", projectDescription);
+        session.setAttribute(Attributes.PROJECT_ID, id_project);
+        session.setAttribute(Attributes.PROJECT_NAME, projectName);
+        session.setAttribute(Attributes.PROJECT_ABBREVIATION, projectAbbreviation);
+        session.setAttribute(Attributes.PROJECT_DESCRIPTION, projectDescription);
 
         page = ConfigurationManager.getProperty(PathConfigs.MODIFY_PROJECT_PAGE);
         return page;

@@ -1,6 +1,8 @@
 package com.qulix.sitkinke.trainingtask.command.task;
 
 import com.qulix.sitkinke.trainingtask.command.ActionCommand;
+import com.qulix.sitkinke.trainingtask.constants.Attributes;
+import com.qulix.sitkinke.trainingtask.constants.Parameters;
 import com.qulix.sitkinke.trainingtask.constants.PathConfigs;
 import com.qulix.sitkinke.trainingtask.dao.ProjectDAO;
 import com.qulix.sitkinke.trainingtask.dao.TaskDAO;
@@ -25,20 +27,20 @@ public class AddTaskFromProjectCommand implements ActionCommand {
     public String execute(HttpServletRequest request) {
         String page = null;
 
-        int id_task = Integer.valueOf(request.getParameter("id"));
-        String name = request.getParameter("name");
-        int duration = Integer.valueOf(request.getParameter("duration"));
-        Date startDate = SQLDateConverter.getDate(request.getParameter("startdate"));
-        Date endDate = SQLDateConverter.getDate(request.getParameter("enddate"));
-        State state = State.valueOf(request.getParameter("state"));
+        int id_task = Integer.valueOf(request.getParameter(Parameters.ID));
+        String name = request.getParameter(Parameters.TASK_NAME);
+        int duration = Integer.valueOf(request.getParameter(Parameters.TASK_DURATION));
+        Date startDate = SQLDateConverter.getDate(request.getParameter(Parameters.TASK_STARTDATE));
+        Date endDate = SQLDateConverter.getDate(request.getParameter(Parameters.TASK_ENDDATE));
+        State state = State.valueOf(request.getParameter(Parameters.TASK_STATE));
 
         HttpSession session = request.getSession();
-        int id_project = (int) session.getAttribute("projectid");
-        String projectName = (String) session.getAttribute("projectname");
-        String projectAbbreviation = (String) session.getAttribute("projectabbr");
-        String projectDescription = (String) session.getAttribute("projectdescr");
+        int id_project = (int) session.getAttribute(Attributes.PROJECT_ID);
+        String projectName = (String) session.getAttribute(Attributes.PROJECT_NAME);
+        String projectAbbreviation = (String) session.getAttribute(Attributes.PROJECT_ABBREVIATION);
+        String projectDescription = (String) session.getAttribute(Attributes.PROJECT_DESCRIPTION);
 
-        List<Employee> employees = ParseManager.getEmployeeList(request.getParameterValues("select2"));
+        List<Employee> employees = ParseManager.getEmployeeList(request.getParameterValues(Parameters.TASK_EMPLOYEES));
 
         Task task = new Task(name, duration, startDate, endDate, state, projectAbbreviation);
         task.setId(id_task);
@@ -50,7 +52,7 @@ public class AddTaskFromProjectCommand implements ActionCommand {
         ProjectDAO projectDAO = new ProjectDAO();
         projectDAO.addProjectTask(id_project, id_task);
 
-        request.setAttribute("idgenerated", id_project);
+        request.setAttribute(Parameters.ID_GENERATED, id_project);
 
         List<Task> tasks = projectDAO.getProjectTasks(id_project);
 
@@ -59,11 +61,11 @@ public class AddTaskFromProjectCommand implements ActionCommand {
         }
         tasks = projectDAO.getProjectTasks(id_project);
 
-        request.setAttribute("projecttasks", tasks);
+        request.setAttribute(Parameters.PROJECT_TASKS, tasks);
 
-        request.setAttribute("projectname", projectName);
-        request.setAttribute("projectabbr", projectAbbreviation);
-        request.setAttribute("projectdescr", projectDescription);
+        request.setAttribute(Attributes.PROJECT_NAME, projectName);
+        request.setAttribute(Attributes.PROJECT_ABBREVIATION, projectAbbreviation);
+        request.setAttribute(Attributes.PROJECT_DESCRIPTION, projectDescription);
 
         page = ConfigurationManager.getProperty(PathConfigs.MODIFY_PROJECT_PAGE);
         return page;

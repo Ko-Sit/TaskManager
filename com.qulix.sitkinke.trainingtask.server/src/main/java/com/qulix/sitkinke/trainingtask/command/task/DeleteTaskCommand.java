@@ -1,6 +1,7 @@
 package com.qulix.sitkinke.trainingtask.command.task;
 
 import com.qulix.sitkinke.trainingtask.command.ActionCommand;
+import com.qulix.sitkinke.trainingtask.constants.Parameters;
 import com.qulix.sitkinke.trainingtask.constants.PathConfigs;
 import com.qulix.sitkinke.trainingtask.dao.ProjectDAO;
 import com.qulix.sitkinke.trainingtask.dao.TaskDAO;
@@ -21,11 +22,11 @@ public class DeleteTaskCommand implements ActionCommand {
 
         List<Task> tasks;
         TaskDAO taskDAO = new TaskDAO();
-        int id_task = Integer.valueOf(request.getParameter("id"));
+        int id_task = Integer.valueOf(request.getParameter(Parameters.ID));
         taskDAO.delete(id_task);
 
         tasks = taskDAO.getAll();
-        request.setAttribute("tasks", tasks);
+        request.setAttribute(Parameters.TASK_LIST, tasks);
 
         ProjectDAO projectDAO = new ProjectDAO();
         projectDAO.deleteProjectTask(id_task);

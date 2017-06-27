@@ -1,6 +1,7 @@
 package com.qulix.sitkinke.trainingtask.command.project;
 
 import com.qulix.sitkinke.trainingtask.command.ActionCommand;
+import com.qulix.sitkinke.trainingtask.constants.Parameters;
 import com.qulix.sitkinke.trainingtask.constants.PathConfigs;
 import com.qulix.sitkinke.trainingtask.containters.ProjectContainer;
 import com.qulix.sitkinke.trainingtask.dao.ProjectDAO;
@@ -23,7 +24,7 @@ public class CancelModifyProjectCommand implements ActionCommand {
 
         List<Project> projects;
         ProjectDAO projectDAO = new ProjectDAO();
-        int id_project = Integer.valueOf(request.getParameter("id"));
+        int id_project = Integer.valueOf(request.getParameter(Parameters.ID));
         projectDAO.deleteTasksByIdProject(id_project);
         projectDAO.delete(id_project);
 
@@ -41,7 +42,7 @@ public class CancelModifyProjectCommand implements ActionCommand {
         ProjectContainer.clear();
 
         projects = projectDAO.getAll();
-        request.setAttribute("projects", projects);
+        request.setAttribute(Parameters.PROJECT_LIST, projects);
 
         page = ConfigurationManager.getProperty(PathConfigs.SHOW_PROJECTS_PAGE);
         return page;

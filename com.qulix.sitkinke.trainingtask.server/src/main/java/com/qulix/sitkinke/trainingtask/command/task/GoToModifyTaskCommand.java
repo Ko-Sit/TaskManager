@@ -1,6 +1,7 @@
 package com.qulix.sitkinke.trainingtask.command.task;
 
 import com.qulix.sitkinke.trainingtask.command.ActionCommand;
+import com.qulix.sitkinke.trainingtask.constants.Parameters;
 import com.qulix.sitkinke.trainingtask.constants.PathConfigs;
 import com.qulix.sitkinke.trainingtask.dao.EmployeeDAO;
 import com.qulix.sitkinke.trainingtask.dao.ProjectDAO;
@@ -22,20 +23,20 @@ public class GoToModifyTaskCommand implements ActionCommand {
     public String execute(HttpServletRequest request) {
         String page = null;
 
-        int id_task = Integer.valueOf(request.getParameter("id"));
+        int id_task = Integer.valueOf(request.getParameter(Parameters.ID));
         TaskDAO taskDAO = new TaskDAO();
         Task task = taskDAO.getById(id_task);
-        request.setAttribute("selectedtask", task);
+        request.setAttribute(Parameters.SELECTED_TASK, task);
 
         List<Employee> employees;
         EmployeeDAO employeeDAO = new EmployeeDAO();
         employees = employeeDAO.getAll();
-        request.setAttribute("employees", employees);
+        request.setAttribute(Parameters.EMPLOYEE_LIST, employees);
 
         List<Project> projects;
         ProjectDAO projectDAO = new ProjectDAO();
         projects = projectDAO.getAll();
-        request.setAttribute("projects", projects);
+        request.setAttribute(Parameters.PROJECT_LIST, projects);
 
         page = ConfigurationManager.getProperty(PathConfigs.MODIFY_TASK_PAGE);
         return page;
