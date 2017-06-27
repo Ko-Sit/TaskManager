@@ -1,5 +1,6 @@
 package com.qulix.sitkinke.trainingtask.dao;
 
+import com.qulix.sitkinke.trainingtask.constants.ColumnNames;
 import com.qulix.sitkinke.trainingtask.constants.SqlRequests;
 import com.qulix.sitkinke.trainingtask.entities.Employee;
 import com.qulix.sitkinke.trainingtask.entities.Task;
@@ -112,7 +113,7 @@ public class TaskDAO implements IDao<Task>{
             preparedStatement.setString(1, projectAbbr);
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()){
-                taskList.add(resultSet.getInt(1));
+                taskList.add(resultSet.getInt(ColumnNames.ID));
             }
         }  catch (SQLException e) {
             System.out.println("SQL exception occurred during get tasks by project abbr");
@@ -194,7 +195,7 @@ public class TaskDAO implements IDao<Task>{
             preparedStatement.setInt(1, id_task);
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()){
-                Employee employee = employeeDAO.getById(resultSet.getInt(1));
+                Employee employee = employeeDAO.getById(resultSet.getInt(ColumnNames.ID_EMPLOYEE));
                 employeeList.add(employee);
             }
 
@@ -214,7 +215,7 @@ public class TaskDAO implements IDao<Task>{
             PreparedStatement preparedStatement = connection.prepareStatement(SqlRequests.GET_NEXT_TASK_ID);
             ResultSet resultSet = preparedStatement.executeQuery()){
             if (resultSet.next())
-                id = resultSet.getInt(1);
+                id = resultSet.getInt(ColumnNames.ID);
             else {
                 DBUtility.resetAutoIncrement(SqlRequests.RESET_TASKS_AUTO_INCREMENT + 1);
                 System.out.println("resetting");
@@ -231,13 +232,13 @@ public class TaskDAO implements IDao<Task>{
     }
 
     private Task buildTask(ResultSet resultSet) throws SQLException {
-        int id_task = resultSet.getInt(1);
-        String name = resultSet.getString(2);
-        int duration = resultSet.getInt(3);
-        Date startDate = resultSet.getDate(4);
-        Date endDate = resultSet.getDate(5);
-        State state = State.valueOf(resultSet.getString(6).toUpperCase());
-        String projectName = resultSet.getString(7);
+        int id_task = resultSet.getInt(ColumnNames.ID);
+        String name = resultSet.getString(ColumnNames.TASK_NAME);
+        int duration = resultSet.getInt(ColumnNames.TASK_DURATION);
+        Date startDate = resultSet.getDate(ColumnNames.TASK_STARTDATE);
+        Date endDate = resultSet.getDate(ColumnNames.TASK_ENDDATE);
+        State state = State.valueOf(resultSet.getString(ColumnNames.TASK_STATE).toUpperCase());
+        String projectName = resultSet.getString(ColumnNames.TASK_PROJECT_NAME);
         List<Employee> employees = getTaskExecutors(id_task);
 
         Task task = new Task(name, duration, startDate, endDate, state, projectName);

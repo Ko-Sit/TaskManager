@@ -1,5 +1,6 @@
 package com.qulix.sitkinke.trainingtask.dao;
 
+import com.qulix.sitkinke.trainingtask.constants.ColumnNames;
 import com.qulix.sitkinke.trainingtask.constants.SqlRequests;
 import com.qulix.sitkinke.trainingtask.entities.Employee;
 import com.qulix.sitkinke.trainingtask.managers.DBManager;
@@ -119,7 +120,7 @@ public class EmployeeDAO implements IDao<Employee> {
             PreparedStatement preparedStatement = connection.prepareStatement(SqlRequests.GET_NEXT_EMPLOYEE_ID);
             ResultSet resultSet = preparedStatement.executeQuery()){
             if (resultSet.next())
-                id = resultSet.getInt(1);
+                id = resultSet.getInt(ColumnNames.ID);
             else {
                 DBUtility.resetAutoIncrement(SqlRequests.RESET_EMPLOYEES_AUTO_INCREMENT + 1);
                 return 1;
@@ -136,11 +137,11 @@ public class EmployeeDAO implements IDao<Employee> {
     }
 
     private Employee buildEmployee(ResultSet resultSet) throws SQLException {
-        int id = resultSet.getInt(1);
-        String name = resultSet.getString(2);
-        String surname = resultSet.getString(3);
-        String patronymic = resultSet.getString(4);
-        String position = resultSet.getString(5);
+        int id = resultSet.getInt(ColumnNames.ID);
+        String name = resultSet.getString(ColumnNames.EMPLOYEE_NAME);
+        String surname = resultSet.getString(ColumnNames.EMPLOYEE_SURNAME);
+        String patronymic = resultSet.getString(ColumnNames.EMPLOYEE_PATRONYMIC);
+        String position = resultSet.getString(ColumnNames.EMPLOYEE_POSITION);
 
         Employee employee = new Employee(name, surname, patronymic, position);
         employee.setId(id);

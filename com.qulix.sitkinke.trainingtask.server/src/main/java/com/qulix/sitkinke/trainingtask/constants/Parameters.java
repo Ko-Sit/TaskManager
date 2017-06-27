@@ -10,9 +10,11 @@ public class Parameters {
     public static final String EMPLOYEE_PATRONYMIC = "patronymic";
     public static final String EMPLOYEE_POSITION = "position";
     public static final String EMPLOYEE_LIST = "employees";
+
     public static final String ID = "id";
     public static final String ID_GENERATED = "idgenerated";
     public static final String SELECTED_EMPLOYEE = "selectedemployee";
+
     public static final String PROJECT_NAME = "name";
     public static final String PROJECT_ABBREVIATION = "abbreviation";
     public static final String PROJECT_DESCRIPTION = "description";
@@ -34,7 +36,5 @@ public class Parameters {
     public static final String LINK_NAME = "name";
     public static final String LINK_ABBREVIATION = "abbr";
     public static final String LINK_DESCRIPTION = "descr";
-
-
 
 }

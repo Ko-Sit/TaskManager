@@ -1,5 +1,6 @@
 package com.qulix.sitkinke.trainingtask.dao;
 
+import com.qulix.sitkinke.trainingtask.constants.ColumnNames;
 import com.qulix.sitkinke.trainingtask.constants.SqlRequests;
 import com.qulix.sitkinke.trainingtask.entities.Project;
 import com.qulix.sitkinke.trainingtask.entities.Task;
@@ -18,7 +19,6 @@ public class ProjectDAO implements IDao<Project> {
 
     @Override
     public void add(Project project) {
-        //addProjectTasks(project.getId(), project.getTaskList());
         try(Connection connection = DBManager.getInstance().getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement(SqlRequests.ADD_PROJECT)){
             preparedStatement.setString(1, project.getName());
@@ -60,7 +60,6 @@ public class ProjectDAO implements IDao<Project> {
 
     @Override
     public void modify(Project project) {
-        //modifyProjectTasks(project.getId(), project.getTaskList());
         try(Connection connection = DBManager.getInstance().getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement(SqlRequests.MODIFY_PROJECT)){
             preparedStatement.setString(1, project.getName());
@@ -182,7 +181,7 @@ public class ProjectDAO implements IDao<Project> {
             preparedStatement.setInt(1, id_project);
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()){
-                Task task = taskDAO.getById(resultSet.getInt(1));
+                Task task = taskDAO.getById(resultSet.getInt(ColumnNames.ID_TASK));
                 taskList.add(task);
             }
 
@@ -202,7 +201,7 @@ public class ProjectDAO implements IDao<Project> {
             PreparedStatement preparedStatement = connection.prepareStatement(SqlRequests.GET_NEXT_PROJECT_ID);
             ResultSet resultSet = preparedStatement.executeQuery()){
             if (resultSet.next())
-                id = resultSet.getInt(1);
+                id = resultSet.getInt(ColumnNames.ID);
             else {
                 DBUtility.resetAutoIncrement(SqlRequests.RESET_PROJECTS_AUTO_INCREMENT + 1);
                 return 1;
@@ -218,10 +217,10 @@ public class ProjectDAO implements IDao<Project> {
     }
 
     private Project buildProject(ResultSet resultSet) throws SQLException {
-        int id_project = resultSet.getInt(1);
-        String name = resultSet.getString(2);
-        String abbreviation = resultSet.getString(3);
-        String description = resultSet.getString(4);
+        int id_project = resultSet.getInt(ColumnNames.ID);
+        String name = resultSet.getString(ColumnNames.PROJECT_NAME);
+        String abbreviation = resultSet.getString(ColumnNames.PROJECT_ABBREVIATION);
+        String description = resultSet.getString(ColumnNames.PROJECT_DESCRIPTION);
         List<Task> tasks = getProjectTasks(id_project);
 
         Project project = new Project(name, abbreviation, description);
