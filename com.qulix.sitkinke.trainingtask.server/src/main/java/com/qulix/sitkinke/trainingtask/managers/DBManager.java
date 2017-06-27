@@ -23,7 +23,6 @@ public class DBManager {
     }
 
     public Connection getConnection() throws SQLException {
-        long start = System.currentTimeMillis();
 
         try {
             Class.forName("org.hsqldb.jdbc.JDBCDriver");
@@ -31,11 +30,8 @@ public class DBManager {
             System.out.println("jdbcDriver not found!");
         }
 
-        //Connection connection =  DriverManager.getConnection("jdbc:hsqldb:hsql://localhost:9001/database", "sa", "");
-        Connection connection =  DriverManager.getConnection("jdbc:hsqldb:file:D:\\IdeaProjects\\maanager\\db/db", "ke", "qwe123");
-        long finish = System.currentTimeMillis();
-        long timeConsumedMillis = finish - start;
-        System.out.println(timeConsumedMillis);
+        Connection connection =  DriverManager.getConnection("jdbc:hsqldb:hsql://localhost:9001/database", "sa", "");
+        //Connection connection =  DriverManager.getConnection("jdbc:hsqldb:file:D:\\IdeaProjects\\maanager\\db/db", "ke", "qwe123");
         return connection;
     }
 
