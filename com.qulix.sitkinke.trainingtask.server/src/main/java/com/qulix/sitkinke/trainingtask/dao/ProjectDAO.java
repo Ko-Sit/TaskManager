@@ -136,11 +136,12 @@ public class ProjectDAO implements IDao<Project> {
 
     @Override
     public Project getById(int id){
+        ResultSet resultSet = null;
         Project project;
         try(Connection connection = DBManager.getInstance().getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement(SqlRequests.GET_PROJECTS_BY_ID)){
             preparedStatement.setInt(1, id);
-            ResultSet resultSet = preparedStatement.executeQuery();
+            resultSet = preparedStatement.executeQuery();
             if (resultSet.next())
                 project = buildProject(resultSet);
             else
@@ -150,6 +151,15 @@ public class ProjectDAO implements IDao<Project> {
             System.out.println("SQL exception occurred during get by id project");
             e.printStackTrace();
             return null;
+        } finally {
+            try {
+                if (resultSet != null) {
+                    resultSet.close();
+                }
+            } catch (SQLException e) {
+                System.out.println("SQL exception occurred during get by id project");
+                e.printStackTrace();
+            }
         }
         return project;
     }
@@ -174,21 +184,30 @@ public class ProjectDAO implements IDao<Project> {
     }
 
     public List<Task> getProjectTasks(int id_project){
+        ResultSet resultSet = null;
         List<Task> taskList = new ArrayList<>();
         TaskDAO taskDAO = new TaskDAO();
         try(Connection connection = DBManager.getInstance().getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement(SqlRequests.GET_PROJECT_TASKS)){
             preparedStatement.setInt(1, id_project);
-            ResultSet resultSet = preparedStatement.executeQuery();
+            resultSet = preparedStatement.executeQuery();
             while (resultSet.next()){
                 Task task = taskDAO.getById(resultSet.getInt(ColumnNames.ID_TASK));
                 taskList.add(task);
             }
-
         }  catch (SQLException e) {
             System.out.println("SQL exception occurred during get project tasks");
             e.printStackTrace();
             return null;
+        } finally {
+            try {
+                if (resultSet != null) {
+                    resultSet.close();
+                }
+            } catch (SQLException e) {
+                System.out.println("SQL exception occurred during get project tasks");
+                e.printStackTrace();
+            }
         }
         return taskList;
     }

@@ -39,5 +39,8 @@ gradle-app.setting
 # # Work around https://youtrack.jetbrains.com/issue/IDEA-116898
 # gradle/wrapper/gradle-wrapper.properties
 
-/com.qulix.sitkinke.trainingtask.server/src/main/java/com/qulix/sitkinke/trainingtask/managers/DBManager.java
 /db/
+build/
+com.qulix.sitkinke.trainingtask.database/database/
+com.qulix.sitkinke.trainingtask.server/build/
+/com.qulix.sitkinke.trainingtask.server/src/main/java/com/qulix/sitkinke/trainingtask/managers/DBManager.java

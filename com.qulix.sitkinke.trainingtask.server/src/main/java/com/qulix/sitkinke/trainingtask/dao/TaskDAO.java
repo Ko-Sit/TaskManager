@@ -107,17 +107,27 @@ public class TaskDAO implements IDao<Task>{
     }
 
     public List<Integer> getTasksByProjectAbbr(String projectAbbr){
+        ResultSet resultSet = null;
         List<Integer> taskList = new ArrayList<>();
         try(Connection connection = DBManager.getInstance().getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement(SqlRequests.GET_TASKS_BY_PROJECT_ABBR)){
             preparedStatement.setString(1, projectAbbr);
-            ResultSet resultSet = preparedStatement.executeQuery();
+            resultSet = preparedStatement.executeQuery();
             while (resultSet.next()){
                 taskList.add(resultSet.getInt(ColumnNames.ID));
             }
         }  catch (SQLException e) {
             System.out.println("SQL exception occurred during get tasks by project abbr");
             e.printStackTrace();
+        } finally {
+            try {
+                if (resultSet != null) {
+                    resultSet.close();
+                }
+            } catch (SQLException e) {
+                System.out.println("SQL exception occurred during get tasks by project abbr");
+                e.printStackTrace();
+            }
         }
         return taskList;
     }
@@ -150,11 +160,12 @@ public class TaskDAO implements IDao<Task>{
 
     @Override
     public Task getById(int id){
+        ResultSet resultSet = null;
         Task task;
         try(Connection connection = DBManager.getInstance().getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement(SqlRequests.GET_TASKS_BY_ID)){
             preparedStatement.setInt(1, id);
-            ResultSet resultSet = preparedStatement.executeQuery();
+            resultSet = preparedStatement.executeQuery();
             if (resultSet.next())
                 task = buildTask(resultSet);
             else
@@ -164,7 +175,16 @@ public class TaskDAO implements IDao<Task>{
             System.out.println("SQL exception occurred during get by id task");
             e.printStackTrace();
             return null;
-        }
+        } finally {
+            try {
+                if (resultSet != null) {
+                    resultSet.close();
+                }
+            } catch (SQLException e) {
+                System.out.println("SQL exception occurred during get by id task");
+                e.printStackTrace();
+            }
+            }
         return task;
     }
 
@@ -188,22 +208,31 @@ public class TaskDAO implements IDao<Task>{
     }
 
     public List<Employee> getTaskExecutors(int id_task){
+        ResultSet resultSet = null;
         List<Employee> employeeList = new ArrayList<>();
         EmployeeDAO employeeDAO = new EmployeeDAO();
         try(Connection connection = DBManager.getInstance().getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement(SqlRequests.GET_TASK_EXECUTORS)){
             preparedStatement.setInt(1, id_task);
-            ResultSet resultSet = preparedStatement.executeQuery();
+           resultSet = preparedStatement.executeQuery();
             while (resultSet.next()){
                 Employee employee = employeeDAO.getById(resultSet.getInt(ColumnNames.ID_EMPLOYEE));
                 employeeList.add(employee);
             }
-
         }  catch (SQLException e) {
             System.out.println("SQL exception occurred during get task executors");
             e.printStackTrace();
             return null;
-        }
+        } finally {
+            try {
+                if (resultSet != null) {
+                    resultSet.close();
+                }
+            } catch (SQLException e) {
+                System.out.println("SQL exception occurred during get task executors");
+                e.printStackTrace();
+            }
+            }
         return employeeList;
     }
 

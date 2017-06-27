@@ -75,11 +75,12 @@ public class EmployeeDAO implements IDao<Employee> {
 
     @Override
     public Employee getById(int id){
+        ResultSet resultSet = null;
         Employee employee;
         try(Connection connection = DBManager.getInstance().getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement(SqlRequests.GET_EMPLOYEES_BY_ID)){
             preparedStatement.setInt(1, id);
-            ResultSet resultSet = preparedStatement.executeQuery();
+            resultSet = preparedStatement.executeQuery();
             if (resultSet.next())
                 employee = buildEmployee(resultSet);
             else
@@ -89,6 +90,15 @@ public class EmployeeDAO implements IDao<Employee> {
             System.out.println("SQL exception occurred during get by id employee");
             e.printStackTrace();
             return null;
+        } finally {
+            try {
+                if (resultSet != null) {
+                    resultSet.close();
+                }
+            } catch (SQLException e) {
+                System.out.println("SQL exception occurred during get by id employee");
+                e.printStackTrace();
+            }
         }
         return employee;
     }
@@ -103,7 +113,6 @@ public class EmployeeDAO implements IDao<Employee> {
                 Employee employee = buildEmployee(resultSet);
                 employeeList.add(employee);
             }
-
         }  catch (SQLException e) {
             System.out.println("SQL exception occurred during get all employees");
             e.printStackTrace();
