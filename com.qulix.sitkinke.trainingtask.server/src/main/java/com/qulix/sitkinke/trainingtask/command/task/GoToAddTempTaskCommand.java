@@ -1,6 +1,7 @@
 package com.qulix.sitkinke.trainingtask.command.task;
 
 import com.qulix.sitkinke.trainingtask.command.ActionCommand;
+import com.qulix.sitkinke.trainingtask.constants.PathConfigs;
 import com.qulix.sitkinke.trainingtask.dao.EmployeeDAO;
 import com.qulix.sitkinke.trainingtask.dao.TaskDAO;
 import com.qulix.sitkinke.trainingtask.entities.Employee;
@@ -45,7 +46,7 @@ public class GoToAddTempTaskCommand implements ActionCommand {
 
         request.setAttribute("currentproject", project);
 
-        page = ConfigurationManager.getProperty("path.page.addtemptask");
+        page = ConfigurationManager.getProperty(PathConfigs.ADD_TEMP_TASK_PAGE);
         return page;
     }
 }

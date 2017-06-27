@@ -1,6 +1,7 @@
 package com.qulix.sitkinke.trainingtask.command.project;
 
 import com.qulix.sitkinke.trainingtask.command.ActionCommand;
+import com.qulix.sitkinke.trainingtask.constants.PathConfigs;
 import com.qulix.sitkinke.trainingtask.dao.ProjectDAO;
 import com.qulix.sitkinke.trainingtask.entities.Task;
 import com.qulix.sitkinke.trainingtask.resource.ConfigurationManager;
@@ -35,7 +36,7 @@ public class CancelTaskInModifyProjectCommand implements ActionCommand {
         session.setAttribute("projectabbr", projectAbbreviation);
         session.setAttribute("projectdescr", projectDescription);
 
-        page = ConfigurationManager.getProperty("path.page.modifyproject");
+        page = ConfigurationManager.getProperty(PathConfigs.MODIFY_PROJECT_PAGE);
         return page;
     }
 }

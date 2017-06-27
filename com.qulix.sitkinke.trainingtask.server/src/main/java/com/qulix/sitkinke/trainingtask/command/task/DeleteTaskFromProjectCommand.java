@@ -1,6 +1,7 @@
 package com.qulix.sitkinke.trainingtask.command.task;
 
 import com.qulix.sitkinke.trainingtask.command.ActionCommand;
+import com.qulix.sitkinke.trainingtask.constants.PathConfigs;
 import com.qulix.sitkinke.trainingtask.dao.ProjectDAO;
 import com.qulix.sitkinke.trainingtask.dao.TaskDAO;
 import com.qulix.sitkinke.trainingtask.entities.Task;
@@ -39,7 +40,7 @@ public class DeleteTaskFromProjectCommand implements ActionCommand {
         request.setAttribute("projectabbr", projectAbbreviation);
         request.setAttribute("projectdescr", projectDescription);
 
-        page = ConfigurationManager.getProperty("path.page.modifyproject");
+        page = ConfigurationManager.getProperty(PathConfigs.MODIFY_PROJECT_PAGE);
         return page;
     }
 }

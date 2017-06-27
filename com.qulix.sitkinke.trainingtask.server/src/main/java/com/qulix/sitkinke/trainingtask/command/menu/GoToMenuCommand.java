@@ -1,6 +1,7 @@
 package com.qulix.sitkinke.trainingtask.command.menu;
 
 import com.qulix.sitkinke.trainingtask.command.ActionCommand;
+import com.qulix.sitkinke.trainingtask.constants.PathConfigs;
 import com.qulix.sitkinke.trainingtask.resource.ConfigurationManager;
 
 import javax.servlet.http.HttpServletRequest;
@@ -12,7 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 public class GoToMenuCommand implements ActionCommand {
     @Override
     public String execute(HttpServletRequest request) {
-        String page = ConfigurationManager.getProperty("path.page.main");
+        String page = ConfigurationManager.getProperty(PathConfigs.MAIN_PAGE);
 
         return page;
     }

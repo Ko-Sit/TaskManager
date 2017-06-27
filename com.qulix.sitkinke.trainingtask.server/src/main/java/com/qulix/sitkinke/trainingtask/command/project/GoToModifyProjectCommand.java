@@ -1,6 +1,7 @@
 package com.qulix.sitkinke.trainingtask.command.project;
 
 import com.qulix.sitkinke.trainingtask.command.ActionCommand;
+import com.qulix.sitkinke.trainingtask.constants.PathConfigs;
 import com.qulix.sitkinke.trainingtask.containters.ProjectContainer;
 import com.qulix.sitkinke.trainingtask.dao.ProjectDAO;
 import com.qulix.sitkinke.trainingtask.dao.TaskDAO;
@@ -36,7 +37,7 @@ public class GoToModifyProjectCommand implements ActionCommand {
         session.setAttribute("projectabbr", project.getAbbreviation());
         session.setAttribute("projectdescr", project.getDescription());
 
-        page = ConfigurationManager.getProperty("path.page.modifyproject");
+        page = ConfigurationManager.getProperty(PathConfigs.MODIFY_PROJECT_PAGE);
         return page;
     }
 }

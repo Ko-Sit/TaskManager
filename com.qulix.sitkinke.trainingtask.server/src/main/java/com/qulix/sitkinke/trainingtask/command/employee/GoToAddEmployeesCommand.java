@@ -1,6 +1,7 @@
 package com.qulix.sitkinke.trainingtask.command.employee;
 
 import com.qulix.sitkinke.trainingtask.command.ActionCommand;
+import com.qulix.sitkinke.trainingtask.constants.PathConfigs;
 import com.qulix.sitkinke.trainingtask.dao.EmployeeDAO;
 import com.qulix.sitkinke.trainingtask.resource.ConfigurationManager;
 
@@ -20,7 +21,7 @@ public class GoToAddEmployeesCommand implements ActionCommand {
         int id = employeeDAO.getNextId();
         request.setAttribute("idgenerated", id);
 
-        page = ConfigurationManager.getProperty("path.page.addemployee");
+        page = ConfigurationManager.getProperty(PathConfigs.ADD_EMPLOYEE_PAGE);
         return page;
     }
 }

@@ -1,5 +1,6 @@
 package com.qulix.sitkinke.trainingtask.command;
 
+import com.qulix.sitkinke.trainingtask.constants.PathConfigs;
 import com.qulix.sitkinke.trainingtask.resource.ConfigurationManager;
 import javax.servlet.http.HttpServletRequest;
 
@@ -12,7 +13,7 @@ public class EmptyCommand implements ActionCommand {
     public String execute(HttpServletRequest request) {
  /* в случае ошибки или прямого обращения к контроллеру
   * переадресация на страницу ввода логина */
-        String page = ConfigurationManager.getProperty("path.page.main");
+        String page = ConfigurationManager.getProperty(PathConfigs.MAIN_PAGE);
         return page;
     }
 }

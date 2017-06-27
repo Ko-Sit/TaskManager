@@ -1,6 +1,7 @@
 package com.qulix.sitkinke.trainingtask.command.project;
 
 import com.qulix.sitkinke.trainingtask.command.ActionCommand;
+import com.qulix.sitkinke.trainingtask.constants.PathConfigs;
 import com.qulix.sitkinke.trainingtask.containters.ProjectContainer;
 import com.qulix.sitkinke.trainingtask.dao.ProjectDAO;
 import com.qulix.sitkinke.trainingtask.dao.TaskDAO;
@@ -42,7 +43,7 @@ public class CancelModifyProjectCommand implements ActionCommand {
         projects = projectDAO.getAll();
         request.setAttribute("projects", projects);
 
-        page = ConfigurationManager.getProperty("path.page.showprojects");
+        page = ConfigurationManager.getProperty(PathConfigs.SHOW_PROJECTS_PAGE);
         return page;
     }
 }
