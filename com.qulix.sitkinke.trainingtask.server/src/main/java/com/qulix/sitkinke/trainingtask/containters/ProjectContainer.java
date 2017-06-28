@@ -14,11 +14,11 @@ public class ProjectContainer {
         savedProject = project;
     }
 
-    public static Project get(){
+    public static Project get() {
         return savedProject;
     }
 
-    public static void clear(){
+    public static void clear() {
         savedProject = null;
     }
 }

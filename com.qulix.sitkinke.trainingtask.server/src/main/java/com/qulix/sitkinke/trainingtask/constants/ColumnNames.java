@@ -5,6 +5,7 @@ package com.qulix.sitkinke.trainingtask.constants;
  * Created by upsit on 27.06.2017.
  */
 public class ColumnNames {
+
     public static final String ID = "ID";
     public static final String ID_TASK = "ID_TASK";
     public static final String ID_EMPLOYEE = "ID_EMPLOYEE";

@@ -5,26 +5,26 @@ body {
 }
 
 label {
-    float:left;
-    padding-right:10px;
+    float: left;
+    padding-right: 10px;
 }
 
 .field {
-    clear:both;
-    text-align:right;
-    line-height:25px;
+    clear: both;
+    text-align: right;
+    line-height: 25px;
     max-width: 280px;
 }
 
 form {
-     float:left;
- }
+    float: left;
+}
 
 table {
-     border-collapse: collapse;
-     border: 2px solid #0e1929;
-     margin-left: 3px;
- }
+    border-collapse: collapse;
+    border: 2px solid #0e1929;
+    margin-left: 3px;
+}
 
 td, th {
     padding: 5px;
@@ -34,9 +34,9 @@ td, th {
 button {
     margin-top: 10px;
     margin-left: 10px;
-    clear:both;
-    text-align:right;
-    line-height:25px;
+    clear: both;
+    text-align: right;
+    line-height: 25px;
 }
 
 select {

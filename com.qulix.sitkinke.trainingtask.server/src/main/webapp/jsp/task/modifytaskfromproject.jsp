@@ -1,9 +1,9 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE HTML>
 <html>
 <head>
     <link rel="stylesheet" href="../../css/style.css">
-    <script type="text/javascript" src="../../js/setdate.js"> </script>
+    <script type="text/javascript" src="../../js/setdate.js"></script>
     <title>Modify Task</title>
 </head>
 <body>
@@ -11,7 +11,7 @@
     <jsp:useBean id="selectedtask" scope="request" type="com.qulix.sitkinke.trainingtask.entities.Task"/>
     <div class="field">
         <label>ID</label>
-        <input type="number" name="id" value="${selectedtask.id}"  readonly/>
+        <input type="number" name="id" value="${selectedtask.id}" readonly/>
     </div>
     <div class="field">
         <label>Name</label>

@@ -8,6 +8,7 @@ import java.util.List;
  * Created by upsit on 09.06.2017.
  */
 public class Employee extends Entity {
+
     private String surname;
     private String name;
     private String patronymic;
@@ -18,7 +19,7 @@ public class Employee extends Entity {
 
     }
 
-    public Employee(String surname, String name, String patronymic, String position){
+    public Employee(String surname, String name, String patronymic, String position) {
         this.surname = surname;
         this.name = name;
         this.patronymic = patronymic;
@@ -69,10 +70,10 @@ public class Employee extends Entity {
     @Override
     public String toString() {
         return "Employee{" +
-                "id = " + getId() +
-                ", surname = '" + surname + '\'' +
-                ", name = '" + name + '\'' +
-                ", patronymic = '" + patronymic + '\'' +
-                ", position = " + position +'}';
+            "id = " + getId() +
+            ", surname = '" + surname + '\'' +
+            ", name = '" + name + '\'' +
+            ", patronymic = '" + patronymic + '\'' +
+            ", position = " + position + '}';
     }
 }

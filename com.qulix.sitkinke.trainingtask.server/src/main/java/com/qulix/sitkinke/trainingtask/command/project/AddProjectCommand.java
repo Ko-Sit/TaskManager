@@ -1,5 +1,9 @@
 package com.qulix.sitkinke.trainingtask.command.project;
 
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+
 import com.qulix.sitkinke.trainingtask.command.ActionCommand;
 import com.qulix.sitkinke.trainingtask.constants.Parameters;
 import com.qulix.sitkinke.trainingtask.constants.PathConfigs;
@@ -9,14 +13,12 @@ import com.qulix.sitkinke.trainingtask.entities.Project;
 import com.qulix.sitkinke.trainingtask.entities.Task;
 import com.qulix.sitkinke.trainingtask.resource.ConfigurationManager;
 
-import javax.servlet.http.HttpServletRequest;
-import java.util.List;
-
 /**
  *
  * Created by upsit on 18.06.2017.
  */
 public class AddProjectCommand implements ActionCommand {
+
     @Override
     public String execute(HttpServletRequest request) {
         String page = null;
@@ -28,7 +30,7 @@ public class AddProjectCommand implements ActionCommand {
         TaskDAO taskDAO = new TaskDAO();
         ProjectDAO projectDAO = new ProjectDAO();
         List<Task> tasks = projectDAO.getProjectTasks(id_project);
-        for (Task task: tasks){
+        for (Task task : tasks) {
             task.setProjectName(abbreviation);
             taskDAO.modify(task);
         }

@@ -1,16 +1,17 @@
 package com.qulix.sitkinke.trainingtask.entities;
 
-import com.qulix.sitkinke.trainingtask.enums.State;
-
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+
+import com.qulix.sitkinke.trainingtask.enums.State;
 
 /**
  *
  * Created by upsit on 09.06.2017.
  */
 public class Task extends Entity {
+
     private String name;
     private int duration;
     private Date startDate;
@@ -92,12 +93,12 @@ public class Task extends Entity {
     @Override
     public String toString() {
         return "Task{" +
-                "id=" + getId() +
-                ", name='" + name + '\'' +
-                ", duration=" + duration +
-                ", startDate=" + startDate +
-                ", endDate=" + endDate +
-                ", state=" + state +
-                '}';
+            "id=" + getId() +
+            ", name='" + name + '\'' +
+            ", duration=" + duration +
+            ", startDate=" + startDate +
+            ", endDate=" + endDate +
+            ", state=" + state +
+            '}';
     }
 }

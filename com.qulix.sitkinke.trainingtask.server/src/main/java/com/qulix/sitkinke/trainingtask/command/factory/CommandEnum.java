@@ -1,10 +1,40 @@
 package com.qulix.sitkinke.trainingtask.command.factory;
 
-import com.qulix.sitkinke.trainingtask.command.*;
-import com.qulix.sitkinke.trainingtask.command.employee.*;
+import com.qulix.sitkinke.trainingtask.command.ActionCommand;
+import com.qulix.sitkinke.trainingtask.command.EmptyCommand;
+import com.qulix.sitkinke.trainingtask.command.employee.AddEmployeeCommand;
+import com.qulix.sitkinke.trainingtask.command.employee.DeleteEmployeeCommand;
+import com.qulix.sitkinke.trainingtask.command.employee.GoToAddEmployeesCommand;
+import com.qulix.sitkinke.trainingtask.command.employee.GoToModifyEmployeeCommand;
+import com.qulix.sitkinke.trainingtask.command.employee.ModifyEmployeeCommand;
+import com.qulix.sitkinke.trainingtask.command.employee.ShowEmployeesCommand;
 import com.qulix.sitkinke.trainingtask.command.menu.GoToMenuCommand;
-import com.qulix.sitkinke.trainingtask.command.project.*;
-import com.qulix.sitkinke.trainingtask.command.task.*;
+import com.qulix.sitkinke.trainingtask.command.project.AddProjectCommand;
+import com.qulix.sitkinke.trainingtask.command.project.CancelAddProjectCommand;
+import com.qulix.sitkinke.trainingtask.command.project.CancelModifyProjectCommand;
+import com.qulix.sitkinke.trainingtask.command.project.CancelTaskInAddProjectCommand;
+import com.qulix.sitkinke.trainingtask.command.project.CancelTaskInModifyProjectCommand;
+import com.qulix.sitkinke.trainingtask.command.project.DeleteProjectCommand;
+import com.qulix.sitkinke.trainingtask.command.project.GoToAddProjectCommand;
+import com.qulix.sitkinke.trainingtask.command.project.GoToModifyProjectCommand;
+import com.qulix.sitkinke.trainingtask.command.project.ModifyProjectCommand;
+import com.qulix.sitkinke.trainingtask.command.project.ShowProjectsCommand;
+import com.qulix.sitkinke.trainingtask.command.task.AddTaskCommand;
+import com.qulix.sitkinke.trainingtask.command.task.AddTaskFromProjectCommand;
+import com.qulix.sitkinke.trainingtask.command.task.AddTempTaskCommand;
+import com.qulix.sitkinke.trainingtask.command.task.DeleteTaskCommand;
+import com.qulix.sitkinke.trainingtask.command.task.DeleteTaskFromProjectCommand;
+import com.qulix.sitkinke.trainingtask.command.task.DeleteTempTaskCommand;
+import com.qulix.sitkinke.trainingtask.command.task.GoToAddTaskFromProjectCommand;
+import com.qulix.sitkinke.trainingtask.command.task.GoToAddTasksCommand;
+import com.qulix.sitkinke.trainingtask.command.task.GoToAddTempTaskCommand;
+import com.qulix.sitkinke.trainingtask.command.task.GoToModifyTaskCommand;
+import com.qulix.sitkinke.trainingtask.command.task.GoToModifyTaskFromProjectCommand;
+import com.qulix.sitkinke.trainingtask.command.task.GoToModifyTempTaskCommand;
+import com.qulix.sitkinke.trainingtask.command.task.ModifyTaskCommand;
+import com.qulix.sitkinke.trainingtask.command.task.ModifyTaskFromProjectCommand;
+import com.qulix.sitkinke.trainingtask.command.task.ModifyTempTaskCommand;
+import com.qulix.sitkinke.trainingtask.command.task.ShowTasksCommand;
 
 /**
  *
@@ -12,12 +42,12 @@ import com.qulix.sitkinke.trainingtask.command.task.*;
  */
 public enum CommandEnum {
     ADDEMPLOYEE,
-    SHOWEMPLOYEES ,
-    GOTOADDEMPLOYEE ,
-    GOTOADDTASK ,
-    SHOWTASKS ,
+    SHOWEMPLOYEES,
+    GOTOADDEMPLOYEE,
+    GOTOADDTASK,
+    SHOWTASKS,
     ADDTASK,
-    DELETEEMPLOYEE ,
+    DELETEEMPLOYEE,
     GOTOMODIFYEMPLOYEE,
     MODIFYEMPLOYEE,
     DELETETASK,
@@ -46,7 +76,7 @@ public enum CommandEnum {
     GOTOMENU;
 
     public ActionCommand getCurrentCommand() {
-        switch (this){
+        switch (this) {
             case ADDEMPLOYEE:
                 return new AddEmployeeCommand();
 

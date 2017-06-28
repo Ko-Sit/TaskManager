@@ -8,6 +8,7 @@ import java.util.List;
  * Created by upsit on 09.06.2017.
  */
 public class Project extends Entity {
+
     private String name;
     private String abbreviation;
     private String description;
@@ -59,9 +60,9 @@ public class Project extends Entity {
     @Override
     public String toString() {
         return "Project{" +
-                "id = " + getId() +
-                ", name = '" + name + '\'' +
-                ", abbreviation = '" + abbreviation + '\'' +
-                ", description = " + description +'}';
+            "id = " + getId() +
+            ", name = '" + name + '\'' +
+            ", abbreviation = '" + abbreviation + '\'' +
+            ", description = " + description + '}';
     }
 }

@@ -1,11 +1,11 @@
 package com.qulix.sitkinke.trainingtask.main;
 
+import java.util.List;
+
 import com.qulix.sitkinke.trainingtask.dao.ProjectDAO;
 import com.qulix.sitkinke.trainingtask.dao.TaskDAO;
 import com.qulix.sitkinke.trainingtask.entities.Project;
 import com.qulix.sitkinke.trainingtask.entities.Task;
-
-import java.util.List;
 
 /**
  *

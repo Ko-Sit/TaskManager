@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -10,7 +10,7 @@
     <jsp:useBean id="selectedemployee" scope="request" type="com.qulix.sitkinke.trainingtask.entities.Employee"/>
     <div class="field">
         <label>ID</label>
-        <input type="number" value="${selectedemployee.id}" name="id"  readonly/>
+        <input type="number" value="${selectedemployee.id}" name="id" readonly/>
     </div>
     <div class="field">
         <label>Surname</label>

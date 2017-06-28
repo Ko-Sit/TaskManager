@@ -13,16 +13,16 @@
     <title>Main</title>
 </head>
 <body>
-    <h1>Main menu</h1>
-    <form name="loginForm" method="POST" action="controller">
-        <button type="submit" name="command" value="showprojects">Projects</button>
-    </form>
-    <form name="loginForm" method="POST" action="controller">
-        <button type="submit" name="command" value="showtasks">Tasks</button>
-    </form>
-    <form name="loginForm" method="POST" action="controller">
-        <button type="submit" name="command" value="showemployees">Employees</button>
-    </form>
+<h1>Main menu</h1>
+<form name="loginForm" method="POST" action="controller">
+    <button type="submit" name="command" value="showprojects">Projects</button>
+</form>
+<form name="loginForm" method="POST" action="controller">
+    <button type="submit" name="command" value="showtasks">Tasks</button>
+</form>
+<form name="loginForm" method="POST" action="controller">
+    <button type="submit" name="command" value="showemployees">Employees</button>
+</form>
 
 </body>
 </html>

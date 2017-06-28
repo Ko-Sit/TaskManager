@@ -4,7 +4,7 @@
 <head>
     <link href="https://fonts.googleapis.com/css?family=Pontano+Sans" rel="stylesheet">
     <link rel="stylesheet" href="../../css/style.css">
-    <script type="text/javascript" src="../../js/loadprojectfields.js"> </script>
+    <script type="text/javascript" src="../../js/loadprojectfields.js"></script>
     <title>Add Project</title>
 </head>
 <body>
@@ -57,8 +57,11 @@
                     </c:forEach>
                 </td>
                 <td>${task.state}</td>
-                <td><a id="deletelink" href="controller?command=deletetemptask&id=${task.id}" onclick="load('deletelink')">Delete</a></td>
-                <td><a id="modifylink" href="controller?command=gotomodifytemptask&id=${task.id}" onclick="load('modifylink')">Modify</a></td>
+                <td>
+                    <a id="deletelink" href="controller?command=deletetemptask&id=${task.id}" onclick="load('deletelink')">Delete</a>
+                </td>
+                <td><a id="modifylink" href="controller?command=gotomodifytemptask&id=${task.id}" onclick="load('modifylink')">Modify</a>
+                </td>
             </tr>
         </c:forEach>
     </table>

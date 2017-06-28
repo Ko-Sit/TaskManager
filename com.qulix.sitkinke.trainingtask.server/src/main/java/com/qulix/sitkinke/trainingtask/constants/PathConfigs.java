@@ -5,6 +5,7 @@ package com.qulix.sitkinke.trainingtask.constants;
  * Created by upsit on 27.06.2017.
  */
 public class PathConfigs {
+
     public static final String INDEX_PAGE = "path.page.index";
     public static final String MAIN_PAGE = "path.page.main";
 

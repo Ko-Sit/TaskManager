@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE HTML>
 
 <html>
@@ -33,9 +33,9 @@
             <td>${task.endDate}</td>
             <td>${task.projectName}</td>
             <td>
-            <c:forEach var="employee" items="${task.employeeList}">
-                ${employee.name} ${employee.surname} ${employee.patronymic} <br>
-            </c:forEach>
+                <c:forEach var="employee" items="${task.employeeList}">
+                    ${employee.name} ${employee.surname} ${employee.patronymic} <br>
+                </c:forEach>
             </td>
             <td>${task.state}</td>
             <td><a href="controller?command=deletetask&id=${task.id}">Delete</a></td>

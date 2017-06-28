@@ -1,15 +1,16 @@
 package com.qulix.sitkinke.trainingtask.command.factory;
 
+import javax.servlet.http.HttpServletRequest;
+
 import com.qulix.sitkinke.trainingtask.command.ActionCommand;
 import com.qulix.sitkinke.trainingtask.command.EmptyCommand;
-
-import javax.servlet.http.HttpServletRequest;
 
 /**
  *
  * Created by upsit on 14.06.2017.
  */
 public class ActionFactory {
+
     public ActionCommand defineCommand(HttpServletRequest request) {
         ActionCommand current = new EmptyCommand();
         // извлечение имени команды из запроса
@@ -24,7 +25,8 @@ public class ActionFactory {
             CommandEnum currentEnum = CommandEnum.valueOf(action.toUpperCase());
 
             current = currentEnum.getCurrentCommand();
-        } catch (IllegalArgumentException e) {
+        }
+        catch (IllegalArgumentException e) {
             e.printStackTrace();
         }
         return current;

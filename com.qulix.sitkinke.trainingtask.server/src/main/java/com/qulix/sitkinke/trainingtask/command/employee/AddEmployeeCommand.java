@@ -1,14 +1,15 @@
 package com.qulix.sitkinke.trainingtask.command.employee;
 
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+
 import com.qulix.sitkinke.trainingtask.command.ActionCommand;
 import com.qulix.sitkinke.trainingtask.constants.Parameters;
 import com.qulix.sitkinke.trainingtask.constants.PathConfigs;
 import com.qulix.sitkinke.trainingtask.dao.EmployeeDAO;
 import com.qulix.sitkinke.trainingtask.entities.Employee;
 import com.qulix.sitkinke.trainingtask.resource.ConfigurationManager;
-
-import javax.servlet.http.HttpServletRequest;
-import java.util.List;
 
 /**
  *

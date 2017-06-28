@@ -45,5 +45,6 @@ public class SqlRequests {
     public static final String RESET_PROJECTS_AUTO_INCREMENT = "ALTER TABLE PROJECTS ALTER COLUMN ID RESTART WITH ";
 
 
-    private SqlRequests() {}
+    private SqlRequests() {
+    }
 }

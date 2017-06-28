@@ -1,9 +1,9 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE HTML>
 <html>
 <head>
     <link rel="stylesheet" href="../../css/style.css">
-    <script type="text/javascript" src="../../js/setdate.js"> </script>
+    <script type="text/javascript" src="../../js/setdate.js"></script>
     <title>Add Task</title>
 </head>
 <body>
@@ -11,7 +11,7 @@
     <jsp:useBean id="idgenerated" scope="request" type="java.lang.Integer"/>
     <div class="field">
         <label>ID</label>
-        <input type="number" name="id" value="${idgenerated}"  readonly/>
+        <input type="number" name="id" value="${idgenerated}" readonly/>
     </div>
     <div class="field">
         <label>Name</label>

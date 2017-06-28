@@ -5,6 +5,7 @@ package com.qulix.sitkinke.trainingtask.constants;
  * Created by upsit on 27.06.2017.
  */
 public class Parameters {
+
     public static final String EMPLOYEE_NAME = "name";
     public static final String EMPLOYEE_SURNAME = "surname";
     public static final String EMPLOYEE_PATRONYMIC = "patronymic";

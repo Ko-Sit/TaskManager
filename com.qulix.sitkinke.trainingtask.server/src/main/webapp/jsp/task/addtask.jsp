@@ -1,9 +1,9 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE HTML>
 <html>
 <head>
     <link rel="stylesheet" href="../../css/style.css">
-    <script type="text/javascript" src="../../js/setdate.js"> </script>
+    <script type="text/javascript" src="../../js/setdate.js"></script>
     <title>Add Task</title>
 </head>
 <body>
@@ -15,11 +15,11 @@
     </div>
     <div class="field">
         <label>Name</label>
-        <input type="text" name="name" value="" maxlength="30" required />
+        <input type="text" name="name" value="" maxlength="30" required/>
     </div>
     <div class="field">
         <label>Duration</label>
-        <input type="number" name="duration" value="" min="1" max="2147483647" required />
+        <input type="number" name="duration" value="" min="1" max="2147483647" required/>
     </div>
     <div class="field">
         <label>Start Date</label>

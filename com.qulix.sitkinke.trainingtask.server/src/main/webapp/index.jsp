@@ -3,4 +3,5 @@
 <head><title>Index</title></head>
 <body>
 <jsp:forward page="/jsp/main.jsp"/>
-</body></html>
+</body>
+</html>

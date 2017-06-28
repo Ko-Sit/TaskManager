@@ -11,10 +11,11 @@ import java.sql.SQLException;
 public class DBUtility {
 
     public static void resetAutoIncrement(String query) {
-        try(Connection connection = DBManager.getInstance().getConnection();
-            PreparedStatement preparedStatement = connection.prepareStatement(query)){
+        try (Connection connection = DBManager.getInstance().getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(query)) {
             preparedStatement.executeUpdate();
-        }  catch (SQLException e) {
+        }
+        catch (SQLException e) {
             System.out.println("SQL exception occurred during reset autoincrement");
             e.printStackTrace();
         }

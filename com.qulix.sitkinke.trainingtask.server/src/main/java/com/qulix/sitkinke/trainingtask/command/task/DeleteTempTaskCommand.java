@@ -1,5 +1,10 @@
 package com.qulix.sitkinke.trainingtask.command.task;
 
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import com.qulix.sitkinke.trainingtask.command.ActionCommand;
 import com.qulix.sitkinke.trainingtask.constants.Attributes;
 import com.qulix.sitkinke.trainingtask.constants.Parameters;
@@ -9,15 +14,12 @@ import com.qulix.sitkinke.trainingtask.dao.TaskDAO;
 import com.qulix.sitkinke.trainingtask.entities.Task;
 import com.qulix.sitkinke.trainingtask.resource.ConfigurationManager;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
-import java.util.List;
-
 /**
  *
  * Created by upsit on 19.06.2017.
  */
 public class DeleteTempTaskCommand implements ActionCommand {
+
     @Override
     public String execute(HttpServletRequest request) {
         String page = null;
