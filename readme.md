@@ -2,12 +2,13 @@
 
 * JDK 1.8
 
+
 1. Delete the build directory:
     ```
     gradlew clean
     ```
      
-2.Create the build directory:
+2. Create the build directory:
     ```
     gradlew build
     ```
@@ -22,12 +23,12 @@
     gradlew createTables
     ```
     
-5. Run web application:
+3. Run web application:
     ```
     gradlew startServer
     ```
     
-6. All done, main page of application is
+4. All done, main page of application is
     ```
     http://localhost:8080/
     ```
