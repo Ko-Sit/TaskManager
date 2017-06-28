@@ -41,38 +41,46 @@ import com.qulix.sitkinke.trainingtask.command.task.ShowTasksCommand;
  * Created by upsit on 14.06.2017.
  */
 public enum CommandType {
-    ADDEMPLOYEE,
-    SHOWEMPLOYEES,
-    GOTOADDEMPLOYEE,
-    GOTOADDTASK,
-    SHOWTASKS,
-    ADDTASK,
-    DELETEEMPLOYEE,
-    GOTOMODIFYEMPLOYEE,
-    MODIFYEMPLOYEE,
-    DELETETASK,
-    GOTOMODIFYTASK,
-    MODIFYTASK,
-    SHOWPROJECTS,
-    GOTOADDPROJECT,
-    DELETEPROJECT,
-    ADDPROJECT,
-    GOTOADDTEMPTASK,
-    ADDTEMPTASK,
-    DELETETEMPTASK,
-    GOTOMODIFYTEMPTASK,
-    MODIFYTEMPTASK,
-    GOTOMODIFYPROJECT,
-    MODIFYPROJECT,
-    DELETETASKFROMPROJECT,
-    GOTOADDTASKFROMPROJECT,
-    ADDTASKFROMPROJECT,
-    GOTOMODIFYTASKFROMPROJECT,
-    MODIFYTASKFROMPROJECT,
-    CANCELADDPROJECT,
-    CANCELMODIFYPROJECT,
-    CANCELTASKINMODIFYPROJECT,
-    CANCELTASKINADDPROJECT,
-    GOTOMENU
+    ADDEMPLOYEE (new AddEmployeeCommand()),
+    SHOWEMPLOYEES (new ShowEmployeesCommand()),
+    GOTOADDEMPLOYEE (new GoToAddEmployeesCommand()),
+    GOTOADDTASK (new GoToAddTasksCommand()),
+    SHOWTASKS (new ShowTasksCommand()),
+    ADDTASK (new AddTaskCommand()),
+    DELETEEMPLOYEE (new DeleteEmployeeCommand()),
+    GOTOMODIFYEMPLOYEE (new GoToModifyEmployeeCommand()),
+    MODIFYEMPLOYEE (new ModifyEmployeeCommand()),
+    DELETETASK (new DeleteTaskCommand()),
+    GOTOMODIFYTASK (new GoToModifyTaskCommand()),
+    MODIFYTASK (new ModifyTaskCommand()),
+    SHOWPROJECTS (new ShowProjectsCommand()),
+    GOTOADDPROJECT (new GoToAddProjectCommand()),
+    DELETEPROJECT (new DeleteProjectCommand()),
+    ADDPROJECT (new AddProjectCommand()),
+    GOTOADDTEMPTASK (new GoToAddTempTaskCommand()),
+    ADDTEMPTASK (new AddTempTaskCommand()),
+    DELETETEMPTASK (new DeleteTempTaskCommand()),
+    GOTOMODIFYTEMPTASK (new GoToModifyTempTaskCommand()),
+    MODIFYTEMPTASK (new ModifyTempTaskCommand()),
+    GOTOMODIFYPROJECT (new GoToModifyProjectCommand()),
+    MODIFYPROJECT (new ModifyProjectCommand()),
+    DELETETASKFROMPROJECT (new DeleteTaskFromProjectCommand()),
+    GOTOADDTASKFROMPROJECT (new GoToAddTaskFromProjectCommand()),
+    ADDTASKFROMPROJECT (new AddTaskFromProjectCommand()),
+    GOTOMODIFYTASKFROMPROJECT (new GoToModifyTaskFromProjectCommand()),
+    MODIFYTASKFROMPROJECT (new ModifyTaskFromProjectCommand()),
+    CANCELADDPROJECT (new CancelAddProjectCommand()),
+    CANCELMODIFYPROJECT (new CancelModifyProjectCommand()),
+    CANCELTASKINMODIFYPROJECT (new CancelTaskInModifyProjectCommand()),
+    CANCELTASKINADDPROJECT (new CancelTaskInAddProjectCommand()),
+    GOTOMENU (new GoToMenuCommand());
 
+    CommandType (ActionCommand command) {
+        this.command = command;
+    }
+
+    ActionCommand command;
+    public ActionCommand getCurrentCommand() {
+        return command;
+    }
 }
