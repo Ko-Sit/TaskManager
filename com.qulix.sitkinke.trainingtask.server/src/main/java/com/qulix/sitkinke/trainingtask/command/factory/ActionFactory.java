@@ -4,6 +4,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import com.qulix.sitkinke.trainingtask.command.ActionCommand;
 import com.qulix.sitkinke.trainingtask.command.EmptyCommand;
+import com.qulix.sitkinke.trainingtask.containters.CommandManager;
 
 /**
  *
@@ -22,9 +23,10 @@ public class ActionFactory {
         }
         // получение объекта, соответствующего команде
         try {
-            CommandEnum currentEnum = CommandEnum.valueOf(action.toUpperCase());
+            CommandType commandType = CommandType.valueOf(action.toUpperCase());
 
-            current = currentEnum.getCurrentCommand();
+            //current = currentEnum.getCurrentCommand();
+            current = CommandManager.getInstance().getCommand(commandType);
         }
         catch (IllegalArgumentException e) {
             e.printStackTrace();

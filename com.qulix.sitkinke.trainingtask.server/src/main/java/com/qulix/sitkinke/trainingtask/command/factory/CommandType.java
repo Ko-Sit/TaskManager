@@ -40,7 +40,7 @@ import com.qulix.sitkinke.trainingtask.command.task.ShowTasksCommand;
  *
  * Created by upsit on 14.06.2017.
  */
-public enum CommandEnum {
+public enum CommandType {
     ADDEMPLOYEE,
     SHOWEMPLOYEES,
     GOTOADDEMPLOYEE,
@@ -73,111 +73,6 @@ public enum CommandEnum {
     CANCELMODIFYPROJECT,
     CANCELTASKINMODIFYPROJECT,
     CANCELTASKINADDPROJECT,
-    GOTOMENU;
+    GOTOMENU
 
-    public ActionCommand getCurrentCommand() {
-        switch (this) {
-            case ADDEMPLOYEE:
-                return new AddEmployeeCommand();
-
-            case SHOWEMPLOYEES:
-                return new ShowEmployeesCommand();
-
-            case GOTOADDEMPLOYEE:
-                return new GoToAddEmployeesCommand();
-
-            case GOTOADDTASK:
-                return new GoToAddTasksCommand();
-
-            case SHOWTASKS:
-                return new ShowTasksCommand();
-
-            case ADDTASK:
-                return new AddTaskCommand();
-
-            case DELETEEMPLOYEE:
-                return new DeleteEmployeeCommand();
-
-            case GOTOMODIFYEMPLOYEE:
-                return new GoToModifyEmployeeCommand();
-
-            case MODIFYEMPLOYEE:
-                return new ModifyEmployeeCommand();
-
-            case DELETETASK:
-                return new DeleteTaskCommand();
-
-            case GOTOMODIFYTASK:
-                return new GoToModifyTaskCommand();
-
-            case MODIFYTASK:
-                return new ModifyTaskCommand();
-
-            case SHOWPROJECTS:
-                return new ShowProjectsCommand();
-
-            case GOTOADDPROJECT:
-                return new GoToAddProjectCommand();
-
-            case DELETEPROJECT:
-                return new DeleteProjectCommand();
-
-            case ADDPROJECT:
-                return new AddProjectCommand();
-
-            case GOTOADDTEMPTASK:
-                return new GoToAddTempTaskCommand();
-
-            case ADDTEMPTASK:
-                return new AddTempTaskCommand();
-
-            case DELETETEMPTASK:
-                return new DeleteTempTaskCommand();
-
-            case GOTOMODIFYTEMPTASK:
-                return new GoToModifyTempTaskCommand();
-
-            case MODIFYTEMPTASK:
-                return new ModifyTempTaskCommand();
-
-            case GOTOMODIFYPROJECT:
-                return new GoToModifyProjectCommand();
-
-            case MODIFYPROJECT:
-                return new ModifyProjectCommand();
-
-            case DELETETASKFROMPROJECT:
-                return new DeleteTaskFromProjectCommand();
-
-            case GOTOADDTASKFROMPROJECT:
-                return new GoToAddTaskFromProjectCommand();
-
-            case ADDTASKFROMPROJECT:
-                return new AddTaskFromProjectCommand();
-
-            case GOTOMODIFYTASKFROMPROJECT:
-                return new GoToModifyTaskFromProjectCommand();
-
-            case MODIFYTASKFROMPROJECT:
-                return new ModifyTaskFromProjectCommand();
-
-            case CANCELADDPROJECT:
-                return new CancelAddProjectCommand();
-
-            case CANCELMODIFYPROJECT:
-                return new CancelModifyProjectCommand();
-
-            case CANCELTASKINMODIFYPROJECT:
-                return new CancelTaskInModifyProjectCommand();
-
-            case CANCELTASKINADDPROJECT:
-                return new CancelTaskInAddProjectCommand();
-
-            case GOTOMENU:
-                return new GoToMenuCommand();
-
-            default:
-                return new EmptyCommand();
-        }
-    }
 }
