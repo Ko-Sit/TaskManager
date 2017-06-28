@@ -25,4 +25,5 @@ public class PathConfigs {
     public static final String ADD_PROJECT_PAGE = "path.page.addproject";
     public static final String MODIFY_PROJECT_PAGE = "path.page.modifyproject";
 
+    public static final String ERROR_PAGE = "path.page.errorpage";
 }

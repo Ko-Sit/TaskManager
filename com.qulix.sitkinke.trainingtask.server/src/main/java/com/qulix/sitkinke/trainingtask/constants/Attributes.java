@@ -11,5 +11,6 @@ public class Attributes {
     public static final String PROJECT_ABBREVIATION = "projectabbr";
     public static final String PROJECT_DESCRIPTION = "projectdescr";
     public static final String ID_GENERATED = "idgenerated";
+    public static final String EXCEPTION = "exception";
 
 }

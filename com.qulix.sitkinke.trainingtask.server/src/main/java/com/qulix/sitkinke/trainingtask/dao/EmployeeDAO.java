@@ -10,6 +10,7 @@ import java.util.List;
 import com.qulix.sitkinke.trainingtask.constants.ColumnNames;
 import com.qulix.sitkinke.trainingtask.constants.SqlRequests;
 import com.qulix.sitkinke.trainingtask.entities.Employee;
+import com.qulix.sitkinke.trainingtask.exceptions.DaoException;
 import com.qulix.sitkinke.trainingtask.managers.DBManager;
 import com.qulix.sitkinke.trainingtask.managers.DBUtility;
 
@@ -30,8 +31,7 @@ public class EmployeeDAO implements IDao<Employee> {
             preparedStatement.executeUpdate();
         }
         catch (SQLException e) {
-            System.out.println("SQL exception occurred during add employee");
-            e.printStackTrace();
+            throw new DaoException("SQL exception occurred during add employee", e);
         }
     }
 
@@ -47,8 +47,7 @@ public class EmployeeDAO implements IDao<Employee> {
             preparedStatement.executeUpdate();
         }
         catch (SQLException e) {
-            System.out.println("SQL exception occurred during modify employee");
-            e.printStackTrace();
+            throw new DaoException("SQL exception occurred during modify employee", e);
         }
     }
 
@@ -61,12 +60,12 @@ public class EmployeeDAO implements IDao<Employee> {
             preparedStatement.executeUpdate();
         }
         catch (SQLException e) {
-            System.out.println("SQL exception occurred during delete employee");
-            e.printStackTrace();
+            throw new DaoException("SQL exception occurred during delete employee", e);
         }
-        DBUtility.resetAutoIncrement(SqlRequests.RESET_EMPLOYEES_AUTO_INCREMENT + getNextId());
+        finally {
+            DBUtility.resetAutoIncrement(SqlRequests.RESET_EMPLOYEES_AUTO_INCREMENT + getNextId());
+        }
     }
-
 
     private void deleteEmployeeTasks(int id_employee) {
         try (Connection connection = DBManager.getInstance().getConnection();
@@ -75,8 +74,7 @@ public class EmployeeDAO implements IDao<Employee> {
             preparedStatement.executeUpdate();
         }
         catch (SQLException e) {
-            System.out.println("SQL exception occurred during delete employee tasks");
-            e.printStackTrace();
+            throw new DaoException("SQL exception occurred during delete employee tasks", e);
         }
     }
 
@@ -97,9 +95,7 @@ public class EmployeeDAO implements IDao<Employee> {
 
         }
         catch (SQLException e) {
-            System.out.println("SQL exception occurred during get by id employee");
-            e.printStackTrace();
-            return null;
+            throw new DaoException("SQL exception occurred during get by id employee", e);
         }
         finally {
             try {
@@ -127,9 +123,7 @@ public class EmployeeDAO implements IDao<Employee> {
             }
         }
         catch (SQLException e) {
-            System.out.println("SQL exception occurred during get all employees");
-            e.printStackTrace();
-            return null;
+            throw new DaoException("SQL exception occurred during get all employees", e);
         }
         return employeeList;
     }
@@ -148,15 +142,11 @@ public class EmployeeDAO implements IDao<Employee> {
                 DBUtility.resetAutoIncrement(SqlRequests.RESET_EMPLOYEES_AUTO_INCREMENT + 1);
                 return 1;
             }
-
         }
         catch (SQLException e) {
-            System.out.println("SQL exception occurred during get next id employees");
-            e.printStackTrace();
-            return -1;
+            throw new DaoException("SQL exception occurred during get next id employees", e);
         }
         id_next = id + 1;
-        System.out.println(id_next);
         return id_next;
     }
 

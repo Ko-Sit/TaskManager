@@ -13,6 +13,7 @@ import com.qulix.sitkinke.trainingtask.constants.SqlRequests;
 import com.qulix.sitkinke.trainingtask.entities.Employee;
 import com.qulix.sitkinke.trainingtask.entities.Task;
 import com.qulix.sitkinke.trainingtask.enums.State;
+import com.qulix.sitkinke.trainingtask.exceptions.DaoException;
 import com.qulix.sitkinke.trainingtask.managers.DBManager;
 import com.qulix.sitkinke.trainingtask.managers.DBUtility;
 
@@ -37,8 +38,7 @@ public class TaskDAO implements IDao<Task> {
             preparedStatement.executeUpdate();
         }
         catch (SQLException e) {
-            System.out.println("SQL exception occurred during add task");
-            e.printStackTrace();
+            throw new DaoException("SQL exception occurred during add task", e);
         }
     }
 
@@ -53,8 +53,7 @@ public class TaskDAO implements IDao<Task> {
             }
         }
         catch (SQLException e) {
-            System.out.println("SQL exception occurred during add task executors");
-            e.printStackTrace();
+            throw new DaoException("SQL exception occurred during add task executors", e);
         }
     }
 
@@ -73,8 +72,7 @@ public class TaskDAO implements IDao<Task> {
             preparedStatement.executeUpdate();
         }
         catch (SQLException e) {
-            System.out.println("SQL exception occurred during modify task");
-            e.printStackTrace();
+            throw new DaoException("SQL exception occurred during modify task", e);
         }
     }
 
@@ -91,8 +89,7 @@ public class TaskDAO implements IDao<Task> {
             preparedStatement.executeUpdate();
         }
         catch (SQLException e) {
-            System.out.println("SQL exception occurred modify task project abbr");
-            e.printStackTrace();
+            throw new DaoException("SQL exception occurred modify task project abbr", e);
         }
     }
 
@@ -105,10 +102,11 @@ public class TaskDAO implements IDao<Task> {
             preparedStatement.executeUpdate();
         }
         catch (SQLException e) {
-            System.out.println("SQL exception occurred during delete task");
-            e.printStackTrace();
+            throw new DaoException("SQL exception occurred during delete task", e);
         }
-        DBUtility.resetAutoIncrement(SqlRequests.RESET_TASKS_AUTO_INCREMENT + getNextId());
+        finally {
+            DBUtility.resetAutoIncrement(SqlRequests.RESET_TASKS_AUTO_INCREMENT + getNextId());
+        }
     }
 
     public List<Integer> getTasksByProjectAbbr(String projectAbbr) {
@@ -123,8 +121,7 @@ public class TaskDAO implements IDao<Task> {
             }
         }
         catch (SQLException e) {
-            System.out.println("SQL exception occurred during get tasks by project abbr");
-            e.printStackTrace();
+            throw new DaoException("SQL exception occurred during get tasks by project abbr", e);
         }
         finally {
             try {
@@ -151,8 +148,7 @@ public class TaskDAO implements IDao<Task> {
             preparedStatement.executeUpdate();
         }
         catch (SQLException e) {
-            System.out.println("SQL exception occurred during delete tasks by project abbr");
-            e.printStackTrace();
+            throw new DaoException("SQL exception occurred during delete tasks by project abbr", e);
         }
     }
 
@@ -163,8 +159,7 @@ public class TaskDAO implements IDao<Task> {
             preparedStatement.executeUpdate();
         }
         catch (SQLException e) {
-            System.out.println("SQL exception occurred during delete task executors");
-            e.printStackTrace();
+            throw new DaoException("SQL exception occurred during delete task executors", e);
         }
     }
 
@@ -185,9 +180,7 @@ public class TaskDAO implements IDao<Task> {
 
         }
         catch (SQLException e) {
-            System.out.println("SQL exception occurred during get by id task");
-            e.printStackTrace();
-            return null;
+            throw new DaoException("SQL exception occurred during get by id task", e);
         }
         finally {
             try {
@@ -216,9 +209,7 @@ public class TaskDAO implements IDao<Task> {
 
         }
         catch (SQLException e) {
-            System.out.println("SQL exception occurred during get all tasks");
-            e.printStackTrace();
-            return null;
+            throw new DaoException("SQL exception occurred during get all tasks", e);
         }
         return taskList;
     }
@@ -237,9 +228,7 @@ public class TaskDAO implements IDao<Task> {
             }
         }
         catch (SQLException e) {
-            System.out.println("SQL exception occurred during get task executors");
-            e.printStackTrace();
-            return null;
+            throw new DaoException("SQL exception occurred during get task executors", e);
         }
         finally {
             try {
@@ -273,9 +262,7 @@ public class TaskDAO implements IDao<Task> {
 
         }
         catch (SQLException e) {
-            System.out.println("SQL exception occurred during get next id tasks");
-            e.printStackTrace();
-            return -1;
+            throw new DaoException("SQL exception occurred during get next id tasks", e);
         }
         id_next = id + 1;
         return id_next;

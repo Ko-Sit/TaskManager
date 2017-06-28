@@ -11,6 +11,7 @@ import com.qulix.sitkinke.trainingtask.constants.ColumnNames;
 import com.qulix.sitkinke.trainingtask.constants.SqlRequests;
 import com.qulix.sitkinke.trainingtask.entities.Project;
 import com.qulix.sitkinke.trainingtask.entities.Task;
+import com.qulix.sitkinke.trainingtask.exceptions.DaoException;
 import com.qulix.sitkinke.trainingtask.managers.DBManager;
 import com.qulix.sitkinke.trainingtask.managers.DBUtility;
 
@@ -30,8 +31,7 @@ public class ProjectDAO implements IDao<Project> {
             preparedStatement.executeUpdate();
         }
         catch (SQLException e) {
-            System.out.println("SQL exception occurred during add project");
-            e.printStackTrace();
+            throw new DaoException("SQL exception occurred during add project", e);
         }
     }
 
@@ -46,8 +46,7 @@ public class ProjectDAO implements IDao<Project> {
             }
         }
         catch (SQLException e) {
-            System.out.println("SQL exception occurred during add project tasks");
-            e.printStackTrace();
+            throw new DaoException("SQL exception occurred during add project tasks", e);
         }
     }
 
@@ -59,8 +58,7 @@ public class ProjectDAO implements IDao<Project> {
             preparedStatement.executeUpdate();
         }
         catch (SQLException e) {
-            System.out.println("SQL exception occurred during add project task");
-            e.printStackTrace();
+            throw new DaoException("SQL exception occurred during add project task", e);
         }
     }
 
@@ -75,8 +73,7 @@ public class ProjectDAO implements IDao<Project> {
             preparedStatement.executeUpdate();
         }
         catch (SQLException e) {
-            System.out.println("SQL exception occurred during modify project");
-            e.printStackTrace();
+            throw new DaoException("SQL exception occurred during modify project", e);
         }
     }
 
@@ -99,10 +96,11 @@ public class ProjectDAO implements IDao<Project> {
             preparedStatement.executeUpdate();
         }
         catch (SQLException e) {
-            System.out.println("SQL exception occurred during delete project");
-            e.printStackTrace();
+            throw new DaoException("SQL exception occurred during delete project", e);
         }
-        DBUtility.resetAutoIncrement(SqlRequests.RESET_PROJECTS_AUTO_INCREMENT + getNextId());
+        finally {
+            DBUtility.resetAutoIncrement(SqlRequests.RESET_PROJECTS_AUTO_INCREMENT + getNextId());
+        }
     }
 
     private void deleteProjectTasks(int id_project) {
@@ -116,8 +114,7 @@ public class ProjectDAO implements IDao<Project> {
             preparedStatement.executeUpdate();
         }
         catch (SQLException e) {
-            System.out.println("SQL exception occurred during delete task executors");
-            e.printStackTrace();
+            throw new DaoException("SQL exception occurred during delete task executors", e);
         }
     }
 
@@ -128,8 +125,7 @@ public class ProjectDAO implements IDao<Project> {
             preparedStatement.executeUpdate();
         }
         catch (SQLException e) {
-            System.out.println("SQL exception occurred during delete task executors");
-            e.printStackTrace();
+            throw new DaoException("SQL exception occurred during delete task executors", e);
         }
     }
 
@@ -161,9 +157,7 @@ public class ProjectDAO implements IDao<Project> {
 
         }
         catch (SQLException e) {
-            System.out.println("SQL exception occurred during get by id project");
-            e.printStackTrace();
-            return null;
+            throw new DaoException("SQL exception occurred during get by id project", e);
         }
         finally {
             try {
@@ -192,9 +186,7 @@ public class ProjectDAO implements IDao<Project> {
 
         }
         catch (SQLException e) {
-            System.out.println("SQL exception occurred during get all projects");
-            e.printStackTrace();
-            return null;
+            throw new DaoException("SQL exception occurred during get all projects", e);
         }
         return projectList;
     }
@@ -213,9 +205,7 @@ public class ProjectDAO implements IDao<Project> {
             }
         }
         catch (SQLException e) {
-            System.out.println("SQL exception occurred during get project tasks");
-            e.printStackTrace();
-            return null;
+            throw new DaoException("SQL exception occurred during get project tasks", e);
         }
         finally {
             try {
@@ -248,9 +238,7 @@ public class ProjectDAO implements IDao<Project> {
 
         }
         catch (SQLException e) {
-            System.out.println("SQL exception occurred during get next id project");
-            e.printStackTrace();
-            return -1;
+            throw new DaoException("SQL exception occurred during get next id project", e);
         }
         id_next = id + 1;
         return id_next;

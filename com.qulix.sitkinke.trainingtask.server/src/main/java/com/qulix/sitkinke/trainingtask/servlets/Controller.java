@@ -11,7 +11,9 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.qulix.sitkinke.trainingtask.command.ActionCommand;
 import com.qulix.sitkinke.trainingtask.command.factory.ActionFactory;
+import com.qulix.sitkinke.trainingtask.constants.Attributes;
 import com.qulix.sitkinke.trainingtask.constants.PathConfigs;
+import com.qulix.sitkinke.trainingtask.exceptions.DaoException;
 import com.qulix.sitkinke.trainingtask.resource.ConfigurationManager;
 
 @WebServlet("/controller")
@@ -34,7 +36,12 @@ public class Controller extends HttpServlet {
      * вызов реализованного метода execute() и передача параметров
      * классу-обработчику конкретной команды
      */
-        page = command.execute(request);
+        try {
+            page = command.execute(request);
+        } catch (DaoException d) {
+            request.setAttribute(Attributes.EXCEPTION, d.getMessage());
+            page = ConfigurationManager.getProperty(PathConfigs.ERROR_PAGE);
+        }
         // метод возвращает страницу ответа
         // page = null; // поэкспериментировать!
         if (page != null) {
