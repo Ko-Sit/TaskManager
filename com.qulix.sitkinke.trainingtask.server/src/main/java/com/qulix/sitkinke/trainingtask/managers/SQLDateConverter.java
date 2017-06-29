@@ -6,11 +6,18 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
+ * Manager class that converts date format.
  *
- * Created by upsit on 14.06.2017.
+ * @author sitkin
  */
 public class SQLDateConverter {
 
+    /**
+     * Gets employee list.
+     *
+     * @param string the string date
+     * @return the new string date
+     */
     public static Date getDate(String string) {
         DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
         Date date = null;

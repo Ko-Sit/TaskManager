@@ -9,11 +9,18 @@ import com.qulix.sitkinke.trainingtask.entities.Employee;
 import com.qulix.sitkinke.trainingtask.entities.Project;
 
 /**
+ * Manager class that extracts and finds entities by id.
  *
- * Created by upsit on 15.06.2017.
+ * @author sitkin
  */
 public class ParseManager {
 
+    /**
+     * Gets employee list.
+     *
+     * @param selectedEmployees the selected employees
+     * @return the employee list
+     */
     public static List<Employee> getEmployeeList(String[] selectedEmployees) {
         String[] parts;
         List<Integer> employees_id = new ArrayList<>();
@@ -33,24 +40,18 @@ public class ParseManager {
         return employees;
     }
 
+    /**
+     * Gets project name.
+     *
+     * @param string the string made of project parameters
+     * @return the project
+     */
     public static Project getTaskProject(String string) {
         String[] parts = string.split("\\.");
         string = parts[0];
 
         ProjectDAO projectDAO = new ProjectDAO();
         Project project = projectDAO.getById(Integer.valueOf(string));
-
-        return project;
-    }
-
-    public static Project getFictiveProject(String string) {
-        String[] parts = string.split("[. ]");        //regex "dot and space"
-        int id_project = Integer.valueOf(parts[0]);
-        String name = parts[2];
-
-        Project project = new Project();
-        project.setId(id_project);
-        project.setName(name);
 
         return project;
     }

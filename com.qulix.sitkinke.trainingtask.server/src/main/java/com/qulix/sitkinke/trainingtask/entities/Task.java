@@ -174,6 +174,11 @@ public class Task extends Entity {
         this.employeeList = employeeList;
     }
 
+    /**
+     * Returns a string representation of the object {@link Task}.
+     *
+     * @return the Task string representation
+     */
     @Override
     public String toString() {
         return "Task{" +

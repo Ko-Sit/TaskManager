@@ -16,6 +16,11 @@ import com.qulix.sitkinke.trainingtask.constants.PathConfigs;
 import com.qulix.sitkinke.trainingtask.exceptions.DaoException;
 import com.qulix.sitkinke.trainingtask.resource.ConfigurationManager;
 
+/**
+ * Servlet that processes the request and sends the response to the client.
+ *
+ * @author sitkin
+ */
 @WebServlet("/controller")
 public class Controller extends HttpServlet {
 
@@ -32,10 +37,10 @@ public class Controller extends HttpServlet {
         // определение команды, пришедшей из JSP
         ActionFactory client = new ActionFactory();
         ActionCommand command = client.defineCommand(request);
-    /*
-     * вызов реализованного метода execute() и передача параметров
-     * классу-обработчику конкретной команды
-     */
+        /*
+         * вызов реализованного метода execute() и передача параметров
+         * классу-обработчику конкретной команды
+         */
         try {
             page = command.execute(request);
         } catch (DaoException d) {
@@ -43,7 +48,6 @@ public class Controller extends HttpServlet {
             page = ConfigurationManager.getProperty(PathConfigs.ERROR_PAGE);
         }
         // метод возвращает страницу ответа
-        // page = null; // поэкспериментировать!
         if (page != null) {
             RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(page);
             // вызов страницы ответа на запрос

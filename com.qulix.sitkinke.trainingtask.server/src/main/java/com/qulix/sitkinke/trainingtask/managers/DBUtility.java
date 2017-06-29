@@ -5,14 +5,20 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 /**
+ * Utility class that resets autoincrement in hsql database.
  *
- * Created by upsit on 16.06.2017.
+ * @author sitkin
  */
 public class DBUtility {
 
+    /**
+     * Resets table autoincrement.
+     *
+     * @param query the query
+     */
     public static void resetAutoIncrement(String query) {
         try (Connection connection = DBManager.getInstance().getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+            PreparedStatement preparedStatement = connection.prepareStatement(query)) {
             preparedStatement.executeUpdate();
         }
         catch (SQLException e) {

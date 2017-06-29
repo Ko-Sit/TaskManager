@@ -1,8 +1,11 @@
 package com.qulix.sitkinke.trainingtask.enums;
 
+import com.qulix.sitkinke.trainingtask.entities.Task;
+
 /**
+ * Enum that describes states of {@link Task}.
  *
- * Created by upsit on 09.06.2017.
+ * @author sitkin
  */
 public enum State {
     NOTSTARTED, INPROGRESS, COMPLETED, POSTPONED

@@ -3,21 +3,36 @@ package com.qulix.sitkinke.trainingtask.containters;
 import com.qulix.sitkinke.trainingtask.entities.Project;
 
 /**
+ * Container that saves the project condition.
  *
- * Created by upsit on 22.06.2017.
+ * @author sitkin
  */
 public class ProjectContainer {
 
     private static Project savedProject;
 
-    public static void put(Project project) {
-        savedProject = project;
-    }
-
+    /**
+     * Gets project entity.
+     *
+     * @return the project entity
+     */
     public static Project get() {
         return savedProject;
     }
 
+    /**
+     * Sets project entity.
+     *
+     * @param project the project entity
+     */
+    public static void put(Project project) {
+        savedProject = project;
+    }
+
+    /**
+     * Clears project entity.
+     *
+     */
     public static void clear() {
         savedProject = null;
     }
