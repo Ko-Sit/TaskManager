@@ -19,8 +19,9 @@ import com.qulix.sitkinke.trainingtask.managers.DBUtility;
 
 
 /**
+ * The DAO realisation for {@link Task}.
  *
- * Created by upsit on 12.06.2017.
+ * @author sitkin
  */
 public class TaskDAO implements IDao<Task> {
 
@@ -42,6 +43,12 @@ public class TaskDAO implements IDao<Task> {
         }
     }
 
+    /**
+     * Adds tasks executors.
+     *
+     * @param id_task the task id
+     * @param employeeList the task executors list
+     */
     private void addTaskExecutors(int id_task, List<Employee> employeeList) {
         try (Connection connection = DBManager.getInstance().getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(SqlRequests.ADD_TASK_EXECUTORS)) {
@@ -76,11 +83,23 @@ public class TaskDAO implements IDao<Task> {
         }
     }
 
+    /**
+     * Modifies task executors.
+     *
+     * @param id_task the task id
+     * @param employeeList the task executors list
+     */
     private void modifyTaskExecutors(int id_task, List<Employee> employeeList) {
         deleteTaskExecutors(id_task);
         addTaskExecutors(id_task, employeeList);
     }
 
+    /**
+     * Modifies project abbreviation in task.
+     *
+     * @param projectAbbreviation the project abbreviation
+     * @param id_task the task id
+     */
     public void modifyProjectNameInTask(String projectAbbreviation, int id_task) {
         try (Connection connection = DBManager.getInstance().getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(SqlRequests.MODIFY_PROJECT_ABBR)) {
@@ -109,6 +128,12 @@ public class TaskDAO implements IDao<Task> {
         }
     }
 
+    /**
+     * Gets tasks by project abbreviation.
+     *
+     * @param projectAbbr the project abbreviation
+     * @return  tasklist the task list
+     */
     public List<Integer> getTasksByProjectAbbr(String projectAbbr) {
         List<Integer> taskList = new ArrayList<>();
         try (Connection connection = DBManager.getInstance().getConnection();
@@ -126,6 +151,11 @@ public class TaskDAO implements IDao<Task> {
         return taskList;
     }
 
+    /**
+     * Deletes tasks by project abbreviation.
+     *
+     * @param projectAbbr the project abbreviation
+     */
     public void deleteTasksByProjectAbbr(String projectAbbr) {
         List<Integer> taskList = getTasksByProjectAbbr(projectAbbr);
         for (Integer id_task : taskList) {
@@ -141,6 +171,11 @@ public class TaskDAO implements IDao<Task> {
         }
     }
 
+    /**
+     * Deletes task executors records by task id.
+     *
+     * @param id_task the task id
+     */
     private void deleteTaskExecutors(int id_task) {
         try (Connection connection = DBManager.getInstance().getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(SqlRequests.DELETE_TASK_EXECUTORS)) {
@@ -191,6 +226,11 @@ public class TaskDAO implements IDao<Task> {
         return taskList;
     }
 
+    /**
+     * Gets task executors by id task.
+     *
+     * @param id_task the task id
+     */
     public List<Employee> getTaskExecutors(int id_task) {
         List<Employee> employeeList = new ArrayList<>();
         EmployeeDAO employeeDAO = new EmployeeDAO();
@@ -234,6 +274,12 @@ public class TaskDAO implements IDao<Task> {
         return id_next;
     }
 
+    /**
+     * Builds task entity.
+     *
+     * @param resultSet the resultSet with task attributes
+     * @return task the new entity task
+     */
     private Task buildTask(ResultSet resultSet) throws SQLException {
         int id_task = resultSet.getInt(ColumnNames.ID);
         String name = resultSet.getString(ColumnNames.TASK_NAME);
@@ -249,5 +295,4 @@ public class TaskDAO implements IDao<Task> {
         task.setEmployeeList(employees);
         return task;
     }
-
 }

@@ -16,8 +16,9 @@ import com.qulix.sitkinke.trainingtask.managers.DBManager;
 import com.qulix.sitkinke.trainingtask.managers.DBUtility;
 
 /**
+ * The DAO realisation for {@link Project}.
  *
- * Created by upsit on 12.06.2017.
+ * @author sitkin
  */
 public class ProjectDAO implements IDao<Project> {
 
@@ -35,6 +36,12 @@ public class ProjectDAO implements IDao<Project> {
         }
     }
 
+    /**
+     * Adds project tasks.
+     *
+     * @param id_project the project id
+     * @param taskList the project task list
+     */
     private void addProjectTasks(int id_project, List<Task> taskList) {
         try (Connection connection = DBManager.getInstance().getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(SqlRequests.ADD_PROJECT_TASKS)) {
@@ -50,6 +57,12 @@ public class ProjectDAO implements IDao<Project> {
         }
     }
 
+    /**
+     * Adds project task.
+     *
+     * @param id_project the project id
+     * @param id_task the project task
+     */
     public void addProjectTask(int id_project, int id_task) {
         try (Connection connection = DBManager.getInstance().getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(SqlRequests.ADD_PROJECT_TASKS)) {
@@ -77,11 +90,23 @@ public class ProjectDAO implements IDao<Project> {
         }
     }
 
+    /**
+     * Modifies project tasks.
+     *
+     * @param id_project the project id
+     * @param taskList the project task list
+     */
     private void modifyProjectTasks(int id_project, List<Task> taskList) {
         deleteProjectTasks(id_project);
         addProjectTasks(id_project, taskList);
     }
 
+    /**
+     * Modifies project task.
+     *
+     * @param id_project the project id
+     * @param id_task the project task
+     */
     public void modifyProjectTask(int id_project, int id_task) {
         deleteProjectTask(id_task);
         addProjectTask(id_project, id_task);
@@ -103,6 +128,11 @@ public class ProjectDAO implements IDao<Project> {
         }
     }
 
+    /**
+     * Deletes project tasks by project id.
+     *
+     * @param id_project the project id
+     */
     private void deleteProjectTasks(int id_project) {
         TaskDAO taskDAO = new TaskDAO();
         Project project = getById(id_project);
@@ -118,6 +148,11 @@ public class ProjectDAO implements IDao<Project> {
         }
     }
 
+    /**
+     * Deletes project task by task id.
+     *
+     * @param id_task the task id
+     */
     public void deleteProjectTask(int id_task) {
         try (Connection connection = DBManager.getInstance().getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(SqlRequests.DELETE_PROJECT_TASK_BY_ID_TASK)) {
@@ -129,6 +164,11 @@ public class ProjectDAO implements IDao<Project> {
         }
     }
 
+    /**
+     * Deletes project tasks by project id.
+     *
+     * @param id_project the project id
+     */
     public void deleteTasksByIdProject(int id_project) {
         int id_task;
         TaskDAO taskDAO = new TaskDAO();
@@ -179,6 +219,12 @@ public class ProjectDAO implements IDao<Project> {
         return projectList;
     }
 
+    /**
+     * Gets project tasks.
+     *
+     * @param id_project the project id
+     * @return tasklist the task list
+     */
     public List<Task> getProjectTasks(int id_project) {
         List<Task> taskList = new ArrayList<>();
         TaskDAO taskDAO = new TaskDAO();
@@ -221,6 +267,12 @@ public class ProjectDAO implements IDao<Project> {
         return id_next;
     }
 
+    /**
+     * Builds project entity.
+     *
+     * @param resultSet the resultSet with project attributes
+     * @return project the new entity project
+     */
     private Project buildProject(ResultSet resultSet) throws SQLException {
         int id_project = resultSet.getInt(ColumnNames.ID);
         String name = resultSet.getString(ColumnNames.PROJECT_NAME);
@@ -233,5 +285,4 @@ public class ProjectDAO implements IDao<Project> {
         project.setTaskList(tasks);
         return project;
     }
-
 }

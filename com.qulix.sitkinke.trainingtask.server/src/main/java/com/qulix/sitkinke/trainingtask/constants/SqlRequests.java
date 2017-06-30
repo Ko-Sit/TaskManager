@@ -1,8 +1,9 @@
 package com.qulix.sitkinke.trainingtask.constants;
 
 /**
+ * Class that stores the sql requests.
  *
- * Created by upsit on 20.06.2017.
+ * @author sitkin
  */
 public class SqlRequests {
 
@@ -44,7 +45,9 @@ public class SqlRequests {
     public static final String DELETE_PROJECT_TASK_BY_ID_TASK = "DELETE FROM REFLIST_PROJ WHERE ID_TASK = ?";
     public static final String RESET_PROJECTS_AUTO_INCREMENT = "ALTER TABLE PROJECTS ALTER COLUMN ID RESTART WITH ";
 
-
+    /**
+     * Instantiates a new SqlRequests.
+     */
     private SqlRequests() {
     }
 }

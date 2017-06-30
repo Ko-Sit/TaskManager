@@ -52,5 +52,4 @@ public class DBManager {
         //Connection connection = DriverManager.getConnection("jdbc:hsqldb:file:D:\\IdeaProjects\\maanager\\db/db", "ke", "qwe123");
         return connection;
     }
-
 }

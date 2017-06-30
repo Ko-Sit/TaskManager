@@ -15,8 +15,9 @@ import com.qulix.sitkinke.trainingtask.managers.DBManager;
 import com.qulix.sitkinke.trainingtask.managers.DBUtility;
 
 /**
+ * The DAO realisation for {@link Employee}.
  *
- * Created by upsit on 12.06.2017.
+ * @author sitkin
  */
 public class EmployeeDAO implements IDao<Employee> {
 
@@ -67,6 +68,11 @@ public class EmployeeDAO implements IDao<Employee> {
         }
     }
 
+    /**
+     * Deletes employee tasks.
+     *
+     * @param id_employee the employee id
+     */
     private void deleteEmployeeTasks(int id_employee) {
         try (Connection connection = DBManager.getInstance().getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(SqlRequests.DELETE_EMPLOYEE_TASKS)) {
@@ -139,6 +145,12 @@ public class EmployeeDAO implements IDao<Employee> {
         return id_next;
     }
 
+    /**
+     * Builds employee entity.
+     *
+     * @param resultSet the resultSet with employee attributes
+     * @return employee the new entity employee
+     */
     private Employee buildEmployee(ResultSet resultSet) throws SQLException {
         int id = resultSet.getInt(ColumnNames.ID);
         String name = resultSet.getString(ColumnNames.EMPLOYEE_NAME);
@@ -150,5 +162,4 @@ public class EmployeeDAO implements IDao<Employee> {
         employee.setId(id);
         return employee;
     }
-
 }

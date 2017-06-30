@@ -1,8 +1,9 @@
 package com.qulix.sitkinke.trainingtask.constants;
 
 /**
+ * Class that stores the jsp parameters.
  *
- * Created by upsit on 27.06.2017.
+ * @author sitkin
  */
 public class Parameters {
 
