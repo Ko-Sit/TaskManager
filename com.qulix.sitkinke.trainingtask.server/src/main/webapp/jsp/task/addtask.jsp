@@ -3,7 +3,7 @@
 <html>
 <head>
     <link rel="stylesheet" href="../../css/style.css">
-    <script type="text/javascript" src="../../js/setdate.js"></script>
+    <script type="text/javascript" src="../../js/datavalidator.js"></script>
     <title>Add Task</title>
 </head>
 <body>
@@ -18,8 +18,8 @@
         <input type="text" name="name" value="" maxlength="30" required/>
     </div>
     <div class="field">
-        <label>Duration</label>
-        <input type="number" name="duration" value="" min="1" max="2147483647" required/>
+        <label>Duration (h)</label>
+        <input type="number" name="duration" id="duration" value="" min="1" required/>
     </div>
     <div class="field">
         <label>Start Date</label>
@@ -31,7 +31,7 @@
     </div>
     <div class="field">
         <label>State</label>
-        <select name="state" title="State" required>
+        <select name="state" id="state" title="State" required onclick="validateState()">
             <option>NOTSTARTED</option>
             <option>INPROGRESS</option>
             <option>COMPLETED</option>
@@ -56,7 +56,7 @@
             </c:forEach>
         </select>
     </div>
-    <button type="submit" name="command" value="addtask">Save Task</button>
+    <button type="submit" name="command" value="addtask" onclick="validateDuration()">Save Task</button>
 
     <button type="submit" name="command" value="showtasks" formnovalidate>Cancel</button>
 </form>

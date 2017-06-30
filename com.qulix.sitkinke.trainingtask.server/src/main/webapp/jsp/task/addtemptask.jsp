@@ -3,7 +3,7 @@
 <html>
 <head>
     <link rel="stylesheet" href="../../css/style.css">
-    <script type="text/javascript" src="../../js/setdate.js"></script>
+    <script type="text/javascript" src="../../js/datavalidator.js"></script>
     <title>Add Task</title>
 </head>
 <body>
@@ -19,7 +19,7 @@
     </div>
     <div class="field">
         <label>Duration</label>
-        <input type="number" name="duration" value="" min="1" max="2147483647" required/>
+        <input type="number" name="duration" id="duration" value="" min="1" required />
     </div>
     <div class="field">
         <label>Start Date</label>
@@ -31,7 +31,7 @@
     </div>
     <div class="field">
         <label>State</label>
-        <select name="state" title="State" required>
+        <select name="state" id="state" title="State" required onclick="validateState()">
             <option>NOTSTARTED</option>
             <option>INPROGRESS</option>
             <option>COMPLETED</option>
@@ -55,7 +55,7 @@
         </select>
     </div>
 
-    <button type="submit" name="command" value="addtemptask">Save Task</button>
+    <button type="submit" name="command" value="addtemptask" onclick="validateDuration()">Save Task</button>
 
     <button type="submit" name="command" value="canceltaskinaddproject" formnovalidate>Cancel</button>
 </form>
