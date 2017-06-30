@@ -14,8 +14,10 @@ import com.qulix.sitkinke.trainingtask.entities.Task;
 import com.qulix.sitkinke.trainingtask.resource.ConfigurationManager;
 
 /**
+ * Class that redirects page to add project page.
  *
- * Created by upsit on 16.06.2017.
+ * @author sitkin
+ * @see ActionCommand
  */
 public class GoToAddProjectCommand implements ActionCommand {
 

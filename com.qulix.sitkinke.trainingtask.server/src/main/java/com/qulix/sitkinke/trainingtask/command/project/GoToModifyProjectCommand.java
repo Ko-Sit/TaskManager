@@ -16,8 +16,10 @@ import com.qulix.sitkinke.trainingtask.entities.Task;
 import com.qulix.sitkinke.trainingtask.resource.ConfigurationManager;
 
 /**
+ * Class that redirects page to modify project page.
  *
- * Created by upsit on 19.06.2017.
+ * @author sitkin
+ * @see ActionCommand
  */
 public class GoToModifyProjectCommand implements ActionCommand {
 

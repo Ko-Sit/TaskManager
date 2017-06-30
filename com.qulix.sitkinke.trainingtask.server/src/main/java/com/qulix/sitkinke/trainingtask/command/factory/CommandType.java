@@ -1,7 +1,6 @@
 package com.qulix.sitkinke.trainingtask.command.factory;
 
 import com.qulix.sitkinke.trainingtask.command.ActionCommand;
-import com.qulix.sitkinke.trainingtask.command.EmptyCommand;
 import com.qulix.sitkinke.trainingtask.command.employee.AddEmployeeCommand;
 import com.qulix.sitkinke.trainingtask.command.employee.DeleteEmployeeCommand;
 import com.qulix.sitkinke.trainingtask.command.employee.GoToAddEmployeesCommand;
@@ -26,7 +25,7 @@ import com.qulix.sitkinke.trainingtask.command.task.DeleteTaskCommand;
 import com.qulix.sitkinke.trainingtask.command.task.DeleteTaskFromProjectCommand;
 import com.qulix.sitkinke.trainingtask.command.task.DeleteTempTaskCommand;
 import com.qulix.sitkinke.trainingtask.command.task.GoToAddTaskFromProjectCommand;
-import com.qulix.sitkinke.trainingtask.command.task.GoToAddTasksCommand;
+import com.qulix.sitkinke.trainingtask.command.task.GoToAddTaskCommand;
 import com.qulix.sitkinke.trainingtask.command.task.GoToAddTempTaskCommand;
 import com.qulix.sitkinke.trainingtask.command.task.GoToModifyTaskCommand;
 import com.qulix.sitkinke.trainingtask.command.task.GoToModifyTaskFromProjectCommand;
@@ -37,14 +36,15 @@ import com.qulix.sitkinke.trainingtask.command.task.ModifyTempTaskCommand;
 import com.qulix.sitkinke.trainingtask.command.task.ShowTasksCommand;
 
 /**
+ * Enum that describes states of {@link ActionCommand}.
  *
- * Created by upsit on 14.06.2017.
+ * @author sitkin
  */
 public enum CommandType {
     ADDEMPLOYEE (new AddEmployeeCommand()),
     SHOWEMPLOYEES (new ShowEmployeesCommand()),
     GOTOADDEMPLOYEE (new GoToAddEmployeesCommand()),
-    GOTOADDTASK (new GoToAddTasksCommand()),
+    GOTOADDTASK (new GoToAddTaskCommand()),
     SHOWTASKS (new ShowTasksCommand()),
     ADDTASK (new AddTaskCommand()),
     DELETEEMPLOYEE (new DeleteEmployeeCommand()),
@@ -75,11 +75,20 @@ public enum CommandType {
     CANCELTASKINADDPROJECT (new CancelTaskInAddProjectCommand()),
     GOTOMENU (new GoToMenuCommand());
 
+    ActionCommand command;
+
+    /**
+     * Instantiates a new CommandType.
+     * @param command the command
+     */
     CommandType (ActionCommand command) {
         this.command = command;
     }
 
-    ActionCommand command;
+    /**
+     * Gets current command.
+     * @return command the current command
+     */
     public ActionCommand getCurrentCommand() {
         return command;
     }

@@ -16,8 +16,10 @@ import com.qulix.sitkinke.trainingtask.entities.Project;
 import com.qulix.sitkinke.trainingtask.resource.ConfigurationManager;
 
 /**
+ * Class that redirects page to add task from add project page.
  *
- * Created by upsit on 18.06.2017.
+ * @author sitkin
+ * @see ActionCommand
  */
 public class GoToAddTempTaskCommand implements ActionCommand {
 

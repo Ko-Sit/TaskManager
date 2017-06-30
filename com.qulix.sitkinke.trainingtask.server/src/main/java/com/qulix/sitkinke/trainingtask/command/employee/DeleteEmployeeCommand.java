@@ -12,8 +12,10 @@ import com.qulix.sitkinke.trainingtask.entities.Employee;
 import com.qulix.sitkinke.trainingtask.resource.ConfigurationManager;
 
 /**
+ * Class that deletes employee.
  *
- * Created by upsit on 15.06.2017.
+ * @author sitkin
+ * @see ActionCommand
  */
 public class DeleteEmployeeCommand implements ActionCommand {
 

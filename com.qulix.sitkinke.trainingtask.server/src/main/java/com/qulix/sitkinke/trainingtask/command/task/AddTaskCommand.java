@@ -19,8 +19,10 @@ import com.qulix.sitkinke.trainingtask.managers.SQLDateConverter;
 import com.qulix.sitkinke.trainingtask.resource.ConfigurationManager;
 
 /**
+ * Class that adds task.
  *
- * Created by upsit on 14.06.2017.
+ * @author sitkin
+ * @see ActionCommand
  */
 public class AddTaskCommand implements ActionCommand {
 

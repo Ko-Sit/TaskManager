@@ -14,8 +14,10 @@ import com.qulix.sitkinke.trainingtask.entities.Task;
 import com.qulix.sitkinke.trainingtask.resource.ConfigurationManager;
 
 /**
+ * Class that cancels adding task in add project page.
  *
- * Created by upsit on 23.06.2017.
+ * @author sitkin
+ * @see ActionCommand
  */
 public class CancelTaskInAddProjectCommand implements ActionCommand {
 

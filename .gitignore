@@ -42,3 +42,4 @@ gradle-app.setting
 /db/
 build/
 com.qulix.sitkinke.trainingtask.database/database/
+/com.qulix.sitkinke.trainingtask.server/src/main/java/com/qulix/sitkinke/trainingtask/managers/DBManager.java

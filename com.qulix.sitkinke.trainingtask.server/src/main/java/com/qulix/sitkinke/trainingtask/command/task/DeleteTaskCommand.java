@@ -13,8 +13,10 @@ import com.qulix.sitkinke.trainingtask.entities.Task;
 import com.qulix.sitkinke.trainingtask.resource.ConfigurationManager;
 
 /**
+ * Class that deletes task.
  *
- * Created by upsit on 15.06.2017.
+ * @author sitkin
+ * @see ActionCommand
  */
 public class DeleteTaskCommand implements ActionCommand {
 

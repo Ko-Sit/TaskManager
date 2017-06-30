@@ -12,8 +12,10 @@ import com.qulix.sitkinke.trainingtask.entities.Task;
 import com.qulix.sitkinke.trainingtask.resource.ConfigurationManager;
 
 /**
+ * Class that shows task list.
  *
- * Created by upsit on 14.06.2017.
+ * @author sitkin
+ * @see ActionCommand
  */
 public class ShowTasksCommand implements ActionCommand {
 

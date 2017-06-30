@@ -9,8 +9,10 @@ import com.qulix.sitkinke.trainingtask.dao.EmployeeDAO;
 import com.qulix.sitkinke.trainingtask.resource.ConfigurationManager;
 
 /**
+ * Class that redirects page to add employee page.
  *
- * Created by upsit on 14.06.2017.
+ * @author sitkin
+ * @see ActionCommand
  */
 public class GoToAddEmployeesCommand implements ActionCommand {
 

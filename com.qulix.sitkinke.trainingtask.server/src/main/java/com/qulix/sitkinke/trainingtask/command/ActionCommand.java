@@ -2,11 +2,18 @@ package com.qulix.sitkinke.trainingtask.command;
 
 import javax.servlet.http.HttpServletRequest;
 
-/*
+/**
+ * Interface that describes basic command method.
  *
- * Created by upsit on 14.06.2017.
+ * @author sitkin
  */
 public interface ActionCommand {
 
+    /**
+     * Works with request.
+     *
+     * @param request the request
+     * @return string the next jsp path
+     */
     String execute(HttpServletRequest request);
 }

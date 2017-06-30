@@ -14,8 +14,10 @@ import com.qulix.sitkinke.trainingtask.entities.Task;
 import com.qulix.sitkinke.trainingtask.resource.ConfigurationManager;
 
 /**
+ * Class that adds project.
  *
- * Created by upsit on 18.06.2017.
+ * @author sitkin
+ * @see ActionCommand
  */
 public class AddProjectCommand implements ActionCommand {
 

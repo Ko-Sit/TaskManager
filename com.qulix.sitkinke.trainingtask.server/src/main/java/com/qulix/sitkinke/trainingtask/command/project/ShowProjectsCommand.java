@@ -12,8 +12,10 @@ import com.qulix.sitkinke.trainingtask.entities.Project;
 import com.qulix.sitkinke.trainingtask.resource.ConfigurationManager;
 
 /**
+ * Class that shows project list.
  *
- * Created by upsit on 16.06.2017.
+ * @author sitkin
+ * @see ActionCommand
  */
 public class ShowProjectsCommand implements ActionCommand {
 

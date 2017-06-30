@@ -12,8 +12,10 @@ import com.qulix.sitkinke.trainingtask.entities.Employee;
 import com.qulix.sitkinke.trainingtask.resource.ConfigurationManager;
 
 /**
+ * Class that adds employee.
  *
- * Created by upsit on 14.06.2017.
+ * @author sitkin
+ * @see ActionCommand
  */
 public class AddEmployeeCommand implements ActionCommand {
 

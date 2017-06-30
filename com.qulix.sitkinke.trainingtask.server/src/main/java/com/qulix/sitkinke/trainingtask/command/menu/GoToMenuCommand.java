@@ -7,8 +7,10 @@ import com.qulix.sitkinke.trainingtask.constants.PathConfigs;
 import com.qulix.sitkinke.trainingtask.resource.ConfigurationManager;
 
 /**
+ * Class that redirects page to main menu.
  *
- * Created by upsit on 23.06.2017.
+ * @author sitkin
+ * @see ActionCommand
  */
 public class GoToMenuCommand implements ActionCommand {
 

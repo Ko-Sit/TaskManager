@@ -39,4 +39,6 @@ public class Parameters {
     public static final String LINK_ABBREVIATION = "abbr";
     public static final String LINK_DESCRIPTION = "descr";
 
+    public static final String COMMAND = "command";
+
 }
