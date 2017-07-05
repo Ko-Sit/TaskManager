@@ -51,8 +51,11 @@
         <label>Employees</label>
         <select name="select2" multiple="multiple" tabindex="1" title="title" required>
             <jsp:useBean id="employees" scope="request" type="java.util.List"/>
+            <jsp:useBean id="taskExecutorsID" scope="request" type="java.util.List"/>
             <c:forEach var="employee" items="${employees}">
-                <option>${employee.id}. ${employee.surname} ${employee.name}</option>
+                <option <c:if test='${taskExecutorsID.contains(employee.id)}'>selected="selected"</c:if>>
+                    ${employee.id}. ${employee.surname} ${employee.name}
+                </option>
             </c:forEach>
         </select>
     </div>

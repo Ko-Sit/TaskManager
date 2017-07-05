@@ -278,11 +278,11 @@ public class ProjectDAO implements IDao<Project> {
         String name = resultSet.getString(ColumnNames.PROJECT_NAME);
         String abbreviation = resultSet.getString(ColumnNames.PROJECT_ABBREVIATION);
         String description = resultSet.getString(ColumnNames.PROJECT_DESCRIPTION);
-        List<Task> tasks = getProjectTasks(id_project);
+        //List<Task> tasks = getProjectTasks(id_project);
 
         Project project = new Project(name, abbreviation, description);
         project.setId(id_project);
-        project.setTaskList(tasks);
+        //project.setTaskList(tasks);
         return project;
     }
 }

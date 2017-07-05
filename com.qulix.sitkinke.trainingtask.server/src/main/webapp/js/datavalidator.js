@@ -14,19 +14,21 @@ function setMax() {
 * POSTPONED - 3
 */
 function validateState() {
-    var startDate = new Date(document.getElementById('startdate').value);
-    var endDate = new Date(document.getElementById('enddate').value);
-    var currentDate = new Date();
-    if (currentDate < startDate) {
-        document.getElementById("state").options[1].disabled = "disabled";
-        document.getElementById("state").options[2].disabled = "disabled";
-        document.getElementById("state").options[3].disabled = "disabled";
-    }
-    if (currentDate > endDate) {
-        document.getElementById("state").options[0].disabled = "disabled";
-        document.getElementById("state").options[1].disabled = "disabled";
-        document.getElementById("state").options[3].disabled = "disabled";
-    }
+    //todo define locked states
+    // var startDate = new Date(document.getElementById('startdate').value);
+    // var endDate = new Date(document.getElementById('enddate').value);
+    // var currentDate = new Date();
+    // if (currentDate < startDate) {
+    //     document.getElementById("state").options[1].disabled = "disabled";
+    //     document.getElementById("state").options[2].disabled = "disabled";
+    //     document.getElementById("state").options[3].disabled = "disabled";
+    // }
+    // if (currentDate > endDate) {
+    //     document.getElementById("state").options[0].disabled = "disabled";
+    //     document.getElementById("state").options[1].disabled = "disabled";
+    //     document.getElementById("state").options[3].disabled = "disabled";
+    // }
+
 }
 
 function validateDuration() {

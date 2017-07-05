@@ -34,6 +34,7 @@ public class Parameters {
     public static final String TASK_PROJECT_NAME = "projectname";
     public static final String TASK_EMPLOYEES = "select2";
     public static final String TASK_LIST = "tasks";
+    public static final String TASK_EXECUTORS_ID = "taskExecutorsID";
 
     public static final String LINK_NAME = "name";
     public static final String LINK_ABBREVIATION = "abbr";

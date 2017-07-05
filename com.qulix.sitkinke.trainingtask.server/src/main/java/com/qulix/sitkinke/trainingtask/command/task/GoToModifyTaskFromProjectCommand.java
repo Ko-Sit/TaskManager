@@ -1,5 +1,6 @@
 package com.qulix.sitkinke.trainingtask.command.task;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -36,6 +37,13 @@ public class GoToModifyTaskFromProjectCommand implements ActionCommand {
         TaskDAO taskDAO = new TaskDAO();
         Task task = taskDAO.getById(id_task);
         request.setAttribute(Parameters.SELECTED_TASK, task);
+
+        List<Employee> taskExecutors = task.getEmployeeList();
+        List<Integer> taskExecutorsID = new ArrayList<>();
+        for (Employee employee : taskExecutors ) {
+            taskExecutorsID.add(employee.getId());
+        }
+        request.setAttribute(Parameters.TASK_EXECUTORS_ID, taskExecutorsID);
 
         List<Employee> employees;
         EmployeeDAO employeeDAO = new EmployeeDAO();

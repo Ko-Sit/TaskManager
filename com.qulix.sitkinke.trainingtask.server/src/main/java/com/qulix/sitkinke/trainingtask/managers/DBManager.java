@@ -47,7 +47,7 @@ public class DBManager {
         catch (ClassNotFoundException e) {
             System.out.println("jdbcDriver not found!");
         }
-
+        Watcher.inc();
         Connection connection =  DriverManager.getConnection("jdbc:hsqldb:hsql://localhost:9001/database", "sa", "");
         //Connection connection = DriverManager.getConnection("jdbc:hsqldb:file:D:\\IdeaProjects\\maanager\\db/db", "ke", "qwe123");
         return connection;
