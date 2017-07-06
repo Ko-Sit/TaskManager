@@ -23,13 +23,10 @@ public class LoginCommand implements ActionCommand{
         String page = null;
         String login = request.getParameter(Parameters.LOGIN);
         String password = request.getParameter(Parameters.PASSWORD);
-        System.out.println(login);
-        System.out.println(password);
         UserType type;
         HttpSession session = request.getSession();
         EmployeeDAO employeeDAO = new EmployeeDAO();
         if (employeeDAO.isAuthorized(login, password)) {
-            System.out.println("Success!");
             Employee employee = employeeDAO.getByLogin(login);
             System.out.println(employee);
             type = employee.getUserType();
@@ -38,7 +35,6 @@ public class LoginCommand implements ActionCommand{
         }
         else {
             type = UserType.GUEST;
-            System.out.println("Failed.");
             session.setAttribute(Attributes.USER_TYPE, type);
             request.setAttribute("errorLoginMessage", "Invalid login data!");
             page = ConfigurationManager.getProperty(PathConfigs.LOGIN_PAGE);
