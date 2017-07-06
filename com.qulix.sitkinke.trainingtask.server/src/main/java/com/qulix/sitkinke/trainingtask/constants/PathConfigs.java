@@ -28,4 +28,5 @@ public class PathConfigs {
 
     public static final String ERROR_PAGE = "path.page.errorpage";
     public static final String LOGIN_PAGE = "path.page.loginpage";
+    public static final String REMIND_PASSWORD = "path.page.remindpassword";
 }

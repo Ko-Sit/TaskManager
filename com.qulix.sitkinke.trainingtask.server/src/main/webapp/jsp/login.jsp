@@ -19,9 +19,11 @@
 
         <button type="submit" name="command" value="login">Login</button>
         <br>
+        ${message}
+        <br>
         ${errorLoginMessage}
         <br>
-        <a href="controller?command=remindpassword">Remind password</a>
+        <button type="submit" name="command" value="gotoremindpassword">Forgot password</button>
 
     </form>
 </body>
