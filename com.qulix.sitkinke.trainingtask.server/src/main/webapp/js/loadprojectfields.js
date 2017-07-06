@@ -7,4 +7,5 @@ function load(linkID) {
     var descr = document.getElementById('descr').value;
     var parameters = '&name=' + name + '&abbr=' + abbr + '&descr=' + descr;
     document.getElementById(linkID).href += parameters;
+
 }

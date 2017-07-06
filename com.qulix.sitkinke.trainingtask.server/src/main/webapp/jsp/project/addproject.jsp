@@ -58,9 +58,9 @@
                 </td>
                 <td>${task.state}</td>
                 <td>
-                    <a id="deletelink" href="controller?command=deletetemptask&id=${task.id}" onclick="load('deletelink')">Delete</a>
+                    <a id="deletelink${task.id}" href="controller?command=deletetemptask&id=${task.id}" onclick="load('deletelink${task.id}')">Delete</a>
                 </td>
-                <td><a id="modifylink" href="controller?command=gotomodifytemptask&id=${task.id}" onclick="load('modifylink')">Modify</a>
+                <td><a id="modifylink${task.id}" href="controller?command=gotomodifytemptask&id=${task.id}" onclick="load('modifylink${task.id}')">Modify</a>
                 </td>
             </tr>
         </c:forEach>
