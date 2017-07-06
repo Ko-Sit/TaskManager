@@ -8,6 +8,7 @@ import com.qulix.sitkinke.trainingtask.command.employee.GoToModifyEmployeeComman
 import com.qulix.sitkinke.trainingtask.command.employee.ModifyEmployeeCommand;
 import com.qulix.sitkinke.trainingtask.command.employee.ShowEmployeesCommand;
 import com.qulix.sitkinke.trainingtask.command.login.LoginCommand;
+import com.qulix.sitkinke.trainingtask.command.login.RemindPasswordCommand;
 import com.qulix.sitkinke.trainingtask.command.menu.GoToMenuCommand;
 import com.qulix.sitkinke.trainingtask.command.project.AddProjectCommand;
 import com.qulix.sitkinke.trainingtask.command.project.CancelAddProjectCommand;
@@ -75,7 +76,8 @@ public enum CommandType {
     CANCELTASKINMODIFYPROJECT (new CancelTaskInModifyProjectCommand()),
     CANCELTASKINADDPROJECT (new CancelTaskInAddProjectCommand()),
     GOTOMENU (new GoToMenuCommand()),
-    LOGIN (new LoginCommand());
+    LOGIN (new LoginCommand()),
+    REMINDPASSWORD (new RemindPasswordCommand());
 
     ActionCommand command;
 
