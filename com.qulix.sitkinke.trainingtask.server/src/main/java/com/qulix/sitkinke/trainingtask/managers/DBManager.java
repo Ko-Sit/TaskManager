@@ -1,9 +1,8 @@
 package com.qulix.sitkinke.trainingtask.managers;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.SQLException;
-
+import org.apache.commons.dbcp.BasicDataSource;
 /**
  * Manager class that provides access to database.
  *
@@ -12,13 +11,21 @@ import java.sql.SQLException;
 public class DBManager {
 
     private static DBManager instance;
+    private BasicDataSource dataSource;
 
     /**
      * Instantiates a new DBManager.
      *
      */
     private DBManager() {
-
+        dataSource = new BasicDataSource();
+        dataSource.setDriverClassName("org.hsqldb.jdbc.JDBCDriver");
+        dataSource.setUsername("sa");
+        dataSource.setPassword("");
+        dataSource.setUrl("jdbc:hsqldb:hsql://localhost:9001/database");
+        dataSource.setMinIdle(5);
+        dataSource.setMaxIdle(20);
+        dataSource.setMaxOpenPreparedStatements(180);
     }
 
     /**
@@ -40,16 +47,6 @@ public class DBManager {
      * @throws SQLException
      */
     public Connection getConnection() throws SQLException {
-
-        try {
-            Class.forName("org.hsqldb.jdbc.JDBCDriver");
-        }
-        catch (ClassNotFoundException e) {
-            System.out.println("jdbcDriver not found!");
-        }
-        //Watcher.inc();
-        Connection connection =  DriverManager.getConnection("jdbc:hsqldb:hsql://localhost:9001/database", "sa", "");
-        //Connection connection = DriverManager.getConnection("jdbc:hsqldb:file:D:\\IdeaProjects\\maanager\\db/db", "ke", "qwe123");
-        return connection;
+        return this.dataSource.getConnection();
     }
 }
