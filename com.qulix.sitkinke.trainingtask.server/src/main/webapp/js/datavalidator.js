@@ -36,6 +36,8 @@ function validateDuration() {
     var endDate = new Date(document.getElementById('enddate').value);
     var maxDurationInMilliSeconds = endDate - startDate;
     var maxDurationInHours = maxDurationInMilliSeconds / (1000 * 3600);
-    console.log(maxDurationInHours);
+    if (maxDurationInHours == 0) {
+        maxDurationInHours = 24;
+    }
     document.getElementById("duration").max = maxDurationInHours;
 }
