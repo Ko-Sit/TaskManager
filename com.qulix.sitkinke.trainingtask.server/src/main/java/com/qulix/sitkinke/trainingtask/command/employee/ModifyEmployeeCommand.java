@@ -9,6 +9,7 @@ import com.qulix.sitkinke.trainingtask.constants.Parameters;
 import com.qulix.sitkinke.trainingtask.constants.PathConfigs;
 import com.qulix.sitkinke.trainingtask.dao.EmployeeDAO;
 import com.qulix.sitkinke.trainingtask.entities.Employee;
+import com.qulix.sitkinke.trainingtask.enums.UserType;
 import com.qulix.sitkinke.trainingtask.resource.ConfigurationManager;
 
 /**
@@ -27,8 +28,11 @@ public class ModifyEmployeeCommand implements ActionCommand {
         String name = request.getParameter(Parameters.EMPLOYEE_NAME);
         String patronymic = request.getParameter(Parameters.EMPLOYEE_PATRONYMIC);
         String position = request.getParameter(Parameters.EMPLOYEE_POSITION);
+        String email = request.getParameter(Parameters.EMPLOYEE_EMAIL);
+        String password = request.getParameter(Parameters.EMPLOYEE_PASSWORD);
+        UserType userType = UserType.valueOf(request.getParameter(Parameters.EMPLOYEE_USERTYPE).toUpperCase());
 
-        Employee employee = new Employee(surname, name, patronymic, position);
+        Employee employee = new Employee(surname, name, patronymic, position, email, password, userType);
         employee.setId(id);
         EmployeeDAO employeeDAO = new EmployeeDAO();
         employeeDAO.modify(employee);

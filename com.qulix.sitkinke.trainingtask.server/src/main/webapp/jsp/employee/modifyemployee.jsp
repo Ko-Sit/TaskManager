@@ -28,6 +28,21 @@
         <label>Position</label>
         <input type="text" value="${selectedemployee.position}" name="position" required/>
     </div>
+    <div class="field">
+        <label>Email</label>
+        <input type="text" name="login" value="${selectedemployee.email}" required/>
+    </div>
+    <div class="field">
+        <label>Password</label>
+        <input type="password" name="password" value="${selectedemployee.password}" required/>
+    </div>
+    <div class="field">
+        <label>User type</label>
+        <select name="usertype" id="usertype" title="usertype" required>
+            <option>USER</option>
+            <option>ADMINISTRATOR</option>
+        </select>
+    </div>
     <button type="submit" name="command" value="modifyemployee">Save Employee</button>
 
     <button type="submit" name="command" value="showemployees" formnovalidate>Cancel</button>

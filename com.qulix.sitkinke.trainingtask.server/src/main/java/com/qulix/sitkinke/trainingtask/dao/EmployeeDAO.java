@@ -6,10 +6,12 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import com.qulix.sitkinke.trainingtask.constants.ColumnNames;
 import com.qulix.sitkinke.trainingtask.constants.SqlRequests;
 import com.qulix.sitkinke.trainingtask.entities.Employee;
+import com.qulix.sitkinke.trainingtask.enums.UserType;
 import com.qulix.sitkinke.trainingtask.exceptions.DaoException;
 import com.qulix.sitkinke.trainingtask.managers.DBManager;
 import com.qulix.sitkinke.trainingtask.managers.DBUtility;
@@ -29,6 +31,9 @@ public class EmployeeDAO implements IDao<Employee> {
             preparedStatement.setString(2, employee.getSurname());
             preparedStatement.setString(3, employee.getPatronymic());
             preparedStatement.setString(4, employee.getPosition());
+            preparedStatement.setString(5, employee.getEmail());
+            preparedStatement.setString(6, employee.getPassword());
+            preparedStatement.setString(7, employee.getUserType().toString());
             preparedStatement.executeUpdate();
         }
         catch (SQLException e) {
@@ -44,7 +49,10 @@ public class EmployeeDAO implements IDao<Employee> {
             preparedStatement.setString(2, employee.getSurname());
             preparedStatement.setString(3, employee.getPatronymic());
             preparedStatement.setString(4, employee.getPosition());
-            preparedStatement.setInt(5, employee.getId());
+            preparedStatement.setString(5, employee.getEmail());
+            preparedStatement.setString(6, employee.getPassword());
+            preparedStatement.setString(7, employee.getUserType().toString());
+            preparedStatement.setInt(8, employee.getId());
             preparedStatement.executeUpdate();
         }
         catch (SQLException e) {
@@ -157,9 +165,53 @@ public class EmployeeDAO implements IDao<Employee> {
         String surname = resultSet.getString(ColumnNames.EMPLOYEE_SURNAME);
         String patronymic = resultSet.getString(ColumnNames.EMPLOYEE_PATRONYMIC);
         String position = resultSet.getString(ColumnNames.EMPLOYEE_POSITION);
+        String email = resultSet.getString(ColumnNames.EMPLOYEE_EMAIL);
+        String password = resultSet.getString(ColumnNames.EMPLOYEE_PASSWORD);
+        UserType userType = UserType.valueOf(resultSet.getString(ColumnNames.EMPLOYEE_USERTYPE).toUpperCase());
 
-        Employee employee = new Employee(name, surname, patronymic, position);
+        Employee employee = new Employee(name, surname, patronymic, position, email, password, userType);
         employee.setId(id);
+        return employee;
+    }
+
+    public boolean isAuthorized(String login, String password) {
+        boolean isLogIn = false;
+        try (Connection connection = DBManager.getInstance().getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(SqlRequests.CHECK_AUTHORIZATION)) {
+            preparedStatement.setString(1, login);
+            preparedStatement.setString(2, password);
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                if (resultSet.next()) {
+                    System.out.println(resultSet.getString(1));
+                    System.out.println(resultSet.getString(2));
+                    isLogIn = true;
+                }
+            }
+        }
+        catch (SQLException e) {
+            throw new DaoException("SQL exception occurred during check authorized employee", e);
+        }
+        return isLogIn;
+    }
+
+    public Employee getByLogin(String login) {
+        Employee employee;
+        try (Connection connection = DBManager.getInstance().getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(SqlRequests.GET_EMPLOYEE_BY_EMAIL)) {
+            preparedStatement.setString(1, login);
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                if (resultSet.next()) {
+                    employee = buildEmployee(resultSet);
+                }
+                else {
+                    return null;
+                }
+            }
+        }
+        catch (SQLException e) {
+            throw new DaoException("SQL exception occurred during get by email employee", e);
+        }
+
         return employee;
     }
 }

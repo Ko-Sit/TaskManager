@@ -12,6 +12,9 @@ public class Parameters {
     public static final String EMPLOYEE_PATRONYMIC = "patronymic";
     public static final String EMPLOYEE_POSITION = "position";
     public static final String EMPLOYEE_LIST = "employees";
+    public static final String EMPLOYEE_EMAIL = "login";
+    public static final String EMPLOYEE_PASSWORD = "password";
+    public static final String EMPLOYEE_USERTYPE = "usertype";
 
     public static final String ID = "id";
     public static final String ID_GENERATED = "idgenerated";
@@ -41,5 +44,7 @@ public class Parameters {
     public static final String LINK_DESCRIPTION = "descr";
 
     public static final String COMMAND = "command";
+    public static final String LOGIN = "login";
+    public static final String PASSWORD = "password";
 
 }

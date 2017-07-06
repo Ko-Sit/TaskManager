@@ -15,6 +15,9 @@ public class ColumnNames {
     public static final String EMPLOYEE_SURNAME = "SURNAME";
     public static final String EMPLOYEE_PATRONYMIC = "PATRONYMIC";
     public static final String EMPLOYEE_POSITION = "POSITION";
+    public static final String EMPLOYEE_EMAIL = "EMAIL";
+    public static final String EMPLOYEE_PASSWORD = "PASSWORD";
+    public static final String EMPLOYEE_USERTYPE = "USERTYPE";
 
     public static final String PROJECT_NAME = "NAME";
     public static final String PROJECT_ABBREVIATION = "ABBREVIATION";

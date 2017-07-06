@@ -8,14 +8,16 @@ package com.qulix.sitkinke.trainingtask.constants;
 public class SqlRequests {
 
     // employee requests
-    public static final String ADD_EMPLOYEE = "INSERT INTO EMPLOYEES (NAME, SURNAME, PATRONYMIC, POSITION) VALUES (?, ?, ?, ?)";
+    public static final String ADD_EMPLOYEE = "INSERT INTO EMPLOYEES (NAME, SURNAME, PATRONYMIC, POSITION, EMAIL, PASSWORD, USERTYPE) VALUES (?, ?, ?, ?, ?, ?, ?)";
     public static final String GET_ALL_EMPLOYEES = "SELECT * FROM EMPLOYEES";
     public static final String GET_EMPLOYEES_BY_ID = "SELECT * FROM EMPLOYEES WHERE ID = ?";
+    public static final String GET_EMPLOYEE_BY_EMAIL = "SELECT * FROM EMPLOYEES WHERE EMAIL = ?";
     public static final String GET_NEXT_EMPLOYEE_ID = "SELECT ID FROM EMPLOYEES ORDER BY ID DESC LIMIT 1";
-    public static final String MODIFY_EMPLOYEE = "UPDATE EMPLOYEES SET NAME = ?, SURNAME = ?, PATRONYMIC = ?, POSITION = ? WHERE ID = ?";
+    public static final String MODIFY_EMPLOYEE = "UPDATE EMPLOYEES SET NAME = ?, SURNAME = ?, PATRONYMIC = ?, POSITION = ?, EMAIL = ?, PASSWORD = ?, USERTYPE = ? WHERE ID = ?";
     public static final String DELETE_EMPLOYEE = "DELETE FROM EMPLOYEES WHERE ID = ?";
     public static final String DELETE_EMPLOYEE_TASKS = "DELETE FROM REFLIST_EMPL WHERE ID_EMPLOYEE = ?";
     public static final String RESET_EMPLOYEES_AUTO_INCREMENT = "ALTER TABLE EMPLOYEES ALTER COLUMN ID RESTART WITH ";
+    public static final String CHECK_AUTHORIZATION = "SELECT EMAIL, PASSWORD FROM EMPLOYEES WHERE EMAIL = ? AND PASSWORD = ?";
 
     // task requests
     public static final String ADD_TASK = "INSERT INTO TASKS (NAME, DURATION, STARTDATE, ENDDATE, STATE, PROJECTNAME) VALUES (?, ?, ?, ?, ?, ?)";

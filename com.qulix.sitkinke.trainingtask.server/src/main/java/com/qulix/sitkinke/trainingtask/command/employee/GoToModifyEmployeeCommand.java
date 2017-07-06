@@ -25,7 +25,7 @@ public class GoToModifyEmployeeCommand implements ActionCommand {
         EmployeeDAO employeeDAO = new EmployeeDAO();
         Employee employee = employeeDAO.getById(id_employee);
         request.setAttribute(Parameters.SELECTED_EMPLOYEE, employee);
-
+        System.out.println(employee.getEmail());
         page = ConfigurationManager.getProperty(PathConfigs.MODIFY_EMPLOYEE_PAGE);
         return page;
     }
