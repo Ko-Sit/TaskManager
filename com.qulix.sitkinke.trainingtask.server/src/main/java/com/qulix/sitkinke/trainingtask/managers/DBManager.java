@@ -49,7 +49,6 @@ public class DBManager {
      * @throws SQLException
      */
     public Connection getConnection() throws SQLException {
-        Watcher.inc();
         return this.dataSource.getConnection();
     }
 }
