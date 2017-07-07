@@ -18,7 +18,7 @@ import com.qulix.sitkinke.trainingtask.resource.ConfigurationManager;
  * @author sitkin
  * @see ActionCommand
  */
-public class LoginCommand implements ActionCommand{
+public class LoginCommand implements ActionCommand {
 
     @Override
     public String execute(HttpServletRequest request) {

@@ -132,7 +132,7 @@ public class TaskDAO implements IDao<Task> {
      * Gets tasks by project abbreviation.
      *
      * @param projectAbbr the project abbreviation
-     * @return  tasklist the task list
+     * @return tasklist the task list
      */
     public List<Integer> getTasksByProjectAbbr(String projectAbbr) {
         List<Integer> taskList = new ArrayList<>();

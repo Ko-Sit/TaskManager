@@ -8,11 +8,11 @@ function setMax() {
     document.getElementById("startdate").max = maxValue;
 }
 /*
-* NOTSTARTED - 0
-* INPROGRESS - 1
-* COMPLETED - 2
-* POSTPONED - 3
-*/
+ * NOTSTARTED - 0
+ * INPROGRESS - 1
+ * COMPLETED - 2
+ * POSTPONED - 3
+ */
 function validateState() {
     //todo define locked states
     // var startDate = new Date(document.getElementById('startdate').value);

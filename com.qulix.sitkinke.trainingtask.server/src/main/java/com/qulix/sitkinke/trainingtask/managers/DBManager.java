@@ -2,7 +2,9 @@ package com.qulix.sitkinke.trainingtask.managers;
 
 import java.sql.Connection;
 import java.sql.SQLException;
+
 import org.apache.commons.dbcp.BasicDataSource;
+
 /**
  * Manager class that provides access to database.
  *
@@ -47,6 +49,7 @@ public class DBManager {
      * @throws SQLException
      */
     public Connection getConnection() throws SQLException {
+        Watcher.inc();
         return this.dataSource.getConnection();
     }
 }

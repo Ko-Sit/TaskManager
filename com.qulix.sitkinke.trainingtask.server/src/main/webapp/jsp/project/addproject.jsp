@@ -60,7 +60,8 @@
                 <td>
                     <a id="deletelink${task.id}" href="controller?command=deletetemptask&id=${task.id}" onclick="load('deletelink${task.id}')">Delete</a>
                 </td>
-                <td><a id="modifylink${task.id}" href="controller?command=gotomodifytemptask&id=${task.id}" onclick="load('modifylink${task.id}')">Modify</a>
+                <td>
+                    <a id="modifylink${task.id}" href="controller?command=gotomodifytemptask&id=${task.id}" onclick="load('modifylink${task.id}')">Modify</a>
                 </td>
             </tr>
         </c:forEach>

@@ -6,7 +6,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 import com.qulix.sitkinke.trainingtask.constants.ColumnNames;
 import com.qulix.sitkinke.trainingtask.constants.SqlRequests;

@@ -26,7 +26,7 @@ public class EmailManager {
      * @param email the user email
      * @param password the user password
      */
-    public static void send (String email, String password) throws MessagingException {
+    public static void send(String email, String password) throws MessagingException {
         Properties props = new Properties();
         props.put("mail.smtp.host", "smtp.yandex.ru");
         props.put("mail.smtp.auth", "true");

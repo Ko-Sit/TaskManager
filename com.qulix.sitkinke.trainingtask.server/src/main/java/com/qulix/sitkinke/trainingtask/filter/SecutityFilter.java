@@ -16,8 +16,8 @@ import javax.servlet.http.HttpServletResponse;
  *
  * Created by upsit on 06.07.2017.
  */
-@WebFilter(urlPatterns = { "/controller" })
-public class SecutityFilter implements Filter{
+@WebFilter(urlPatterns = {"/controller"})
+public class SecutityFilter implements Filter {
 
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {

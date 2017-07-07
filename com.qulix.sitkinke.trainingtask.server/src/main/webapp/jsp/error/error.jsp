@@ -6,10 +6,11 @@
     <title>Error</title>
 </head>
 <body>
-    <form name="loginForm" method="POST" action="controller">
-        <jsp:useBean id="exception" scope="request" type="java.lang.String"/>
-        ${exception}
-        <br><button type="submit" name="command" value="gotomenu">To Menu</button>
-    </form>
+<form name="loginForm" method="POST" action="controller">
+    <jsp:useBean id="exception" scope="request" type="java.lang.String"/>
+    ${exception}
+    <br>
+    <button type="submit" name="command" value="gotomenu">To Menu</button>
+</form>
 </body>
 </html>

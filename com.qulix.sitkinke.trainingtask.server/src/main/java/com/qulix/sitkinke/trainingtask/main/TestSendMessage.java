@@ -15,6 +15,7 @@ import javax.mail.internet.MimeMessage;
  * Created by upsit on 06.07.2017.
  */
 public class TestSendMessage {
+
     public static void main(String[] args) throws MessagingException {
         Properties props = new Properties();
         props.put("mail.smtp.host", "smtp.yandex.ru");

@@ -6,25 +6,25 @@
     <title>Login</title>
 </head>
 <body>
-    <h1>Login page</h1>
-    <form name="loginForm" method="POST" action="controller">
-        <div class="field">
-            <label>Email</label>
-            <input type="text" name="login" value="buck@gmail.com" required/>
-        </div>
-        <div class="field">
-            <label>Password</label>
-            <input type="password" name="password" value="123" required/>
-        </div>
+<h1>Login page</h1>
+<form name="loginForm" method="POST" action="controller">
+    <div class="field">
+        <label>Email</label>
+        <input type="text" name="login" value="buck@gmail.com" required/>
+    </div>
+    <div class="field">
+        <label>Password</label>
+        <input type="password" name="password" value="123" required/>
+    </div>
 
-        <button type="submit" name="command" value="login">Login</button>
-        <br>
-        ${message}
-        <br>
-        ${errorLoginMessage}
-        <br>
-        <button type="submit" name="command" value="gotoremindpassword">Forgot password</button>
+    <button type="submit" name="command" value="login">Login</button>
+    <br>
+    ${message}
+    <br>
+    ${errorLoginMessage}
+    <br>
+    <button type="submit" name="command" value="gotoremindpassword">Forgot password</button>
 
-    </form>
+</form>
 </body>
 </html>

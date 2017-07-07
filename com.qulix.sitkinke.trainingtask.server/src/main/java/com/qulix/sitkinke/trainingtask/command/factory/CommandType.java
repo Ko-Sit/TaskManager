@@ -27,8 +27,8 @@ import com.qulix.sitkinke.trainingtask.command.task.AddTempTaskCommand;
 import com.qulix.sitkinke.trainingtask.command.task.DeleteTaskCommand;
 import com.qulix.sitkinke.trainingtask.command.task.DeleteTaskFromProjectCommand;
 import com.qulix.sitkinke.trainingtask.command.task.DeleteTempTaskCommand;
-import com.qulix.sitkinke.trainingtask.command.task.GoToAddTaskFromProjectCommand;
 import com.qulix.sitkinke.trainingtask.command.task.GoToAddTaskCommand;
+import com.qulix.sitkinke.trainingtask.command.task.GoToAddTaskFromProjectCommand;
 import com.qulix.sitkinke.trainingtask.command.task.GoToAddTempTaskCommand;
 import com.qulix.sitkinke.trainingtask.command.task.GoToModifyTaskCommand;
 import com.qulix.sitkinke.trainingtask.command.task.GoToModifyTaskFromProjectCommand;
@@ -44,42 +44,42 @@ import com.qulix.sitkinke.trainingtask.command.task.ShowTasksCommand;
  * @author sitkin
  */
 public enum CommandType {
-    ADDEMPLOYEE (new AddEmployeeCommand()),
-    SHOWEMPLOYEES (new ShowEmployeesCommand()),
-    GOTOADDEMPLOYEE (new GoToAddEmployeesCommand()),
-    GOTOADDTASK (new GoToAddTaskCommand()),
-    SHOWTASKS (new ShowTasksCommand()),
-    ADDTASK (new AddTaskCommand()),
-    DELETEEMPLOYEE (new DeleteEmployeeCommand()),
-    GOTOMODIFYEMPLOYEE (new GoToModifyEmployeeCommand()),
-    MODIFYEMPLOYEE (new ModifyEmployeeCommand()),
-    DELETETASK (new DeleteTaskCommand()),
-    GOTOMODIFYTASK (new GoToModifyTaskCommand()),
-    MODIFYTASK (new ModifyTaskCommand()),
-    SHOWPROJECTS (new ShowProjectsCommand()),
-    GOTOADDPROJECT (new GoToAddProjectCommand()),
-    DELETEPROJECT (new DeleteProjectCommand()),
-    ADDPROJECT (new AddProjectCommand()),
-    GOTOADDTEMPTASK (new GoToAddTempTaskCommand()),
-    ADDTEMPTASK (new AddTempTaskCommand()),
-    DELETETEMPTASK (new DeleteTempTaskCommand()),
-    GOTOMODIFYTEMPTASK (new GoToModifyTempTaskCommand()),
-    MODIFYTEMPTASK (new ModifyTempTaskCommand()),
-    GOTOMODIFYPROJECT (new GoToModifyProjectCommand()),
-    MODIFYPROJECT (new ModifyProjectCommand()),
-    DELETETASKFROMPROJECT (new DeleteTaskFromProjectCommand()),
-    GOTOADDTASKFROMPROJECT (new GoToAddTaskFromProjectCommand()),
-    ADDTASKFROMPROJECT (new AddTaskFromProjectCommand()),
-    GOTOMODIFYTASKFROMPROJECT (new GoToModifyTaskFromProjectCommand()),
-    MODIFYTASKFROMPROJECT (new ModifyTaskFromProjectCommand()),
-    CANCELADDPROJECT (new CancelAddProjectCommand()),
-    CANCELMODIFYPROJECT (new CancelModifyProjectCommand()),
-    CANCELTASKINMODIFYPROJECT (new CancelTaskInModifyProjectCommand()),
-    CANCELTASKINADDPROJECT (new CancelTaskInAddProjectCommand()),
-    GOTOMENU (new GoToMenuCommand()),
-    LOGIN (new LoginCommand()),
-    GOTOREMINDPASSWORD (new GoToRemindPasswordCommand()),
-    REMINDPASSWORD (new RemindPasswordCommand());
+    ADDEMPLOYEE(new AddEmployeeCommand()),
+    SHOWEMPLOYEES(new ShowEmployeesCommand()),
+    GOTOADDEMPLOYEE(new GoToAddEmployeesCommand()),
+    GOTOADDTASK(new GoToAddTaskCommand()),
+    SHOWTASKS(new ShowTasksCommand()),
+    ADDTASK(new AddTaskCommand()),
+    DELETEEMPLOYEE(new DeleteEmployeeCommand()),
+    GOTOMODIFYEMPLOYEE(new GoToModifyEmployeeCommand()),
+    MODIFYEMPLOYEE(new ModifyEmployeeCommand()),
+    DELETETASK(new DeleteTaskCommand()),
+    GOTOMODIFYTASK(new GoToModifyTaskCommand()),
+    MODIFYTASK(new ModifyTaskCommand()),
+    SHOWPROJECTS(new ShowProjectsCommand()),
+    GOTOADDPROJECT(new GoToAddProjectCommand()),
+    DELETEPROJECT(new DeleteProjectCommand()),
+    ADDPROJECT(new AddProjectCommand()),
+    GOTOADDTEMPTASK(new GoToAddTempTaskCommand()),
+    ADDTEMPTASK(new AddTempTaskCommand()),
+    DELETETEMPTASK(new DeleteTempTaskCommand()),
+    GOTOMODIFYTEMPTASK(new GoToModifyTempTaskCommand()),
+    MODIFYTEMPTASK(new ModifyTempTaskCommand()),
+    GOTOMODIFYPROJECT(new GoToModifyProjectCommand()),
+    MODIFYPROJECT(new ModifyProjectCommand()),
+    DELETETASKFROMPROJECT(new DeleteTaskFromProjectCommand()),
+    GOTOADDTASKFROMPROJECT(new GoToAddTaskFromProjectCommand()),
+    ADDTASKFROMPROJECT(new AddTaskFromProjectCommand()),
+    GOTOMODIFYTASKFROMPROJECT(new GoToModifyTaskFromProjectCommand()),
+    MODIFYTASKFROMPROJECT(new ModifyTaskFromProjectCommand()),
+    CANCELADDPROJECT(new CancelAddProjectCommand()),
+    CANCELMODIFYPROJECT(new CancelModifyProjectCommand()),
+    CANCELTASKINMODIFYPROJECT(new CancelTaskInModifyProjectCommand()),
+    CANCELTASKINADDPROJECT(new CancelTaskInAddProjectCommand()),
+    GOTOMENU(new GoToMenuCommand()),
+    LOGIN(new LoginCommand()),
+    GOTOREMINDPASSWORD(new GoToRemindPasswordCommand()),
+    REMINDPASSWORD(new RemindPasswordCommand());
 
     ActionCommand command;
 
@@ -87,7 +87,7 @@ public enum CommandType {
      * Instantiates a new CommandType.
      * @param command the command
      */
-    CommandType (ActionCommand command) {
+    CommandType(ActionCommand command) {
         this.command = command;
     }
 

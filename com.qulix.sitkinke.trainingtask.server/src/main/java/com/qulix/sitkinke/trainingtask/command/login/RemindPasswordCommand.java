@@ -1,6 +1,6 @@
 package com.qulix.sitkinke.trainingtask.command.login;
 
-import javax.mail.*;
+import javax.mail.MessagingException;
 import javax.servlet.http.HttpServletRequest;
 
 import com.qulix.sitkinke.trainingtask.command.ActionCommand;

@@ -3,7 +3,8 @@ VALUES (2, 'PHPixie PHP Framework', 'PHPixie', 'PHPixie started as a micro frame
 
 INSERT INTO EMPLOYEES VALUES (1, 'Buckland', 'Adam', 'Bernadette', 'Software Engineer', 'buck@gmail.com', 123, 'ADMINISTRATOR');
 INSERT INTO EMPLOYEES VALUES (2, 'Anna', 'Cameron', 'Bower', 'Test Software Programmer', 'Buckland@gmail.com', 22, 'USER');
-INSERT INTO EMPLOYEES VALUES (3, 'Elizabeth', 'Christopher', 'Carr', 'Entry Level Programmer', 'Christopher@yandex.ru', 443, 'USER');
+INSERT INTO EMPLOYEES
+VALUES (3, 'Elizabeth', 'Christopher', 'Carr', 'Entry Level Programmer', 'Christopher@yandex.ru', 443, 'USER');
 INSERT INTO EMPLOYEES VALUES (4, 'Lawrence', 'MacDonald', 'Johnston', 'Java Developer', 'MacDonald@mail.ru', 543, 'USER');
 INSERT INTO EMPLOYEES VALUES (5, 'Rebecca', 'Manning', 'Kerr', 'Web Programmer', 'Manning@gmail.com', 32, 'USER');
 

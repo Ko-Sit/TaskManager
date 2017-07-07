@@ -40,7 +40,7 @@ public class GoToModifyTaskFromProjectCommand implements ActionCommand {
 
         List<Employee> taskExecutors = task.getEmployeeList();
         List<Integer> taskExecutorsID = new ArrayList<>();
-        for (Employee employee : taskExecutors ) {
+        for (Employee employee : taskExecutors) {
             taskExecutorsID.add(employee.getId());
         }
         request.setAttribute(Parameters.TASK_EXECUTORS_ID, taskExecutorsID);

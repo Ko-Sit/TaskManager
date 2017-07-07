@@ -60,7 +60,8 @@
                     </c:forEach>
                 </td>
                 <td>${task.state}</td>
-                <td><a id="deletelink${task.id}" href="controller?command=deletetaskfromproject&id=${task.id}" onclick="load('deletelink${task.id}')">Delete</a>
+                <td>
+                    <a id="deletelink${task.id}" href="controller?command=deletetaskfromproject&id=${task.id}" onclick="load('deletelink${task.id}')">Delete</a>
                 </td>
                 <td>
                     <a id="modifylink${task.id}" href="controller?command=gotomodifytaskfromproject&id=${task.id}" onclick="load('modifylink${task.id}')">Modify</a>

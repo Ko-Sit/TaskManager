@@ -54,7 +54,7 @@
             <jsp:useBean id="taskExecutorsID" scope="request" type="java.util.List"/>
             <c:forEach var="employee" items="${employees}">
                 <option <c:if test='${taskExecutorsID.contains(employee.id)}'>selected="selected"</c:if>>
-                    ${employee.id}. ${employee.surname} ${employee.name}
+                        ${employee.id}. ${employee.surname} ${employee.name}
                 </option>
             </c:forEach>
         </select>

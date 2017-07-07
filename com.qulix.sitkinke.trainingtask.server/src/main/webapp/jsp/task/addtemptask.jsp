@@ -19,7 +19,7 @@
     </div>
     <div class="field">
         <label>Duration</label>
-        <input type="number" name="duration" id="duration" value="" min="1" required />
+        <input type="number" name="duration" id="duration" value="" min="1" required/>
     </div>
     <div class="field">
         <label>Start Date</label>
