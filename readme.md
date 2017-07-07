@@ -1,6 +1,7 @@
 ### Required software:
 
 * JDK 1.8
+* Don't forget to set the JAVA_HOME variable to jdk path
 
 
 1. Delete the build directory:
@@ -62,3 +63,15 @@ If you want drop the tables, run this code when database server is up:
 ```
 gradlew dropTables
 ```
+
+Default Admin account:
+
+    login: buck@gmail.com
+    password: 123
+
+Default User account:
+    
+    login: Manning@gmail.com
+    password: 32
+    
+Don't remind passwords from test data emails!
