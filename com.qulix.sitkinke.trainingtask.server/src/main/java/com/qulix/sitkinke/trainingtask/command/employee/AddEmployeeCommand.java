@@ -30,7 +30,7 @@ public class AddEmployeeCommand implements ActionCommand {
         String email = request.getParameter(Parameters.EMPLOYEE_EMAIL);
         String password = request.getParameter(Parameters.EMPLOYEE_PASSWORD);
         UserType userType = UserType.valueOf(request.getParameter(Parameters.EMPLOYEE_USERTYPE).toUpperCase());
-        System.out.println(email);
+
         Employee employee = new Employee(surname, name, patronymic, position, email, password, userType);
         EmployeeDAO employeeDAO = new EmployeeDAO();
         employeeDAO.add(employee);

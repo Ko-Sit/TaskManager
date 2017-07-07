@@ -4,6 +4,7 @@ import javax.mail.*;
 import javax.servlet.http.HttpServletRequest;
 
 import com.qulix.sitkinke.trainingtask.command.ActionCommand;
+import com.qulix.sitkinke.trainingtask.constants.Parameters;
 import com.qulix.sitkinke.trainingtask.constants.PathConfigs;
 import com.qulix.sitkinke.trainingtask.dao.EmployeeDAO;
 import com.qulix.sitkinke.trainingtask.entities.Employee;
@@ -11,15 +12,17 @@ import com.qulix.sitkinke.trainingtask.managers.EmailManager;
 import com.qulix.sitkinke.trainingtask.resource.ConfigurationManager;
 
 /**
+ * Class that reminds password.
  *
- * Created by upsit on 06.07.2017.
+ * @author sitkin
+ * @see ActionCommand
  */
 public class RemindPasswordCommand implements ActionCommand {
 
     @Override
     public String execute(HttpServletRequest request) {
         String page = null;
-        String email = request.getParameter("login");
+        String email = request.getParameter(Parameters.LOGIN);
         EmployeeDAO employeeDAO = new EmployeeDAO();
         Employee employee = employeeDAO.getByLogin(email);
         String password = employee.getPassword();
@@ -31,7 +34,7 @@ public class RemindPasswordCommand implements ActionCommand {
             e.printStackTrace();
             System.out.println("Error during send password to email.");
         }
-        request.setAttribute("message", "Password was sent to email!");
+        request.setAttribute(Parameters.MESSAGE, "Password was sent to email!");
         page = ConfigurationManager.getProperty(PathConfigs.LOGIN_PAGE);
         return page;
     }

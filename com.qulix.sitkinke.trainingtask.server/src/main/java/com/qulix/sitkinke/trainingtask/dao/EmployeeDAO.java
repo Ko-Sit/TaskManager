@@ -182,8 +182,6 @@ public class EmployeeDAO implements IDao<Employee> {
             preparedStatement.setString(2, password);
             try (ResultSet resultSet = preparedStatement.executeQuery()) {
                 if (resultSet.next()) {
-                    System.out.println(resultSet.getString(1));
-                    System.out.println(resultSet.getString(2));
                     isLogIn = true;
                 }
             }

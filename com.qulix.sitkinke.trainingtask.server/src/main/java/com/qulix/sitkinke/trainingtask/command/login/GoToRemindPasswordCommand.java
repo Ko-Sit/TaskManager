@@ -7,8 +7,10 @@ import com.qulix.sitkinke.trainingtask.constants.PathConfigs;
 import com.qulix.sitkinke.trainingtask.resource.ConfigurationManager;
 
 /**
+ * Class that redirects page to remind password page.
  *
- * Created by upsit on 07.07.2017.
+ * @author sitkin
+ * @see ActionCommand
  */
 public class GoToRemindPasswordCommand implements ActionCommand {
 

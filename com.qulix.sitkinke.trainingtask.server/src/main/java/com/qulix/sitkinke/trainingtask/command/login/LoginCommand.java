@@ -13,8 +13,10 @@ import com.qulix.sitkinke.trainingtask.enums.UserType;
 import com.qulix.sitkinke.trainingtask.resource.ConfigurationManager;
 
 /**
+ * Class that check login validity.
  *
- * Created by upsit on 06.07.2017.
+ * @author sitkin
+ * @see ActionCommand
  */
 public class LoginCommand implements ActionCommand{
 
@@ -28,7 +30,6 @@ public class LoginCommand implements ActionCommand{
         EmployeeDAO employeeDAO = new EmployeeDAO();
         if (employeeDAO.isAuthorized(login, password)) {
             Employee employee = employeeDAO.getByLogin(login);
-            System.out.println(employee);
             type = employee.getUserType();
             session.setAttribute(Attributes.USER_TYPE, type);
             page = ConfigurationManager.getProperty(PathConfigs.MAIN_PAGE);
@@ -36,7 +37,7 @@ public class LoginCommand implements ActionCommand{
         else {
             type = UserType.GUEST;
             session.setAttribute(Attributes.USER_TYPE, type);
-            request.setAttribute("errorLoginMessage", "Invalid login data!");
+            request.setAttribute(Parameters.ERROR_LOGIN_MESSAGE, "Invalid login data!");
             page = ConfigurationManager.getProperty(PathConfigs.LOGIN_PAGE);
         }
 

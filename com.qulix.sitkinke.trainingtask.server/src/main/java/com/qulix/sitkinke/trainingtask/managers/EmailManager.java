@@ -7,15 +7,25 @@ import javax.mail.MessagingException;
 import javax.mail.PasswordAuthentication;
 import javax.mail.Session;
 import javax.mail.Transport;
-import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
+import com.qulix.sitkinke.trainingtask.command.ActionCommand;
+
 /**
+ * Class that sends messages to email.
  *
- * Created by upsit on 07.07.2017.
+ * @author sitkin
+ * @see ActionCommand
  */
 public class EmailManager {
+
+    /**
+     * sends message.
+     *
+     * @param email the user email
+     * @param password the user password
+     */
     public static void send (String email, String password) throws MessagingException {
         Properties props = new Properties();
         props.put("mail.smtp.host", "smtp.yandex.ru");
@@ -34,7 +44,7 @@ public class EmailManager {
 
         Message message = new MimeMessage(session);
         message.setFrom(new InternetAddress("upsitkink@yandex.ru"));
-        message.setRecipients(Message.RecipientType.TO, InternetAddress.parse("upsitkink@gmail.com"));
+        message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(email));
         message.setSubject("Login password");
         message.setText(password);
 
