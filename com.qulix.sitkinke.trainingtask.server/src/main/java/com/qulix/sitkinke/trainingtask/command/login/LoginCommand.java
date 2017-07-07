@@ -31,6 +31,7 @@ public class LoginCommand implements ActionCommand {
         if (employeeDAO.isAuthorized(login, password)) {
             Employee employee = employeeDAO.getByLogin(login);
             type = employee.getUserType();
+            session.setAttribute(Parameters.LOGIN, login);
             session.setAttribute(Attributes.USER_TYPE, type);
             page = ConfigurationManager.getProperty(PathConfigs.MAIN_PAGE);
         }
