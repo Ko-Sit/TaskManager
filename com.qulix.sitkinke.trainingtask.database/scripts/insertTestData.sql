@@ -1,5 +1,5 @@
 INSERT INTO PROJECTS
-VALUES (2, 'PHPixie PHP Framework', 'PHPixie', 'PHPixie started as a micro framework and has gradually grown');
+VALUES (1, 'PHPixie PHP Framework', 'PHPixie', 'PHPixie started as a micro framework and has gradually grown');
 
 INSERT INTO EMPLOYEES VALUES (1, 'Buckland', 'Adam', 'Bernadette', 'Software Engineer', 'buck@gmail.com', 123, 'ADMINISTRATOR');
 INSERT INTO EMPLOYEES VALUES (2, 'Anna', 'Cameron', 'Bower', 'Test Software Programmer', 'Buckland@gmail.com', 22, 'USER');
@@ -21,6 +21,3 @@ INSERT INTO REFLIST_EMPL VALUES (2, 3, 1);
 INSERT INTO REFLIST_EMPL VALUES (3, 4, 2);
 INSERT INTO REFLIST_EMPL VALUES (4, 5, 2);
 INSERT INTO REFLIST_EMPL VALUES (5, 3, 3);
-INSERT INTO REFLIST_PROJ VALUES (9, 2, 1);
-INSERT INTO REFLIST_PROJ VALUES (10, 2, 2);
-INSERT INTO REFLIST_PROJ VALUES (11, 2, 3);
