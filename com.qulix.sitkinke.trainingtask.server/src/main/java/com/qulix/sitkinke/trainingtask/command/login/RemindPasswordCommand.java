@@ -25,16 +25,21 @@ public class RemindPasswordCommand implements ActionCommand {
         String email = request.getParameter(Parameters.LOGIN);
         EmployeeDAO employeeDAO = new EmployeeDAO();
         Employee employee = employeeDAO.getByLogin(email);
-        String password = employee.getPassword();
+        if (employee != null) {
+            String password = employee.getPassword();
 
-        try {
-            EmailManager.send(email, password);
+            try {
+                EmailManager.send(email, password);
+            }
+            catch (MessagingException e) {
+                e.printStackTrace();
+                System.out.println("Error during send password to email.");
+            }
+            request.setAttribute(Parameters.MESSAGE, "Password was sent to email!");
         }
-        catch (MessagingException e) {
-            e.printStackTrace();
-            System.out.println("Error during send password to email.");
+        else {
+            request.setAttribute(Parameters.ERROR_LOGIN_MESSAGE, "No such email registered!");
         }
-        request.setAttribute(Parameters.MESSAGE, "Password was sent to email!");
         page = ConfigurationManager.getProperty(PathConfigs.LOGIN_PAGE);
         return page;
     }
