@@ -23,11 +23,11 @@
     </div>
     <div class="field">
         <label>Start Date</label>
-        <input type="date" name="startdate" value="${selectedtask.startDate}" id="startdate" onclick="setMax()" required/>
+        <input type="date" name="startdate" value="${selectedtask.startDate}" id="startdate" max="9999-12-31" onclick="setMax()" required/>
     </div>
     <div class="field">
         <label>End Date</label>
-        <input type="date" name="enddate" value="${selectedtask.endDate}" id="enddate" onclick="setMin()" required/>
+        <input type="date" name="enddate" value="${selectedtask.endDate}" id="enddate" max="9999-12-31" onclick="setMin()" required/>
     </div>
     <div class="field">
         <label>State</label>

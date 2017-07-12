@@ -23,11 +23,11 @@
     </div>
     <div class="field">
         <label>Start Date</label>
-        <input type="date" name="startdate" id="startdate" value="" onclick="setMax()" required/>
+        <input type="date" name="startdate" id="startdate" value="" max="9999-12-31" onclick="setMax()" required/>
     </div>
     <div class="field">
         <label>End Date</label>
-        <input type="date" name="enddate" id="enddate" value="" onclick="setMin()" required/>
+        <input type="date" name="enddate" id="enddate" value="" max="9999-12-31" onclick="setMin()" required/>
     </div>
     <div class="field">
         <label>State</label>
