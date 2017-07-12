@@ -14,27 +14,27 @@
     </div>
     <div class="field">
         <label>Surname</label>
-        <input type="text" value="${selectedemployee.surname}" maxlength="30" name="surname" required/>
+        <input type="text" value="${selectedemployee.surname}" maxlength="100" name="surname" required/>
     </div>
     <div class="field">
         <label>Name</label>
-        <input type="text" value="${selectedemployee.name}" maxlength="30" name="name" required>
+        <input type="text" value="${selectedemployee.name}" maxlength="100" name="name" required>
     </div>
     <div class="field">
         <label>Patronymic</label>
-        <input type="text" value="${selectedemployee.patronymic}" maxlength="30" name="patronymic" required/>
+        <input type="text" value="${selectedemployee.patronymic}" maxlength="100" name="patronymic" required/>
     </div>
     <div class="field">
         <label>Position</label>
-        <input type="text" value="${selectedemployee.position}" name="position" required/>
+        <input type="text" value="${selectedemployee.position}" maxlength="100" name="position" required/>
     </div>
     <div class="field">
         <label>Email</label>
-        <input type="text" name="login" value="${selectedemployee.email}" required/>
+        <input type="text" name="login" value="${selectedemployee.email}" maxlength="100" required/>
     </div>
     <div class="field">
         <label>Password</label>
-        <input type="password" name="password" value="${selectedemployee.password}" required/>
+        <input type="password" name="password" value="${selectedemployee.password}" maxlength="100" required/>
     </div>
     <div class="field">
         <label>User type</label>

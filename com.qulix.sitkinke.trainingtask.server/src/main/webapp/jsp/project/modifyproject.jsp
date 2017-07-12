@@ -19,7 +19,7 @@
     </div>
     <div class="field">
         <label>Name</label>
-        <input type="text" name="name" id="name" value="${projectname}" maxlength="30" required/>
+        <input type="text" name="name" id="name" value="${projectname}" maxlength="100" required/>
     </div>
     <div class="field">
         <label>Abbreviation</label>
@@ -27,7 +27,7 @@
     </div>
     <div class="field">
         <label>Description</label>
-        <input type="text" name="description" id="descr" value="${projectdescr}" placeholder="description" required/>
+        <input type="text" name="description" id="descr" value="${projectdescr}" maxlength="200" required/>
     </div>
     <br>
     <h1>Task List</h1>

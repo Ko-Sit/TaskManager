@@ -14,27 +14,27 @@
     </div>
     <div class="field">
         <label>Surname</label>
-        <input type="text" name="surname" value="" maxlength="30" required/>
+        <input type="text" name="surname" value="" maxlength="100" required/>
     </div>
     <div class="field">
         <label>Name</label>
-        <input type="text" name="name" value="" maxlength="30" required/>
+        <input type="text" name="name" value="" maxlength="100" required/>
     </div>
     <div class="field">
         <label>Patronymic</label>
-        <input type="text" name="patronymic" value="" maxlength="30" required/>
+        <input type="text" name="patronymic" value="" maxlength="100" required/>
     </div>
     <div class="field">
         <label>Position</label>
-        <input type="text" name="position" value="" required/>
+        <input type="text" name="position" value="" maxlength="100" required/>
     </div>
     <div class="field">
         <label>Email</label>
-        <input type="text" name="login" value="" required/>
+        <input type="text" name="login" value="" maxlength="100" required/>
     </div>
     <div class="field">
         <label>Password</label>
-        <input type="password" name="password" value="" required/>
+        <input type="password" name="password" value="" maxlength="100" required/>
     </div>
     <div class="field">
         <label>User type</label>

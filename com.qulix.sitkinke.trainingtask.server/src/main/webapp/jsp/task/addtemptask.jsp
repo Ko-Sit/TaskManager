@@ -15,11 +15,11 @@
     </div>
     <div class="field">
         <label>Name</label>
-        <input type="text" name="name" value="" maxlength="30" required/>
+        <input type="text" name="name" value="" maxlength="100" required/>
     </div>
     <div class="field">
         <label>Duration</label>
-        <input type="number" name="duration" id="duration" value="" min="1" required/>
+        <input type="number" name="duration" id="duration" value="" min="1" maxlength="10" required/>
     </div>
     <div class="field">
         <label>Start Date</label>

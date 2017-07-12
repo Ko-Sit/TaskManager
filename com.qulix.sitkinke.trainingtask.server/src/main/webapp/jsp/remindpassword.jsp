@@ -9,7 +9,7 @@
 <form name="loginForm" method="POST" action="controller">
     <div class="field">
         <label>Email</label>
-        <input type="text" name="login" value="buck@gmail.com" required/>
+        <input type="text" name="login" value="buck@gmail.com" maxlength="100" required/>
     </div>
     <button type="submit" name="command" value="remindpassword">Remind password</button>
 </form>
