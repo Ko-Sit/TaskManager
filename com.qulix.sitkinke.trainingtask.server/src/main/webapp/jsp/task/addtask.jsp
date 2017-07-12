@@ -19,7 +19,7 @@
     </div>
     <div class="field">
         <label>Duration (h)</label>
-        <input type="number" name="duration" id="duration" value="" min="1" maxlength="10" required/>
+        <input type="number" name="duration" id="duration" value="" min="1" max="100000"  required/>
     </div>
     <div class="field">
         <label>Start Date</label>

@@ -19,7 +19,7 @@
     </div>
     <div class="field">
         <label>Duration</label>
-        <input type="number" name="duration" id="duration" value="${selectedtask.duration}" min="1" maxlength="10" required/>
+        <input type="number" name="duration" id="duration" value="${selectedtask.duration}" min="1" max="100000" required/>
     </div>
     <div class="field">
         <label>Start Date</label>
