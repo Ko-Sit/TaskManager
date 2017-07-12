@@ -43,7 +43,7 @@
             <option>ADMINISTRATOR</option>
         </select>
     </div>
-    <button type="submit" name="command" value="addemployee">Save task</button>
+    <button type="submit" name="command" value="addemployee">Save Employee</button>
 
     <button type="submit" name="command" value="showemployees" formnovalidate>Cancel</button>
 
