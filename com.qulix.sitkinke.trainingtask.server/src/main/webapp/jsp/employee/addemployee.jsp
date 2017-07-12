@@ -36,11 +36,12 @@
         <label>Password</label>
         <input type="password" name="password" value="" maxlength="100" required/>
     </div>
+    <jsp:useBean id="grant" scope="request" type="com.qulix.sitkinke.trainingtask.enums.UserType"/>
     <div class="field">
         <label>User type</label>
-        <select name="usertype" id="usertype" title="usertype" required>
+        <select name="usertype" id="usertype" title="usertype" onclick="validateUserType()" required>
             <option>USER</option>
-            <option>ADMINISTRATOR</option>
+            <option <c:if test='${"USER".equals(grant.toString())}'>disabled</c:if>>ADMINISTRATOR</option>
         </select>
     </div>
     <button type="submit" name="command" value="addemployee">Save Employee</button>
