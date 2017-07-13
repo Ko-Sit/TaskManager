@@ -44,6 +44,9 @@
             <option <c:if test='${"USER".equals(grant.toString())}'>disabled</c:if>>ADMINISTRATOR</option>
         </select>
     </div>
+    <br>
+    ${message}
+    <br>
     <button type="submit" name="command" value="addemployee">Save Employee</button>
 
     <button type="submit" name="command" value="showemployees" formnovalidate>Cancel</button>

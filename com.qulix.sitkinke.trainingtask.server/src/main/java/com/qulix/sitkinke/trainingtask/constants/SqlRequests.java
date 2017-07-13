@@ -18,6 +18,7 @@ public class SqlRequests {
     public static final String DELETE_EMPLOYEE_TASKS = "DELETE FROM REFLIST_EMPL WHERE ID_EMPLOYEE = ?";
     public static final String RESET_EMPLOYEES_AUTO_INCREMENT = "ALTER TABLE EMPLOYEES ALTER COLUMN ID RESTART WITH ";
     public static final String CHECK_AUTHORIZATION = "SELECT EMAIL, PASSWORD FROM EMPLOYEES WHERE EMAIL = ? AND PASSWORD = ?";
+    public static final String CHECK_LOGIN_UNIQUENESS = "SELECT EMAIL FROM EMPLOYEES WHERE EMAIL = ?";
 
     // task requests
     public static final String ADD_TASK = "INSERT INTO TASKS (NAME, DURATION, STARTDATE, ENDDATE, STATE, PROJECTNAME) VALUES (?, ?, ?, ?, ?, ?)";

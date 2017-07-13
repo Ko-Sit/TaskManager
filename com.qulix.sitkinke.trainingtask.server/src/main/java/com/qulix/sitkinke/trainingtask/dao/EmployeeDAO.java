@@ -191,6 +191,23 @@ public class EmployeeDAO implements IDao<Employee> {
         return isLogIn;
     }
 
+    public boolean isEmailUnique(String email) {
+        boolean isUnique = false;
+        try (Connection connection = DBManager.getInstance().getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(SqlRequests.CHECK_LOGIN_UNIQUENESS)) {
+            preparedStatement.setString(1, email);
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                if (!resultSet.next()) {
+                    isUnique = true;
+                }
+            }
+        }
+        catch (SQLException e) {
+            throw new DaoException("SQL exception occurred during check email uniqueness", e);
+        }
+        return isUnique;
+    }
+
     public Employee getByLogin(String login) {
         Employee employee;
         try (Connection connection = DBManager.getInstance().getConnection();
@@ -211,4 +228,5 @@ public class EmployeeDAO implements IDao<Employee> {
 
         return employee;
     }
+
 }
